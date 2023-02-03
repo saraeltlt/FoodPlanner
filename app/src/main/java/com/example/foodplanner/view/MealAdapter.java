@@ -75,14 +75,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         TextView area;
         ImageView image;
         ImageButton favBtn;
-        LinearLayout layout;
+       ConstraintLayout layout;
         public MealViewHolder(@NonNull View itemView) {
             super(itemView);
             meal = itemView.findViewById(R.id.meal);
            area = itemView.findViewById(R.id.area);
            image = itemView.findViewById(R.id.image);
            layout=itemView.findViewById(R.id.layout);
-           // favBtn=itemView.findViewById(R.id.addFav);
+           favBtn=itemView.findViewById(R.id.addFav);
 
         }
     }
