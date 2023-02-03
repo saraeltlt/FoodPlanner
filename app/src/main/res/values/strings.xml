@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">FoodPlanner</string>
-    <string name="appName">EAT THIS</string>
+    <string name="app_name">EAT THIS</string>
+    <string name="welcome">WELCOME</string>
+    <string name="home">Home</string>
+    <string name="fav">Favourite</string>
+    <string name="search">Search</string>
+    <string name="plan">Your Plan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
