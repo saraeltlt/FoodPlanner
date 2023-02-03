@@ -47,7 +47,8 @@ public class HomeFragment extends Fragment implements OnClickMealHome {
         mealsArray.add(new Meals("Apam balik","Beef",
                 "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg","Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ"));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext(),LinearLayoutManager. HORIZONTAL, false);
+        recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(new MealAdapter(mealsArray,this.getContext(),this));
         return view;
     }

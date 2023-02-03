@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
+
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,14 +75,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         TextView area;
         ImageView image;
         ImageButton favBtn;
-        RelativeLayout layout;
+        LinearLayout layout;
         public MealViewHolder(@NonNull View itemView) {
             super(itemView);
             meal = itemView.findViewById(R.id.meal);
            area = itemView.findViewById(R.id.area);
            image = itemView.findViewById(R.id.image);
            layout=itemView.findViewById(R.id.layout);
-            favBtn=itemView.findViewById(R.id.addFav);
+           // favBtn=itemView.findViewById(R.id.addFav);
 
         }
     }
