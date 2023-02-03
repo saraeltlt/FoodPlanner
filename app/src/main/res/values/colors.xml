@@ -11,5 +11,6 @@
     <color name="yellow_light">#F3e180</color>
     <color name="grey_light">#b5b5b5</color>
     <color name="grey_dark">#36373b</color>
+    <color name="red">#F44336</color>
 
 </resources>
