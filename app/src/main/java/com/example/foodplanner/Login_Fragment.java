@@ -1,5 +1,6 @@
 package com.example.foodplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -60,14 +62,24 @@ public class Login_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         TextView signup;
+        Button login ;
         View view =inflater.inflate(R.layout.fragment_login_, container, false);
         signup=view.findViewById(R.id.Signup);
+        login = view.findViewById(R.id.LOGIN);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Navigation.findNavController(view).navigate(R.id.goingToSignup);
                 TextView title = getActivity().findViewById(R.id.home_title);
                 title.setText("Hello");
+            }
+        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),HomeActivity.class);
+                startActivity(intent);
             }
         });
 
