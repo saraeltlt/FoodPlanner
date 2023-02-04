@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/login_Fragment">
+
+    <fragment
+        android:id="@+id/login_Fragment"
+        android:name="com.example.foodplanner.Login_Fragment"
+        android:label="fragment_login_"
+        tools:layout="@layout/fragment_login_" >
+        <action
+            android:id="@+id/goingToSignup"
+            app:destination="@id/signUp_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp_Fragment"
+        android:name="com.example.foodplanner.SignUp_Fragment"
+        android:label="fragment_sign_up_"
+        tools:layout="@layout/fragment_sign_up_" >
+        <action
+            android:id="@+id/goingToLogin"
+            app:destination="@id/login_Fragment" />
+    </fragment>
+</navigation>
