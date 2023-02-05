@@ -10,12 +10,14 @@ public class Meals implements Serializable {
     String strMealThumb;
     String strArea;
     String strYoutube;
+    String strInstructions;
 
     public Meals() {
     }
 
-    public Meals(String strMeal, String strCategory, String strMealThumb, String strArea, String strYoutube) {
+    public Meals(String strMeal, String strCategory, String strMealThumb, String strArea, String strYoutube, String strInstructions) {
         this.strArea =strArea;
+        this.strCategory= strCategory;
         this.strMeal = strMeal;
         this.strCategory = strCategory;
         this.strMealThumb = strMealThumb;
@@ -72,4 +74,11 @@ public class Meals implements Serializable {
         this.strYoutube = strYoutube;
     }
 
+    public String getStrInstructions() {
+        return strInstructions;
+    }
+
+    public void setStrInstructions(String strInstructions) {
+        this.strInstructions = strInstructions;
+    }
 }
