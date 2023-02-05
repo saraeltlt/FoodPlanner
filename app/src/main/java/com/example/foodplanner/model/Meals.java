@@ -1,22 +1,36 @@
 package com.example.foodplanner.model;
 
-public class Meals {
+import android.os.Parcel;
+
+import java.io.Serializable;
+
+public class Meals implements Serializable {
     String strMeal;
     String  strCategory;
     String strMealThumb;
     String strArea;
-    String strSource;
+    String strYoutube;
 
     public Meals() {
     }
 
-    public Meals(String strMeal, String strCategory, String strMealThumb, String strArea, String strSource) {
+    public Meals(String strMeal, String strCategory, String strMealThumb, String strArea, String strYoutube) {
         this.strArea =strArea;
         this.strMeal = strMeal;
         this.strCategory = strCategory;
         this.strMealThumb = strMealThumb;
-        this.strSource = strSource;
+        this.strYoutube = strYoutube;
     }
+
+    protected Meals(Parcel in) {
+        strMeal = in.readString();
+        strCategory = in.readString();
+        strMealThumb = in.readString();
+        strArea = in.readString();
+        strYoutube = in.readString();
+    }
+
+
 
     public String getStrArea() {
         return strArea;
@@ -50,11 +64,12 @@ public class Meals {
         this.strMealThumb = strMealThumb;
     }
 
-    public String getStrSource() {
-        return strSource;
+    public String getStrYoutube() {
+        return strYoutube;
     }
 
-    public void setStrSource(String strSource) {
-        this.strSource = strSource;
+    public void setStrYoutube(String strYoutube) {
+        this.strYoutube = strYoutube;
     }
+
 }

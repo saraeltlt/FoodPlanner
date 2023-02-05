@@ -16,4 +16,5 @@
     <string name="loginBtn">Login</string>
     <string name="Signup">Signup</string>
     <string name="mealOfTheDay">Daily Inspiration</string>
+    <string name="Favourite">Favourite Meals:</string>
 </resources>
