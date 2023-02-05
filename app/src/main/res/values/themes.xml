@@ -13,5 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:textColorHint">@color/grey_light</item>
+        <item name="android:editTextColor">@color/white</item>
     </style>
 </resources>

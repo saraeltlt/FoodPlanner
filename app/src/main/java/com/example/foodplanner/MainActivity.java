@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     CardView cardView ;
-    //public static TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
      // Intent intent = new Intent( MainActivity.this,HomeActivity.class);
       //startActivity(intent);
         cardView= findViewById(R.id.facebook_card);
-         //title = findViewById(R.id.home_title);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
