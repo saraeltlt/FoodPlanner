@@ -16,11 +16,11 @@ import com.example.foodplanner.model.Meals;
 
 import java.util.List;
 
-public class ItemCardAdapter extends RecyclerView.Adapter<ItemCardAdapter.MealViewHolder> {
+public class IngredientsCardAdapter extends RecyclerView.Adapter<IngredientsCardAdapter.MealViewHolder> {
     private List<Meals> mealsArrayList;
     private Context context;
 
-    public ItemCardAdapter(List<Meals> mealsArrayList, Context context) {
+    public IngredientsCardAdapter(List<Meals> mealsArrayList, Context context) {
         this.mealsArrayList = mealsArrayList;
         this.context = context;
     }

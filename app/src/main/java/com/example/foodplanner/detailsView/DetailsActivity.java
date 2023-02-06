@@ -13,12 +13,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.homeView.MealAdapter;
 import com.example.foodplanner.model.Meals;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -65,7 +65,7 @@ YouTubePlayerView youTubePlayerView;
         });
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager. HORIZONTAL, false);
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(new ItemCardAdapter(mealsArray,this));
+        recyclerView.setAdapter(new IngredientsCardAdapter(mealsArray,this));
 
         Intent myIntent = getIntent();
         Meals myMeal = (Meals) myIntent.getSerializableExtra("meal");
@@ -81,6 +81,10 @@ YouTubePlayerView youTubePlayerView;
               youTubePlayer.loadVideo(videoId,0);
            }
        });*/
+        StringTokenizer st = new StringTokenizer(myMeal.getStrInstructions(),".");
+        while (st.hasMoreTokens()) {
+            System.out.println(st.nextToken());
+        }
 
 
 
