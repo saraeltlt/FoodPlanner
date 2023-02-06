@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top_nav"
+    app:startDestination="@id/ingredients">
+
+    <fragment
+        android:id="@+id/ingredients"
+        android:name="com.example.foodplanner.ingredients"
+        android:label="fragment_ingredients"
+        tools:layout="@layout/fragment_ingredients" />
+    <fragment
+        android:id="@+id/region"
+        android:name="com.example.foodplanner.region"
+        android:label="fragment_region"
+        tools:layout="@layout/fragment_region" />
+    <fragment
+        android:id="@+id/category"
+        android:name="com.example.foodplanner.category"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" />
+</navigation>

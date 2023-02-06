@@ -16,4 +16,8 @@
     <string name="loginBtn">Login</string>
     <string name="Signup">Signup</string>
     <string name="mealOfTheDay">Daily Inspiration</string>
+    <string name="Ingredients">Ingredients</string>
+    <string name="Area">Area</string>
+    <string name="Caategory">Category</string>
+    <string name="Meals">Meals</string>
 </resources>

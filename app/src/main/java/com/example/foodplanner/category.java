@@ -3,19 +3,17 @@ package com.example.foodplanner;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SignUp_Fragment#newInstance} factory method to
+ * Use the {@link category#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SignUp_Fragment extends Fragment {
+public class category extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +24,7 @@ public class SignUp_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SignUp_Fragment() {
+    public category() {
         // Required empty public constructor
     }
 
@@ -36,11 +34,11 @@ public class SignUp_Fragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SignUp_Fragment.
+     * @return A new instance of fragment category.
      */
     // TODO: Rename and change types and number of parameters
-    public static SignUp_Fragment newInstance(String param1, String param2) {
-        SignUp_Fragment fragment = new SignUp_Fragment();
+    public static category newInstance(String param1, String param2) {
+        category fragment = new category();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,19 +56,9 @@ public class SignUp_Fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        TextView login;
-
-        View view = inflater.inflate(R.layout.fragment_sign_up_, container, false);
-        login = view.findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.goingToLogin);
-                TextView title = getActivity().findViewById(R.id.home_title);
-                title.setText("Welcome Back");
-            }
-        });
-        return view;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_category, container, false);
     }
 }
