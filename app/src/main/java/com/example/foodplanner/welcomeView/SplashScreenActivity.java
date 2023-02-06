@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.welcomeView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,9 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.foodplanner.MainActivity;
+import com.example.foodplanner.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
     ImageView imge ;
@@ -23,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this,MainActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, WelcomeActivity.class);
                 Pair[] pairs =  new Pair[2];
                 pairs[0]=new Pair<View,String>(imge,"imageTransition");
                 pairs[1]=new Pair<View,String>(text,"textTransition");

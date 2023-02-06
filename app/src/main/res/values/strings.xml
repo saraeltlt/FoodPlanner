@@ -20,4 +20,6 @@
     <string name="add_plan">ADD TO PLAN</string>
     <string name="ingrediants">Ingredients</string>
     <string name="recipe">Recipe</string>
+    <string name="next">NEXT</string>
+    <string name="getStared">GET START</string>
 </resources>

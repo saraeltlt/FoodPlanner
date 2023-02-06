@@ -17,16 +17,16 @@ import com.example.foodplanner.model.Meals;
 import java.util.List;
 
 public class IngredientsCardAdapter extends RecyclerView.Adapter<IngredientsCardAdapter.MealViewHolder> {
-    private List<Meals> mealsArrayList;
+    private Meals meals;
     private Context context;
 
-    public IngredientsCardAdapter(List<Meals> mealsArrayList, Context context) {
-        this.mealsArrayList = mealsArrayList;
+    public IngredientsCardAdapter(Meals meals, Context context) {
+        this.meals = meals;
         this.context = context;
     }
 
-    public List<Meals> getMealsArrayList() {
-        return mealsArrayList;
+    public Meals getMeal() {
+        return meals;
     }
 
     @NonNull
@@ -40,7 +40,7 @@ public class IngredientsCardAdapter extends RecyclerView.Adapter<IngredientsCard
 
     @Override
     public void onBindViewHolder(@NonNull MealViewHolder holder, int position) {
-        Meals meal= mealsArrayList.get(position);
+        Meals meal= meals.get(position);
         holder.text.setText(meal.getStrMeal());
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.image);
     }
