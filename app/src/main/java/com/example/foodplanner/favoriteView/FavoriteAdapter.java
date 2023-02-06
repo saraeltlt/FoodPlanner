@@ -1,6 +1,7 @@
 package com.example.foodplanner.favoriteView;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         Meals meal= mealsArrayList.get(position);
         holder.meal.setText(meal.getStrMeal());
         holder.area.setText(meal.getStrArea());
+        Context contextImage = holder.flag.getContext();
+        int id = contextImage .getResources().getIdentifier(meal.getStrArea().toLowerCase(), "drawable", contextImage.getPackageName());
+        holder.flag.setImageResource(id);
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.image);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +75,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         TextView area;
         ImageView image;
         ImageButton favBtn;
+        ImageView flag;
        ConstraintLayout layout;
         public MealViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +84,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
            image = itemView.findViewById(R.id.image);
            layout=itemView.findViewById(R.id.layout);
            favBtn=itemView.findViewById(R.id.addFav);
+           flag = itemView.findViewById(R.id.areaFlag);
 
         }
     }

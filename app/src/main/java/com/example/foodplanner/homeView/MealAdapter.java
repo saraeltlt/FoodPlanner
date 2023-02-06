@@ -48,6 +48,10 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         Meals meal= mealsArrayList.get(position);
         holder.meal.setText(meal.getStrMeal());
         holder.area.setText(meal.getStrArea());
+
+        Context contextImage = holder.flag.getContext();
+        int id = contextImage .getResources().getIdentifier(meal.getStrArea().toLowerCase(), "drawable", contextImage.getPackageName());
+        holder.flag.setImageResource(id);
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.image);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +73,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         TextView meal;
         TextView area;
         ImageView image;
+        ImageView flag;
         ImageButton favBtn;
        ConstraintLayout layout;
         public MealViewHolder(@NonNull View itemView) {
@@ -78,6 +83,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
            image = itemView.findViewById(R.id.image);
            layout=itemView.findViewById(R.id.layout);
            favBtn=itemView.findViewById(R.id.addFav);
+           flag = itemView.findViewById(R.id.areaFlag);
 
         }
     }

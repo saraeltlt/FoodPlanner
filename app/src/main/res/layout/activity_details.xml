@@ -10,20 +10,21 @@
 
     <ImageView
         android:id="@+id/backBtn"
-        android:layout_width="35dp"
-        android:layout_height="34dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:elevation="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_arrow" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/videoCard"
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_marginTop="8dp"
-        app:cardCornerRadius="160dp"
+        android:layout_width="360dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="0dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,17 +36,16 @@
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/youtubePlayer"
-                android:layout_width="320dp"
-                android:layout_height="320dp"
-                android:layout_marginTop="-40dp"
-                app:autoPlay="true"
+                android:layout_width="360dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:videoId="qzcGfN9S_QY">
+                app:layout_constraintVertical_bias="1.0">
 
             </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -54,10 +54,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/backCard"
-        android:layout_width="381dp"
+        android:layout_width="380dp"
         android:layout_height="418dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="-100dp"
+        android:layout_marginTop="-80dp"
         android:layout_marginEnd="24dp"
         app:cardBackgroundColor="@color/grey_light"
         app:cardCornerRadius="30dp"
@@ -82,11 +82,11 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="-4dp"
                     android:fontFamily="@font/gabriola"
-                    android:text="@string/recipe"
                     android:shadowColor="#000000"
                     android:shadowDx="1.5"
                     android:shadowDy="1.3"
                     android:shadowRadius="1.6"
+                    android:text="@string/recipe"
                     android:textColor="@color/yellow_dark"
                     android:textSize="34sp"
                     android:textStyle="bold"
@@ -136,12 +136,12 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="-4dp"
                     android:fontFamily="@font/gabriola"
-                    android:text="@string/ingrediants"
-                    android:textColor="@color/yellow_dark"
                     android:shadowColor="#000000"
                     android:shadowDx="1.5"
                     android:shadowDy="1.3"
                     android:shadowRadius="1.6"
+                    android:text="@string/ingrediants"
+                    android:textColor="@color/yellow_dark"
                     android:textSize="34sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"

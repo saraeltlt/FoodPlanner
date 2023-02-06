@@ -1,13 +1,13 @@
 package com.example.foodplanner.detailsView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,8 +15,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.Flags;
 import com.example.foodplanner.model.Meals;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
@@ -31,7 +32,6 @@ ImageView mealImage;
 ImageButton addFav;
 Boolean favFlag = false;
 ImageView flagImage;
-private Resources res = null;
 RecyclerView ingrediantRecycler;
 RecyclerView  recipeRecycler;
 YouTubePlayerView youTubePlayerView;
@@ -71,22 +71,28 @@ private List<Meals> mealsArray;
         Meals myMeal = (Meals) myIntent.getSerializableExtra("meal");
         mealName.setText(myMeal.getStrMeal());
         mealArea.setText(myMeal.getStrArea());
-       /* int resourceId = res.getIdentifier(Flags.FLAGS_MAP.get(myMeal.getStrArea()), "drawable",
-                this.getPackageName());
-        flagImage.setImageResource(resourceId);*/
+        Context context = flagImage.getContext();
+        int id = context.getResources().getIdentifier(myMeal.getStrArea().toLowerCase(), "drawable", context.getPackageName());
+        flagImage.setImageResource(id);
         Glide.with(this).load(myMeal.getStrMealThumb()).into(mealImage);
-       getLifecycle().addObserver(youTubePlayerView);
+        getLifecycle().addObserver(youTubePlayerView);
+
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager. HORIZONTAL, false);
         ingrediantRecycler.setLayoutManager(manager);
         ingrediantRecycler.setAdapter(new IngredientsCardAdapter(myMeal,this));
-      /* youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-           @Override
-           public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-               super.onReady(youTubePlayer);
-              String videoId="gXWXKjR-qII";
-              youTubePlayer.loadVideo(videoId,0);
-           }
-       });*/
+
+        getLifecycle().addObserver(youTubePlayerView);
+        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                String videoId  = myMeal.getStrYoutube();
+                videoId= videoId.substring(videoId.indexOf("=") +1);
+                StringTokenizer st = new StringTokenizer(videoId,"&");
+                videoId=st.nextToken();
+                youTubePlayer.loadVideo(videoId, 0);
+            }
+        });
+
         StringTokenizer st = new StringTokenizer(myMeal.getStrInstructions(),".");
         List<String> recipe = new ArrayList<>();
         while (st.hasMoreTokens()) {

@@ -12,21 +12,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+import com.example.foodplanner.model.Ingredient;
 import com.example.foodplanner.model.Meals;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientsCardAdapter extends RecyclerView.Adapter<IngredientsCardAdapter.MealViewHolder> {
-    private Meals meals;
+    private Meals meal;
     private Context context;
+    private List<Ingredient> ingredientsList;
 
-    public IngredientsCardAdapter(Meals meals, Context context) {
-        this.meals = meals;
+    public IngredientsCardAdapter(Meals meal, Context context) {
+        this.meal = meal;
         this.context = context;
+      ingredientsList= Ingredient.constructList(meal);
+
     }
 
-    public Meals getMeal() {
-        return meals;
+    public List<Ingredient> getIngredientsList() {
+        return ingredientsList;
     }
 
     @NonNull
@@ -40,14 +45,16 @@ public class IngredientsCardAdapter extends RecyclerView.Adapter<IngredientsCard
 
     @Override
     public void onBindViewHolder(@NonNull MealViewHolder holder, int position) {
-        Meals meal= meals.get(position);
-        holder.text.setText(meal.getStrMeal());
-        Glide.with(context).load(meal.getStrMealThumb()).into(holder.image);
+        Ingredient ingredient = ingredientsList.get(position);
+        holder.text.setText(ingredient.getIngredientName());
+        holder.count.setText(ingredient.getIngredientMeasure());
+        String thumb = "https://www.themealdb.com/images/ingredients/"+ingredient.getIngredientName()+".png";
+        Glide.with(context).load(thumb).into(holder.image);
     }
 
     @Override
     public int getItemCount() {
-        return mealsArrayList.size();
+        return ingredientsList.size();
     }
 
 
