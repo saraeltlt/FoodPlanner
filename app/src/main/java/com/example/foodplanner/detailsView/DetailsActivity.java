@@ -29,6 +29,7 @@ ImageButton addFav;
 Boolean favFlag = false;
 ImageView flagImage;
 RecyclerView  recyclerView;
+    RecyclerView  recipeRecycler;
 YouTubePlayerView youTubePlayerView;
     private List<Meals> mealsArray;
 
@@ -36,7 +37,7 @@ YouTubePlayerView youTubePlayerView;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
+        recipeRecycler = findViewById(R.id.recyclerRecipe);
         youTubePlayerView=findViewById(R.id.youtubePlayer);
         mealName = findViewById(R.id.meal);
         mealArea = findViewById(R.id.area);
@@ -63,16 +64,16 @@ YouTubePlayerView youTubePlayerView;
                 }
             }
         });
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager. HORIZONTAL, false);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(new IngredientsCardAdapter(mealsArray,this));
 
         Intent myIntent = getIntent();
         Meals myMeal = (Meals) myIntent.getSerializableExtra("meal");
         mealName.setText(myMeal.getStrMeal());
         mealArea.setText(myMeal.getStrArea());
         Glide.with(this).load(myMeal.getStrMealThumb()).into(mealImage);
-        getLifecycle().addObserver(youTubePlayerView);
+       getLifecycle().addObserver(youTubePlayerView);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager. HORIZONTAL, false);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(new IngredientsCardAdapter(mealsArray,this));
       /* youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
            @Override
            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
@@ -81,10 +82,16 @@ YouTubePlayerView youTubePlayerView;
               youTubePlayer.loadVideo(videoId,0);
            }
        });*/
-        StringTokenizer st = new StringTokenizer(myMeal.getStrInstructions(),".");
+        StringTokenizer st = new StringTokenizer("Sara Rady bahgat eltlt katry lines bal bla bla bla bla bla bla bla bhla lines keter bal lala bfj. essam. project . ",".");
+        List<String> recipe = new ArrayList<>();
         while (st.hasMoreTokens()) {
-            System.out.println(st.nextToken());
+            recipe.add(st.nextToken());
         }
+        RecyclerView.LayoutManager managerRecipe = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+        recipeRecycler.setLayoutManager(managerRecipe);
+        recipeRecycler.setAdapter(new RecipeCardAdapter(recipe,this));
+
+
 
 
 

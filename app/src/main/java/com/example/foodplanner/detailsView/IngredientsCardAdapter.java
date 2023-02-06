@@ -54,10 +54,12 @@ public class IngredientsCardAdapter extends RecyclerView.Adapter<IngredientsCard
     public class MealViewHolder extends RecyclerView.ViewHolder {
 
         TextView text;
+        TextView count;
         ImageView image;
 
         public MealViewHolder(@NonNull View itemView) {
             super(itemView);
+            count= itemView.findViewById(R.id.count);
            text= itemView.findViewById(R.id.text);
             image= itemView.findViewById(R.id.image);
 
