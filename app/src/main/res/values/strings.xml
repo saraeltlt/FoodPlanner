@@ -16,6 +16,12 @@
     <string name="loginBtn">Login</string>
     <string name="Signup">Signup</string>
     <string name="mealOfTheDay">Daily Inspiration</string>
+    <string name="Favourite">Favourite Meals:</string>
+    <string name="add_plan">ADD TO PLAN</string>
+    <string name="ingrediants">Ingredients</string>
+    <string name="recipe">Recipe</string>
+    <string name="next">NEXT</string>
+    <string name="getStared">GET START</string>
     <string name="Ingredients">Ingredients</string>
     <string name="Area">Area</string>
     <string name="Caategory">Category</string>

@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.homeView.MealAdapter;
+import com.example.foodplanner.homeView.OnClickMealHome;
 import com.example.foodplanner.model.Meals;
 
 import java.util.ArrayList;
@@ -48,12 +50,12 @@ public class meal extends Fragment implements OnClickMealHome {
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
         recyclerView = view.findViewById(R.id.mealRV);
         mealsArrayList = new ArrayList<>();
-        mealsArrayList.add(new Meals("Tart", "dessert", "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg", "British", null));
-        mealsArrayList.add(new Meals("Apam balik", "Beef", "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", "Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ"));
-        mealsArrayList.add(new Meals("Tart", "dessert", "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg", "British", null));
-        mealsArrayList.add(new Meals("Apam balik", "Beef", "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", "Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ"));
-        mealsArrayList.add(new Meals("Tart", "dessert", "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg", "British", null));
-        mealsArrayList.add(new Meals("Apam balik", "Beef", "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", "Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ"));
+        mealsArrayList.add(new Meals("Tart", "dessert", "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg", "British",null,null));
+        mealsArrayList.add(new Meals("Apam balik", "Beef", "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", "Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ",null));
+        mealsArrayList.add(new Meals("Tart", "dessert", "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg", "British", null,null));
+        mealsArrayList.add(new Meals("Apam balik", "Beef", "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", "Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ",null));
+        mealsArrayList.add(new Meals("Tart", "dessert", "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg", "British", null,null));
+        mealsArrayList.add(new Meals("Apam balik", "Beef", "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", "Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ",null));
 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(manager);

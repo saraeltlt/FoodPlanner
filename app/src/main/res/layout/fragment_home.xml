@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background"
     android:orientation="vertical"
-    tools:context=".mealView.HomeFragment">
+    android:transitionGroup="true"
+    tools:context=".homeView.HomeFragment">
 
     <TextView
         android:id="@+id/dailyText"

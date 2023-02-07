@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background"
 
-    tools:context=".SplashScreenActivity">
+    tools:context=".welcomeView.SplashScreenActivity">
 
     <TextView
         android:id="@+id/appName"
