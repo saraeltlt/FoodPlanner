@@ -1,8 +1,5 @@
 package com.example.foodplanner;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -13,6 +10,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.foodplanner.ingrediantView.ingredients;
 import com.example.foodplanner.view.meal;
 
 
@@ -44,7 +42,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 ingredients ingFrag = new ingredients();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.navHostFragment,ingFrag,"ingFrag").addToBackStack(null).commit();
+                manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment,ingFrag,"ingFrag").commit();
             }
         });
         area.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +50,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 region regionFrag = new region();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.navHostFragment,regionFrag,"ingFrag").commit();
+                manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment,regionFrag,"ingFrag").commit();
             }
         });
         cat.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +58,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 category catFrag = new category();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.navHostFragment,catFrag,"ingFrag").commit();
+                manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment,catFrag,"ingFrag").commit();
             }
         });
         meal.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +66,8 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 meal mealFrag = new meal();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.navHostFragment,mealFrag,"ingFrag").commit();
+                manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment,mealFrag,"ingFrag").commit();
+
             }
         });
         return view;
