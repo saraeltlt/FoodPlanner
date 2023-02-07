@@ -33,6 +33,18 @@ public class ingredients extends Fragment {
         ArrayList<Ingrd>ingrds = new ArrayList<>();
         ingrds.add(new Ingrd("Chicken"));
         ingrds.add(new Ingrd("Asparagus"));
+        ingrds.add(new Ingrd("Beef"));
+        ingrds.add(new Ingrd("Asparagus"));
+        ingrds.add(new Ingrd("Chicken"));
+        ingrds.add(new Ingrd("Beef"));
+        ingrds.add(new Ingrd("Salmon"));
+        ingrds.add(new Ingrd("Asparagus"));
+        ingrds.add(new Ingrd("Salmon"));
+        ingrds.add(new Ingrd("Asparagus"));
+        ingrds.add(new Ingrd("Chicken"));
+        ingrds.add(new Ingrd("Asparagus"));
+        ingrds.add(new Ingrd("Salmon"));
+        ingrds.add(new Ingrd("Salmon"));
         ingrds.add(new Ingrd("Chicken"));
         ingrds.add(new Ingrd("Asparagus"));
         ingrds.add(new Ingrd("Chicken"));

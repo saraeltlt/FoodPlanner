@@ -1,4 +1,4 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.mealView;
 
 import android.os.Bundle;
 
@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Meals;
-import com.example.foodplanner.view.MealAdapter;
-import com.example.foodplanner.view.OnClickMealHome;
 
 import java.util.ArrayList;
 import java.util.List;

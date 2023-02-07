@@ -10,8 +10,10 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.foodplanner.categoryView.category;
 import com.example.foodplanner.ingrediantView.ingredients;
-import com.example.foodplanner.view.meal;
+import com.example.foodplanner.regionView.region;
+import com.example.foodplanner.mealView.meal;
 
 
 public class SearchFragment extends Fragment {

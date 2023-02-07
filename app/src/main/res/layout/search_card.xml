@@ -9,7 +9,6 @@
     android:layout_marginRight="20dp"
     android:layout_marginBottom="10dp"
     android:clipToPadding="false"
-    app:cardElevation="20dp"
     app:cardPreventCornerOverlap="true">
 
     <LinearLayout

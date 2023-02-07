@@ -51,7 +51,7 @@ public class IngrediantAdapter extends RecyclerView.Adapter<IngrediantAdapter.My
         return ingrdArrayList.size();
     }
 
-    class MyHolder extends RecyclerView.ViewHolder{
+    public class MyHolder extends RecyclerView.ViewHolder{
         TextView txt ;
         ImageView img ;
         public MyHolder(@NonNull View itemView) {

@@ -1,4 +1,4 @@
-package com.example.foodplanner.view;
+package com.example.foodplanner.mealView;
 
 import com.example.foodplanner.model.Meals;
 

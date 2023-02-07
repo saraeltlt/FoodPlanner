@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/background"
-    tools:context=".view.meal">
+    tools:context=".mealView.meal">
 
     <SearchView
         android:id="@+id/mealSearchView"
@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/grey_dark"
+        android:editTextColor="@color/white"
         android:queryHint="Search for Meals"
         android:searchIcon="@drawable/my_search"
+        android:textColorHint="@color/grey_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColorHint="@color/grey_light"
-        android:editTextColor="@color/white"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
