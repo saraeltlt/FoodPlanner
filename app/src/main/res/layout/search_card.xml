@@ -9,6 +9,7 @@
     android:layout_marginRight="20dp"
     android:layout_marginBottom="10dp"
     android:clipToPadding="false"
+    app:cardCornerRadius="10dp"
     app:cardPreventCornerOverlap="true">
 
     <LinearLayout
@@ -19,28 +20,14 @@
         android:orientation="vertical"
         android:weightSum="2">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/Simage"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:elevation="10dp"
             android:foregroundGravity="center"
-            app:cardCornerRadius="100dp">
-
-            <ImageView
-                android:id="@+id/Simage"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:elevation="10dp"
-                android:foregroundGravity="center"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-        </androidx.cardview.widget.CardView>
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/Stext"

@@ -92,8 +92,5 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.MyHolder> 
         flags.add(R.drawable.tunisia);
         flags.add(R.drawable.turkich);
         flags.add(R.drawable.vietnam);
-
-
-
     }
 }

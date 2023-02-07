@@ -48,10 +48,10 @@ public class region extends Fragment {
       countries.add(new Area("British"));
       countries.add(new Area("Canadian"));
       countries.add(new Area("Chinese"));
-        countries.add(new Area("Croatian"));
-        countries.add(new Area("Dutch"));
-        countries.add(new Area("Egyptian"));
-        countries.add(new Area("French"));
+      countries.add(new Area("Croatian"));
+      countries.add(new Area("Dutch"));
+      countries.add(new Area("Egyptian"));
+      countries.add(new Area("French"));
       adapter = new RegionAdapter(countries);
       manager = new LinearLayoutManager(this.getContext());
       recyclerView.setLayoutManager(manager);
