@@ -26,31 +26,29 @@ import java.util.StringTokenizer;
 
 public class DetailsActivity extends AppCompatActivity {
 
-TextView mealName;
-TextView mealArea;
-ImageView mealImage;
-ImageButton addFav;
-Boolean favFlag = false;
-ImageView flagImage;
-RecyclerView ingrediantRecycler;
-RecyclerView  recipeRecycler;
-YouTubePlayerView youTubePlayerView;
-private List<Meals> mealsArray;
+    TextView mealName;
+    TextView mealArea;
+    ImageView mealImage;
+    ImageButton addFav;
+    Boolean favFlag = false;
+    ImageView flagImage;
+    RecyclerView ingrediantRecycler;
+    RecyclerView recipeRecycler;
+    YouTubePlayerView youTubePlayerView;
+    private List<Meals> mealsArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         recipeRecycler = findViewById(R.id.recyclerRecipe);
-        youTubePlayerView=findViewById(R.id.youtubePlayer);
+        youTubePlayerView = findViewById(R.id.youtubePlayer);
         mealName = findViewById(R.id.meal);
         mealArea = findViewById(R.id.area);
-        ingrediantRecycler =findViewById(R.id.recycler);
-        flagImage= findViewById(R.id.areaFlag);
+        ingrediantRecycler = findViewById(R.id.recycler);
+        flagImage = findViewById(R.id.areaFlag);
         mealImage = findViewById(R.id.image);
-        addFav= findViewById(R.id.addFav);
-
-
+        addFav = findViewById(R.id.addFav);
 
 
         addFav.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +56,10 @@ private List<Meals> mealsArray;
             public void onClick(View v) {
                 if (!favFlag) {
                     addFav.setImageResource(R.drawable.favorite_yellow);
-                    favFlag=true;
-                }
-                else{
+                    favFlag = true;
+                } else {
                     addFav.setImageResource(R.drawable.favorite_white);
-                    favFlag=false;
+                    favFlag = false;
                 }
             }
         });
@@ -77,33 +74,30 @@ private List<Meals> mealsArray;
         Glide.with(this).load(myMeal.getStrMealThumb()).into(mealImage);
         getLifecycle().addObserver(youTubePlayerView);
 
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager. HORIZONTAL, false);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         ingrediantRecycler.setLayoutManager(manager);
-        ingrediantRecycler.setAdapter(new IngredientsCardAdapter(myMeal,this));
+        ingrediantRecycler.setAdapter(new IngredientsCardAdapter(myMeal, this));
 
         getLifecycle().addObserver(youTubePlayerView);
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId  = myMeal.getStrYoutube();
-                videoId= videoId.substring(videoId.indexOf("=") +1);
-                StringTokenizer st = new StringTokenizer(videoId,"&");
-                videoId=st.nextToken();
+                String videoId = myMeal.getStrYoutube();
+                videoId = videoId.substring(videoId.indexOf("=") + 1);
+                StringTokenizer st = new StringTokenizer(videoId, "&");
+                videoId = st.nextToken();
                 youTubePlayer.loadVideo(videoId, 0);
             }
         });
 
-        StringTokenizer st = new StringTokenizer(myMeal.getStrInstructions(),".");
+        StringTokenizer st = new StringTokenizer(myMeal.getStrInstructions(), ".");
         List<String> recipe = new ArrayList<>();
         while (st.hasMoreTokens()) {
             recipe.add(st.nextToken());
         }
-        RecyclerView.LayoutManager managerRecipe = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager managerRecipe = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recipeRecycler.setLayoutManager(managerRecipe);
-        recipeRecycler.setAdapter(new RecipeCardAdapter(recipe,this));
-
-
-
+        recipeRecycler.setAdapter(new RecipeCardAdapter(recipe, this));
 
 
     }

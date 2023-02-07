@@ -34,7 +34,7 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.MyHolder> 
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.area_card, null);
-        fill_arrayList();
+        //fill_arrayList();
         MyHolder myViewHolder = new MyHolder(view);
         context = parent.getContext();
         return myViewHolder;
@@ -44,7 +44,9 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.MyHolder> 
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         Area area = areas.get(position);
         Log.i("area", area.getRegion());
-        holder.img.setImageResource(flags.get(position));
+        Context context = holder.img.getContext();
+        int id = context.getResources().getIdentifier(area.getRegion().toLowerCase(), "drawable", context.getPackageName());
+        holder.img.setImageResource(id);
         holder.txt.setText(area.getRegion());
     }
 
@@ -64,7 +66,7 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.MyHolder> 
 
         }
     }
-    private static void fill_arrayList(){
+    /*private static void fill_arrayList(){
         flags = new ArrayList<>();
         flags.add(R.drawable.american);
         flags.add(R.drawable.british);
@@ -92,5 +94,5 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.MyHolder> 
         flags.add(R.drawable.tunisia);
         flags.add(R.drawable.turkich);
         flags.add(R.drawable.vietnam);
-    }
+    }*/
 }

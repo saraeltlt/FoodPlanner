@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.foodplanner.categoryView.category;
 import com.example.foodplanner.ingrediantView.ingredients;
 import com.example.foodplanner.regionView.region;
-import com.example.foodplanner.mealView.meal;
+import com.example.foodplanner.homeView.meal;
 
 
 public class SearchFragment extends Fragment {
