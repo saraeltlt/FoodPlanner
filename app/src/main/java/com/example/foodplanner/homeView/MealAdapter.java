@@ -75,7 +75,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
             super(itemView);
             meal = itemView.findViewById(R.id.meal);
            area = itemView.findViewById(R.id.area);
-           image = itemView.findViewById(R.id.Simage);
+           image = itemView.findViewById(R.id.card);
            layout=itemView.findViewById(R.id.layout);
            favBtn=itemView.findViewById(R.id.addFav);
            flag = itemView.findViewById(R.id.areaFlag);

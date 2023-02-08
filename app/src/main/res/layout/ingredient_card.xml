@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="80dp"
-            android:layout_height="70dp"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:layout_marginTop="4dp"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 

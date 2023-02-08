@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.favoriteView.FavoriteAdapter;
 import com.example.foodplanner.homeView.MealAdapter;
 import com.example.foodplanner.homeView.OnClickMealHome;
 import com.example.foodplanner.model.Meals;
@@ -59,7 +60,7 @@ public class meal extends Fragment implements OnClickMealHome {
 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(new MealAdapter(mealsArrayList, this.getContext(), this));
+        recyclerView.setAdapter(new FavoriteAdapter(mealsArrayList, this.getContext(), this));
         return view;
     }
 

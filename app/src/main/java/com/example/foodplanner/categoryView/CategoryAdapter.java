@@ -29,7 +29,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
     @NonNull
     @Override
     public CategoryAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.area_card, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_card, null);
         MyHolder myViewHolder = new MyHolder(view);
         context = parent.getContext();
         return myViewHolder;
@@ -56,8 +56,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
         ImageView img ;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            txt =itemView.findViewById(R.id.areaTxt);
-            img = itemView.findViewById(R.id.areaImg);
+            txt =itemView.findViewById(R.id.Stext);
+            img = itemView.findViewById(R.id.Simage);
 
         }
     }

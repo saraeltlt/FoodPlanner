@@ -26,4 +26,5 @@
     <string name="Area">Area</string>
     <string name="Caategory">Category</string>
     <string name="Meals">Meals</string>
+    <string name="search_by">search by:</string>
 </resources>

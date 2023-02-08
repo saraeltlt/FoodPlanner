@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Ingrd;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class IngrediantAdapter extends RecyclerView.Adapter<IngrediantAdapter.MyHolder> {
