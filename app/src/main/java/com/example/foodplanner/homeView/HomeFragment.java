@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment implements OnClickMealHome {
                 .observeOn(AndroidSchedulers.mainThread());
         observable.subscribe(o-> {
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager. HORIZONTAL, false));
-                    recyclerView.setAdapter(new MealAdapter( o.getMeals(),this.getContext(),this));
+                    recyclerView.setAdapter(new MealAdapter( getRandomMeals(o.getMeals()),this.getContext(),this));
                 },
                 e-> Log.i("hitest","ERROR: "+e.getMessage())
         );

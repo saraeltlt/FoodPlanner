@@ -9,9 +9,10 @@ import retrofit2.http.GET;
 public interface Api {
     @GET("search.php?s")
     public Observable<RandomMeals> getRandomMeals();
-    /*
+/*
     @GET("list.php?i=list")
     public Observable<>getIngredients();
+    /*
     @GET
     public Observable<>getAreas();
     @GET
