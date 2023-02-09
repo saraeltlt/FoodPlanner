@@ -22,6 +22,7 @@ import com.example.foodplanner.network.ApiClient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -79,12 +80,9 @@ public class HomeFragment extends Fragment implements OnClickMealHome {
 
     public List<meals> getRandomMeals(List<meals> meals){
         List<meals> randomMeals= new ArrayList<>();
-         int min=0,max=24;
-         for (int i=0;i<5;i++) {
-           meals meal= meals.get ((int) (Math.random() * (max - min)));
-            randomMeals.add(meal);
-         }
+        ThreadLocalRandom.current().ints(0, 23).distinct().limit(5).forEach(i->
+                randomMeals.add(meals.get(i))
+                );
          return randomMeals;
-
     }
 }
