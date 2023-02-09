@@ -7,12 +7,12 @@
     android:background="@mipmap/signup"
     tools:context=".SignUp_Fragment">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/SIGNUP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/bottom_selector"
+        android:background="@drawable/gradient_button"
         android:fontFamily="@font/butterchicken"
         android:gravity="center"
         android:insetBottom="0dp"
@@ -55,7 +55,7 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:minHeight="50dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textColorHint="#918C8C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -75,7 +75,7 @@
         android:hint="Confirm Password"
         android:inputType="textPassword"
         android:minHeight="50dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textColorHint="#918C8C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -95,7 +95,7 @@
         android:hint="Email Address"
         android:inputType="textPersonName"
         android:minHeight="50dp"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textColorHint="#918C8C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

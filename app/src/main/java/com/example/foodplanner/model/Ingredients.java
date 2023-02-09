@@ -1,17 +1,17 @@
 package com.example.foodplanner.model;
 
-public class Ingrd {
+public class Ingredients {
     String title ;
     String link ;
 
-    public Ingrd() {
+    public Ingredients() {
     }
 
-    public Ingrd(String title) {
+    public Ingredients(String title) {
         this.title = title;
     }
 
-    public Ingrd(String title, String link) {
+    public Ingredients(String title, String link) {
         this.title = title;
         this.link = link;
     }

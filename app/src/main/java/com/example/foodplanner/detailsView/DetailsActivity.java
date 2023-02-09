@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.Meals;
+import com.example.foodplanner.model.meals;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -35,7 +35,7 @@ public class DetailsActivity extends AppCompatActivity {
     RecyclerView ingrediantRecycler;
     RecyclerView recipeRecycler;
     YouTubePlayerView youTubePlayerView;
-    private List<Meals> mealsArray;
+    private List<meals> mealsArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
         Intent myIntent = getIntent();
-        Meals myMeal = (Meals) myIntent.getSerializableExtra("meal");
+        meals myMeal = (meals) myIntent.getSerializableExtra("meal");
         mealName.setText(myMeal.getStrMeal());
         mealArea.setText(myMeal.getStrArea());
         Context context = flagImage.getContext();
@@ -79,14 +79,21 @@ public class DetailsActivity extends AppCompatActivity {
         ingrediantRecycler.setAdapter(new IngredientsCardAdapter(myMeal, this));
 
         getLifecycle().addObserver(youTubePlayerView);
+
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+
                 String videoId = myMeal.getStrYoutube();
-                videoId = videoId.substring(videoId.indexOf("=") + 1);
-                StringTokenizer st = new StringTokenizer(videoId, "&");
-                videoId = st.nextToken();
-                youTubePlayer.loadVideo(videoId, 0);
+                if (videoId != null) {
+                    videoId = videoId.substring(videoId.indexOf("=") + 1);
+                    StringTokenizer st = new StringTokenizer(videoId, "&");
+                    videoId = st.nextToken();
+                    youTubePlayer.loadVideo(videoId, 0);
+                }
+                else{
+                   // display image//
+                }
             }
         });
 

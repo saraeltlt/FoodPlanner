@@ -13,15 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.Ingrd;
+import com.example.foodplanner.model.Ingredients;
 
 import java.util.List;
 
 public class IngrediantAdapter extends RecyclerView.Adapter<IngrediantAdapter.MyHolder> {
-    List<Ingrd> ingrdArrayList;
+    List<Ingredients> ingredientsArrayList;
     Context context;
-    public IngrediantAdapter(List<Ingrd> ingrdList){
-            ingrdArrayList = ingrdList;
+    public IngrediantAdapter(List<Ingredients> ingredientsList){
+            ingredientsArrayList = ingredientsList;
     }
 
     @NonNull
@@ -35,19 +35,19 @@ public class IngrediantAdapter extends RecyclerView.Adapter<IngrediantAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        Ingrd ingrd = ingrdArrayList.get(position);
-        Log.i("photo", ingrd.getTitle());
-        String url = "https://www.themealdb.com/images/ingredients/"+ingrd.getTitle()+".png";
+        Ingredients ingredients = ingredientsArrayList.get(position);
+        Log.i("photo", ingredients.getTitle());
+        String url = "https://www.themealdb.com/images/ingredients/"+ ingredients.getTitle()+".png";
         Glide.with(context).load(url).into(holder.img);
-        holder.txt.setText(ingrd.getTitle());
+        holder.txt.setText(ingredients.getTitle());
     }
-    public void setList(List<Ingrd>ingrdiant){
-        ingrdArrayList = ingrdiant;
+    public void setList(List<Ingredients>ingrdiant){
+        ingredientsArrayList = ingrdiant;
     }
 
     @Override
     public int getItemCount() {
-        return ingrdArrayList.size();
+        return ingredientsArrayList.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder{

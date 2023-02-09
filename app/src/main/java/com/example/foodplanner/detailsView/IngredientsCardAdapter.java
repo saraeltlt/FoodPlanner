@@ -12,25 +12,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.Ingredient;
-import com.example.foodplanner.model.Meals;
+import com.example.foodplanner.model.MealIngredients;
+import com.example.foodplanner.model.meals;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientsCardAdapter extends RecyclerView.Adapter<IngredientsCardAdapter.MealViewHolder> {
-    private Meals meal;
+    private meals meal;
     private Context context;
-    private List<Ingredient> ingredientsList;
+    private List<MealIngredients> ingredientsList;
 
-    public IngredientsCardAdapter(Meals meal, Context context) {
+    public IngredientsCardAdapter(meals meal, Context context) {
         this.meal = meal;
         this.context = context;
-      ingredientsList= Ingredient.constructList(meal);
+      ingredientsList= MealIngredients.constructList(meal);
 
     }
 
-    public List<Ingredient> getIngredientsList() {
+    public List<MealIngredients> getIngredientsList() {
         return ingredientsList;
     }
 
@@ -45,10 +44,10 @@ public class IngredientsCardAdapter extends RecyclerView.Adapter<IngredientsCard
 
     @Override
     public void onBindViewHolder(@NonNull MealViewHolder holder, int position) {
-        Ingredient ingredient = ingredientsList.get(position);
-        holder.text.setText(ingredient.getIngredientName());
-        holder.count.setText(ingredient.getIngredientMeasure());
-        String thumb = "https://www.themealdb.com/images/ingredients/"+ingredient.getIngredientName()+".png";
+        MealIngredients mealIngredients = ingredientsList.get(position);
+        holder.text.setText(mealIngredients.getIngredientName());
+        holder.count.setText(mealIngredients.getIngredientMeasure());
+        String thumb = "https://www.themealdb.com/images/ingredients/"+ mealIngredients.getIngredientName()+".png";
         Glide.with(context).load(thumb).into(holder.image);
     }
 

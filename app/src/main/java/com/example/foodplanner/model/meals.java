@@ -4,7 +4,7 @@ import android.os.Parcel;
 
 import java.io.Serializable;
 
-public class Meals implements Serializable {
+public class meals implements Serializable {
     String idMeal;
     String strMeal;
     String  strCategory;
@@ -60,10 +60,10 @@ public class Meals implements Serializable {
     String strMeasure19;
     String strMeasure20;
 
-    public Meals() {
+    public meals() {
     }
 
-    public Meals(String strMeal, String strCategory, String strMealThumb, String strArea, String strYoutube, String strInstructions) {
+    public meals(String strMeal, String strCategory, String strMealThumb, String strArea, String strYoutube, String strInstructions) {
         this.strArea =strArea;
         this.strInstructions= strInstructions;
         this.strMeal = strMeal;
@@ -72,7 +72,7 @@ public class Meals implements Serializable {
         this.strYoutube = strYoutube;
     }
 
-    protected Meals(Parcel in) {
+    protected meals(Parcel in) {
         strMeal = in.readString();
         strCategory = in.readString();
         strMealThumb = in.readString();
