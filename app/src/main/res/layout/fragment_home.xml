@@ -7,7 +7,7 @@
     android:background="@mipmap/background"
     android:orientation="vertical"
     android:transitionGroup="true"
-    tools:context=".homeView.HomeFragment">
+    tools:context=".home.homeView.HomeFragment">
 
     <TextView
         android:id="@+id/dailyText"

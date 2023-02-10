@@ -1,5 +1,5 @@
+package com.example.foodplanner.favorite.favoriteView;
 
-package com.example.foodplanner.homeView;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,22 +7,24 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+import com.example.foodplanner.home.homeView.OnClickMealHome;
 import com.example.foodplanner.model.Meal;
 
 import java.util.List;
 
-public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealViewHolder> {
     private List<Meal> mealsArrayList;
     private Context context;
     private OnClickMealHome listener;
 
-    public MealAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener) {
+    public FavoriteAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener) {
         this.mealsArrayList = mealsArrayList;
         this.context = context;
         this.listener = listener;
@@ -36,7 +38,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     @Override
     public MealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater  = (LayoutInflater) context .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.meal_card_home, parent , false);
+        View view = inflater.inflate(R.layout.meal_card, parent , false);
         MealViewHolder vh = new MealViewHolder(view);
         return vh;
     }
@@ -46,7 +48,6 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         Meal meal= mealsArrayList.get(position);
         holder.meal.setText(meal.getStrMeal());
         holder.area.setText(meal.getStrArea());
-
         Context contextImage = holder.flag.getContext();
         int id = contextImage .getResources().getIdentifier(meal.getStrArea().toLowerCase(), "drawable", contextImage.getPackageName());
         holder.flag.setImageResource(id);
@@ -57,7 +58,10 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
               listener.onClick(meal);
             }
         });
+
+
     }
+
     @Override
     public int getItemCount() {
         return mealsArrayList.size();
@@ -68,14 +72,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         TextView meal;
         TextView area;
         ImageView image;
-        ImageView flag;
         ImageButton favBtn;
+        ImageView flag;
        ConstraintLayout layout;
         public MealViewHolder(@NonNull View itemView) {
             super(itemView);
             meal = itemView.findViewById(R.id.meal);
            area = itemView.findViewById(R.id.area);
-           image = itemView.findViewById(R.id.card);
+           image = itemView.findViewById(R.id.image);
            layout=itemView.findViewById(R.id.layout);
            favBtn=itemView.findViewById(R.id.addFav);
            flag = itemView.findViewById(R.id.areaFlag);

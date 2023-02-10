@@ -1,4 +1,4 @@
-package com.example.foodplanner.homeView;
+package com.example.foodplanner.home.homeView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,16 +7,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.detailsView.DetailsActivity;
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.RandomMealsResponse;
+import com.example.foodplanner.home.homePressenter.MealPressenter;
+import com.example.foodplanner.home.homePressenter.MealPressenterInterface;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.ApiClient;
 
 import java.io.Serializable;
@@ -24,15 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
-
-public class HomeFragment extends Fragment implements OnClickMealHome {
+public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterface{
     private RecyclerView recyclerView;
-    private List<Meal> mealsArray;
+    MealPressenterInterface mealPressenterInterface;
     View view;
+    MealAdapter mealAdapter;
 
 
     public HomeFragment() {
@@ -52,19 +51,14 @@ public class HomeFragment extends Fragment implements OnClickMealHome {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_home, container, false);
-
         recyclerView = view.findViewById(R.id.recyclerMeal);
-        Observable<RandomMealsResponse> observable= ApiClient.getInstance().getMyApi().getRandomMeals()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-        observable.subscribe(o-> {
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager. HORIZONTAL, false));
-                    recyclerView.setAdapter(new MealAdapter( getRandomMeals(o.getMeals()),this.getContext(),this));
-                },
-                e-> Log.i("hitest","ERROR: "+e.getMessage())
-        );
-
-
+        mealAdapter=new MealAdapter( new ArrayList<>(),this.getContext(),this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager. HORIZONTAL, false));
+        recyclerView.setAdapter(mealAdapter);
+        mealPressenterInterface= new MealPressenter(this,
+                Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext()),getContext()),
+                ApiClient.getInstance(),getContext());
+        mealPressenterInterface.getMeal();
 
         return view;
     }
@@ -78,11 +72,24 @@ public class HomeFragment extends Fragment implements OnClickMealHome {
 
     }
 
+
+
+    @Override
+    public void showMeal(List<Meal> meal) {
+        mealAdapter.setMealsArrayList(getRandomMeals(meal));
+        mealAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addMeal(Meal meal) {
+        mealPressenterInterface.addToFav(meal);
+
+    }
     public List<Meal> getRandomMeals(List<Meal> meals){
         List<Meal> randomMeals= new ArrayList<>();
         ThreadLocalRandom.current().ints(0, 23).distinct().limit(5).forEach(i->
                 randomMeals.add(meals.get(i))
-                );
-         return randomMeals;
+        );
+        return randomMeals;
     }
 }

@@ -7,7 +7,7 @@
     android:background="@mipmap/background"
     android:orientation="vertical"
     android:transitionGroup="true"
-    tools:context=".favoriteView.FavouriteFragment">
+    tools:context=".favorite.favoriteView.FavouriteFragment">
 
     <TextView
         android:id="@+id/dailyText"

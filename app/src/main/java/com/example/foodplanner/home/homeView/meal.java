@@ -1,4 +1,4 @@
-package com.example.foodplanner.homeView;
+package com.example.foodplanner.home.homeView;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.favoriteView.FavoriteAdapter;
+import com.example.foodplanner.favorite.favoriteView.FavoriteAdapter;
 import com.example.foodplanner.model.Meal;
 
 import java.util.ArrayList;

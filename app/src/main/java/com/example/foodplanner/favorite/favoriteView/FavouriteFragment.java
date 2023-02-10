@@ -1,4 +1,4 @@
-package com.example.foodplanner.favoriteView;
+package com.example.foodplanner.favorite.favoriteView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.foodplanner.detailsView.DetailsActivity;
 import com.example.foodplanner.R;
-import com.example.foodplanner.homeView.OnClickMealHome;
+import com.example.foodplanner.home.homeView.OnClickMealHome;
 import com.example.foodplanner.model.Meal;
 
 import java.io.Serializable;
