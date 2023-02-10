@@ -1,27 +1,27 @@
 package com.example.foodplanner.model;
 
 public class Ingredients {
-    String title ;
+    String strIngredient;
     String link ;
 
     public Ingredients() {
     }
 
-    public Ingredients(String title) {
-        this.title = title;
+    public Ingredients(String strIngredient) {
+        this.strIngredient = strIngredient;
     }
 
-    public Ingredients(String title, String link) {
-        this.title = title;
+    public Ingredients(String strIngredient, String link) {
+        this.strIngredient = strIngredient;
         this.link = link;
     }
 
-    public String getTitle() {
-        return title;
+    public String getStrIngredient() {
+        return strIngredient;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setStrIngredient(String strIngredient) {
+        this.strIngredient = strIngredient;
     }
 
     public String getLink() {

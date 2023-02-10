@@ -13,16 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.MealIngredients;
-import com.example.foodplanner.model.meals;
+import com.example.foodplanner.model.Meal;
 
 import java.util.List;
 
 public class IngredientsCardAdapter extends RecyclerView.Adapter<IngredientsCardAdapter.MealViewHolder> {
-    private meals meal;
+    private Meal meal;
     private Context context;
     private List<MealIngredients> ingredientsList;
 
-    public IngredientsCardAdapter(meals meal, Context context) {
+    public IngredientsCardAdapter(Meal meal, Context context) {
         this.meal = meal;
         this.context = context;
       ingredientsList= MealIngredients.constructList(meal);

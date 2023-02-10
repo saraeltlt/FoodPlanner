@@ -36,10 +36,10 @@ public class IngrediantAdapter extends RecyclerView.Adapter<IngrediantAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         Ingredients ingredients = ingredientsArrayList.get(position);
-        Log.i("photo", ingredients.getTitle());
-        String url = "https://www.themealdb.com/images/ingredients/"+ ingredients.getTitle()+".png";
+        Log.i("photo", ingredients.getStrIngredient());
+        String url = "https://www.themealdb.com/images/ingredients/"+ ingredients.getStrIngredient()+".png";
         Glide.with(context).load(url).into(holder.img);
-        holder.txt.setText(ingredients.getTitle());
+        holder.txt.setText(ingredients.getStrIngredient());
     }
     public void setList(List<Ingredients>ingrdiant){
         ingredientsArrayList = ingrdiant;

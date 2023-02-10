@@ -13,22 +13,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.meals;
+import com.example.foodplanner.model.Meal;
 
 import java.util.List;
 
 public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder> {
-    private List<meals> mealsArrayList;
+    private List<Meal> mealsArrayList;
     private Context context;
     private OnClickMealHome listener;
 
-    public MealAdapter(List<meals> mealsArrayList, Context context, OnClickMealHome listener) {
+    public MealAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener) {
         this.mealsArrayList = mealsArrayList;
         this.context = context;
         this.listener = listener;
     }
 
-    public List<meals> getMealsArrayList() {
+    public List<Meal> getMealsArrayList() {
         return mealsArrayList;
     }
 
@@ -43,7 +43,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MealViewHolder holder, int position) {
-        meals meal= mealsArrayList.get(position);
+        Meal meal= mealsArrayList.get(position);
         holder.meal.setText(meal.getStrMeal());
         holder.area.setText(meal.getStrArea());
 

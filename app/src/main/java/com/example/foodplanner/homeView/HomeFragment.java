@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import com.example.foodplanner.detailsView.DetailsActivity;
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.RandomMeals;
-import com.example.foodplanner.model.meals;
+import com.example.foodplanner.model.RandomMealsResponse;
+import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.network.ApiClient;
 
 import java.io.Serializable;
@@ -31,7 +31,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeFragment extends Fragment implements OnClickMealHome {
     private RecyclerView recyclerView;
-    private List<meals> mealsArray;
+    private List<Meal> mealsArray;
     View view;
 
 
@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment implements OnClickMealHome {
         view= inflater.inflate(R.layout.fragment_home, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerMeal);
-        Observable<RandomMeals> observable= ApiClient.getInstance().getMyApi().getRandomMeals()
+        Observable<RandomMealsResponse> observable= ApiClient.getInstance().getMyApi().getRandomMeals()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         observable.subscribe(o-> {
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment implements OnClickMealHome {
     }
 
     @Override
-    public void onClick(meals meal) {
+    public void onClick(Meal meal) {
         Toast.makeText(this.getContext(), meal.getStrMeal(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
         intent.putExtra("meal", (Serializable) meal);
@@ -78,8 +78,8 @@ public class HomeFragment extends Fragment implements OnClickMealHome {
 
     }
 
-    public List<meals> getRandomMeals(List<meals> meals){
-        List<meals> randomMeals= new ArrayList<>();
+    public List<Meal> getRandomMeals(List<Meal> meals){
+        List<Meal> randomMeals= new ArrayList<>();
         ThreadLocalRandom.current().ints(0, 23).distinct().limit(5).forEach(i->
                 randomMeals.add(meals.get(i))
                 );

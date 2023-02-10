@@ -38,11 +38,11 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.MyHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         Area area = areas.get(position);
-        Log.i("area", area.getRegion());
+        Log.i("area", area.getStrArea());
         Context context = holder.img.getContext();
-        int id = context.getResources().getIdentifier(area.getRegion().toLowerCase(), "drawable", context.getPackageName());
+        int id = context.getResources().getIdentifier(area.getStrArea().toLowerCase(), "drawable", context.getPackageName());
         holder.img.setImageResource(id);
-        holder.txt.setText(area.getRegion());
+        holder.txt.setText(area.getStrArea());
     }
 
     @Override

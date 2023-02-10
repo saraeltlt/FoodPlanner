@@ -36,9 +36,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.MyHolder holder, int position) {
         Category category = categories.get(position);
-        Log.i("photo", category.getName()+"->"+category.getLink());
-        Glide.with(context).load(category.getLink()).into(holder.img);
-        holder.txt.setText(category.getName());
+        Log.i("photo", category.getStrCategory()+"->"+category.getStrCategoryThumb());
+        Glide.with(context).load(category.getStrCategoryThumb()).into(holder.img);
+        holder.txt.setText(category.getStrCategory());
     }
     public void setList(List<Category>categoryList){
         categories = categoryList;

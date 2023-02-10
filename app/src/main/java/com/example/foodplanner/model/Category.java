@@ -1,30 +1,48 @@
 package com.example.foodplanner.model;
 
 public class Category {
-    String name ;
-    String link ;
+    String idCategory;
+    String strCategory;
+    String strCategoryThumb;
+    String strCategoryDescription;
 
     public Category() {
     }
 
-    public Category(String name, String link) {
-        this.name = name;
-        this.link = link;
+    public Category(String strCategory, String strCategoryThumb) {
+        this.strCategory = strCategory;
+        this.strCategoryThumb = strCategoryThumb;
     }
 
-    public String getName() {
-        return name;
+    public String getStrCategory() {
+        return strCategory;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStrCategory(String strCategory) {
+        this.strCategory = strCategory;
     }
 
-    public String getLink() {
-        return link;
+    public String getStrCategoryThumb() {
+        return strCategoryThumb;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setStrCategoryThumb(String strCategoryThumb) {
+        this.strCategoryThumb = strCategoryThumb;
+    }
+
+    public String getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(String idCategory) {
+        this.idCategory = idCategory;
+    }
+
+    public String getStrCategoryDescription() {
+        return strCategoryDescription;
+    }
+
+    public void setStrCategoryDescription(String strCategoryDescription) {
+        this.strCategoryDescription = strCategoryDescription;
     }
 }

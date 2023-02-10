@@ -1,17 +1,17 @@
 package com.example.foodplanner.model;
 
 public class Area {
-    String region;
+    String strArea;
 
-    public Area(String region) {
-        this.region = region;
+    public Area(String strArea) {
+        this.strArea = strArea;
     }
 
-    public String getRegion() {
-        return region;
+    public String getStrArea() {
+        return strArea;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public void setStrArea(String strArea) {
+        this.strArea = strArea;
     }
 }

@@ -8,7 +8,7 @@ public class MealIngredients {
     String ingredientMeasure;
 
 
-    public static List<MealIngredients> constructList(meals meal){
+    public static List<MealIngredients> constructList(Meal meal){
       List<MealIngredients> ingredientsList = new ArrayList<>();
             if (meal.getStrIngredient1()!=null)
                 ingredientsList.add(new MealIngredients(meal.getStrIngredient1(), meal.getStrMeasure1()));

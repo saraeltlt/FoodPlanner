@@ -1,7 +1,7 @@
 
 package com.example.foodplanner.homeView;
-import com.example.foodplanner.model.meals;
+import com.example.foodplanner.model.Meal;
 
 public interface OnClickMealHome {
-    void onClick(meals meal);
+    void onClick(Meal meal);
 }

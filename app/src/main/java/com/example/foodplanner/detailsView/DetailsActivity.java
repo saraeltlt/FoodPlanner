@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.meals;
+import com.example.foodplanner.model.Meal;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -35,7 +35,7 @@ public class DetailsActivity extends AppCompatActivity {
     RecyclerView ingrediantRecycler;
     RecyclerView recipeRecycler;
     YouTubePlayerView youTubePlayerView;
-    private List<meals> mealsArray;
+    private List<Meal> mealsArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
         Intent myIntent = getIntent();
-        meals myMeal = (meals) myIntent.getSerializableExtra("meal");
+        Meal myMeal = (Meal) myIntent.getSerializableExtra("meal");
         mealName.setText(myMeal.getStrMeal());
         mealArea.setText(myMeal.getStrArea());
         Context context = flagImage.getContext();
@@ -92,7 +92,7 @@ public class DetailsActivity extends AppCompatActivity {
                     youTubePlayer.loadVideo(videoId, 0);
                 }
                 else{
-                   // display image//
+                   // display errir image//
                 }
             }
         });
