@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,14 +68,11 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
         intent.putExtra("meal", (Serializable) meal);
         startActivity(intent);
-
     }
-
-
 
     @Override
     public void showMeal(List<Meal> meal) {
-        mealAdapter.setMealsArrayList(getRandomMeals(meal));
+        mealAdapter.setMealsArrayList(meal);
         mealAdapter.notifyDataSetChanged();
     }
 
@@ -85,11 +81,5 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
         mealPressenterInterface.addToFav(meal);
 
     }
-    public List<Meal> getRandomMeals(List<Meal> meals){
-        List<Meal> randomMeals= new ArrayList<>();
-        ThreadLocalRandom.current().ints(0, 23).distinct().limit(5).forEach(i->
-                randomMeals.add(meals.get(i))
-        );
-        return randomMeals;
-    }
+
 }

@@ -10,6 +10,8 @@ import com.example.foodplanner.network.ApiClient;
 import com.example.foodplanner.network.NetworkDelegate;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MealPressenter implements MealPressenterInterface, NetworkDelegate {
     private HomeInterface view;
@@ -38,12 +40,19 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
 
     @Override
     public void onSuccessResult(ArrayList<Meal> meals) {
-        view.showMeal(meals);
+        view.showMeal(getRandomMeals(meals));
 
     }
 
     @Override
     public void onFailureResult(String errormMsg) {
         Toast.makeText(context,errormMsg, Toast.LENGTH_SHORT).show();
+    }
+    public List<Meal> getRandomMeals(List<Meal> meals){
+        List<Meal> randomMeals= new ArrayList<>();
+        ThreadLocalRandom.current().ints(0, 23).distinct().limit(5).forEach(i->
+                randomMeals.add(meals.get(i))
+        );
+        return randomMeals;
     }
 }

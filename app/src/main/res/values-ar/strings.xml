@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">اكلني</string>
+    <string name="welcome">مرحبًا</string>
+    <string name="home">الرئيسية</string>
+    <string name="fav">المفضلة</string>
+    <string name="search">البحث</string>
+    <string name="plan">خطتك</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="WelcomeBack">مرحبًا بعودتك</string>
+    <string name="orConnectUsing">او سجل الدخول باستخدام:</string>
+    <string name="guest">المتابعة كضيف</string>
+    <string name="Login">تسجيل الدخول</string>
+    <string name="SignUP">الاشترك</string>
+    <string name="forgetPassword">هل نسيت كلمة المرور؟</string>
+    <string name="loginBtn">تسجيل الدخول</string>
+    <string name="Signup">اشتراك</string>
+    <string name="mealOfTheDay">الاقتراحات اليومية</string>
+    <string name="Favourite">الوجبات المفضلة:</string>
+    <string name="add_plan">اضف إلي خطتك</string>
+    <string name="ingrediants">المكونات</string>
+    <string name="recipe">طريقة التحضير</string>
+    <string name="next">التالي</string>
+    <string name="getStared">ابدأ</string>
+    <string name="Ingredients">المكونات</string>
+    <string name="Area">البلد</string>
+    <string name="Caategory">الفئة</string>
+    <string name="Meals">الوجبات</string>
+    <string name="search_by">ابحث عن طريق:</string>
+</resources>
