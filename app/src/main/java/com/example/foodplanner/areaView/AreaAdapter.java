@@ -1,4 +1,4 @@
-package com.example.foodplanner.regionView;
+package com.example.foodplanner.areaView;
 
 import android.content.Context;
 import android.util.Log;
@@ -17,11 +17,11 @@ import com.example.foodplanner.model.Area;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.MyHolder> {
+public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyHolder> {
     List<Area> areas;
     Context context;
     private static ArrayList<Integer> flags ;
-    public RegionAdapter(List<Area> areas){
+    public AreaAdapter(List<Area> areas){
         this.areas = areas;
     }
 

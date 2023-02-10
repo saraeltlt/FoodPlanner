@@ -1,4 +1,4 @@
-package com.example.foodplanner.regionView;
+package com.example.foodplanner.areaView;
 
 import android.os.Bundle;
 
@@ -11,22 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.Area;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link region#newInstance} factory method to
+ * Use the {@link Area#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class region extends Fragment {
+public class Area extends Fragment {
     RecyclerView recyclerView;
-    RegionAdapter adapter;
+    AreaAdapter adapter;
     LinearLayoutManager manager;
 
-    public static region newInstance(String param1, String param2) {
-        region fragment = new region();
+    public static Area newInstance(String param1, String param2) {
+        Area fragment = new Area();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -43,16 +42,16 @@ public class region extends Fragment {
                              Bundle savedInstanceState) {
       View view =inflater.inflate(R.layout.fragment_region, container, false);
       recyclerView = view .findViewById(R.id.regionRV);
-      ArrayList<Area> countries=new ArrayList<>();
-      countries.add(new Area("American"));
-      countries.add(new Area("British"));
-      countries.add(new Area("Canadian"));
-      countries.add(new Area("Chinese"));
-      countries.add(new Area("Croatian"));
-      countries.add(new Area("Dutch"));
-      countries.add(new Area("Egyptian"));
-      countries.add(new Area("French"));
-      adapter = new RegionAdapter(countries);
+      ArrayList<com.example.foodplanner.model.Area> countries=new ArrayList<>();
+      countries.add(new com.example.foodplanner.model.Area("American"));
+      countries.add(new com.example.foodplanner.model.Area("British"));
+      countries.add(new com.example.foodplanner.model.Area("Canadian"));
+      countries.add(new com.example.foodplanner.model.Area("Chinese"));
+      countries.add(new com.example.foodplanner.model.Area("Croatian"));
+      countries.add(new com.example.foodplanner.model.Area("Dutch"));
+      countries.add(new com.example.foodplanner.model.Area("Egyptian"));
+      countries.add(new com.example.foodplanner.model.Area("French"));
+      adapter = new AreaAdapter(countries);
       manager = new LinearLayoutManager(this.getContext());
       recyclerView.setLayoutManager(manager);
       recyclerView.setAdapter(adapter);

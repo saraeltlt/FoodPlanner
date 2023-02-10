@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.foodplanner.categoryView.category;
 import com.example.foodplanner.ingrediantView.ingredients;
-import com.example.foodplanner.regionView.region;
+import com.example.foodplanner.areaView.Area;
 import com.example.foodplanner.homeView.meal;
 
 
@@ -50,7 +50,7 @@ public class SearchFragment extends Fragment {
         area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                region regionFrag = new region();
+                Area regionFrag = new Area();
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment,regionFrag,"ingFrag").commit();
             }
