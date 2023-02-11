@@ -16,7 +16,7 @@ import com.example.foodplanner.model.Ingredients;
 import java.util.ArrayList;
 
 
-public class ingredients extends Fragment {
+public class IngredientsFragment extends Fragment {
     RecyclerView recyclerView ;
     @Override
     public void onCreate(Bundle savedInstanceState) {

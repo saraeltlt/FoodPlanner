@@ -28,4 +28,14 @@
     <string name="Caategory">الفئة</string>
     <string name="Meals">الوجبات</string>
     <string name="search_by">ابحث عن طريق:</string>
+    <string name="hintSearch">البحث بالمكونات</string>
+    <string-array name="days">
+    <item>الآحد</item>
+    <item>الاثنين</item>
+    <item>الثلاثاء</item>
+    <item>الاربعاء</item>
+    <item>الخميس</item>
+    <item>الجمعة</item>
+    <item>السبت</item>
+    </string-array>
 </resources>

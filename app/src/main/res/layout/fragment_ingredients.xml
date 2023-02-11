@@ -5,16 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/background"
-    tools:context=".ingrediantView.ingredients">
+    tools:context=".ingrediantView.IngredientsFragment">
 
-    <SearchView
+    <EditText
         android:id="@+id/searchView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:contextClickable="true"
-        android:queryHint="Search for ingrediant"
-        android:searchIcon="@drawable/my_search"
-        app:layout_constraintBottom_toTopOf="@+id/ingRV"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/country_bg"
+        android:drawableLeft="@drawable/search"
+        android:drawablePadding="5dp"
+        android:elevation="30dp"
+        android:fontFamily="@font/gabriola"
+        android:hint="@string/hintSearch"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/design_default_color_background"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

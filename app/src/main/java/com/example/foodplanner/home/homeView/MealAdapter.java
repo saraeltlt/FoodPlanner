@@ -22,6 +22,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     private Context context;
     private OnClickMealHome listener;
 
+
     public MealAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener) {
         this.mealsArrayList = mealsArrayList;
         this.context = context;
@@ -47,7 +48,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MealViewHolder holder, int position) {
+
         Meal meal= mealsArrayList.get(position);
+        if (meal.getMealAddedToFav()) {
+            holder.favBtn.setImageResource(R.drawable.favorite_red);
+        }
+        else{
+            holder.favBtn.setImageResource(R.drawable.favorite_white);
+        }
         holder.meal.setText(meal.getStrMeal());
         holder.area.setText(meal.getStrArea());
 
@@ -58,7 +66,23 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              listener.onClick(meal);
+              listener.onClickDetails(meal);
+            }
+        });
+        holder.favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!meal.getMealAddedToFav()) {
+                    holder.favBtn.setImageResource(R.drawable.favorite_red);
+                    listener.onClickAddFav(meal);
+                    meal.setMealAddedToFav(true);
+                }
+                else {
+                    holder.favBtn.setImageResource(R.drawable.favorite_white);
+                    listener.onClickRemoveFav(meal);
+                    meal.setMealAddedToFav(false);
+
+                }
             }
         });
     }

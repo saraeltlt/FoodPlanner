@@ -2,9 +2,16 @@ package com.example.foodplanner.model;
 
 import android.os.Parcel;
 
-import java.io.Serializable;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+@Entity(tableName = "meals")
 public class Meal implements Serializable {
+    @PrimaryKey
+    @NonNull
     String idMeal;
     String strMeal;
     String  strCategory;
@@ -12,11 +19,17 @@ public class Meal implements Serializable {
     String strArea;
     String strYoutube;
     String strInstructions;
+    Boolean mealAddedToFav=false;
 
+    @Ignore
     String strCreativeCommonsConfirmed;
+    @Ignore
     String strDrinkAlternate;
+    @Ignore
     String strImageSource;
+    @Ignore
     String strSource;
+    @Ignore
     String strTags;
 
     String strIngredient1;
@@ -496,5 +509,13 @@ public class Meal implements Serializable {
 
     public void setStrMeasure20(String strMeasure20) {
         this.strMeasure20 = strMeasure20;
+    }
+
+    public Boolean getMealAddedToFav() {
+        return mealAddedToFav;
+    }
+
+    public void setMealAddedToFav(Boolean mealAddedToFav) {
+        this.mealAddedToFav = mealAddedToFav;
     }
 }

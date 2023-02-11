@@ -58,12 +58,23 @@ public class meal extends Fragment implements OnClickMealHome {
 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(new FavoriteAdapter(mealsArrayList, this.getContext(), this));
+      //  recyclerView.setAdapter(new FavoriteAdapter(mealsArrayList, this.getContext(), this));
         return view;
     }
 
-    @Override
-    public void onClick(Meal meal) {
 
+
+    @Override
+    public void onClickDetails(Meal meal) {
+
+    }
+
+    @Override
+    public void onClickAddFav(Meal meal) {
+
+    }
+
+    @Override
+    public void onClickRemoveFav(Meal meal) {
     }
 }

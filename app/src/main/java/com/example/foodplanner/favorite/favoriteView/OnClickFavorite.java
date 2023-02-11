@@ -1,9 +1,10 @@
+package com.example.foodplanner.favorite.favoriteView;
 
-package com.example.foodplanner.home.homeView;
+
 import com.example.foodplanner.model.Meal;
 
-public interface OnClickMealHome {
+public interface OnClickFavorite {
     void onClickDetails(Meal meal);
-    void onClickAddFav(Meal meal);
     void onClickRemoveFav(Meal meal);
+
 }

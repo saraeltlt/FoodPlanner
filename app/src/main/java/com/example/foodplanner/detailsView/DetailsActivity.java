@@ -5,13 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
@@ -25,17 +32,18 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class DetailsActivity extends AppCompatActivity {
-
     TextView mealName;
     TextView mealArea;
     ImageView mealImage;
     ImageButton addFav;
     Boolean favFlag = false;
+    Boolean planFlag = false;
+
     ImageView flagImage;
     RecyclerView ingrediantRecycler;
     RecyclerView recipeRecycler;
     YouTubePlayerView youTubePlayerView;
-    private List<Meal> mealsArray;
+    AutoCompleteTextView autoCompleteTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +57,47 @@ public class DetailsActivity extends AppCompatActivity {
         flagImage = findViewById(R.id.areaFlag);
         mealImage = findViewById(R.id.image);
         addFav = findViewById(R.id.addFav);
+        autoCompleteTextView=findViewById(R.id.addPlan);
+
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.days));
+
+
+        autoCompleteTextView.setAdapter(adapter);
+        autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!planFlag){
+                    autoCompleteTextView.showDropDown();
+                    planFlag=true;
+                }
+                else{
+                    autoCompleteTextView.dismissDropDown();
+                    planFlag=false;
+                }
+
+
+            }
+        });
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(DetailsActivity.this, "Meal added to "+parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                autoCompleteTextView.setHint("Add to plane");
+            }
+        });
+
+
+
+
+
 
 
         addFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!favFlag) {
-                    addFav.setImageResource(R.drawable.favorite_yellow);
+                    addFav.setImageResource(R.drawable.favorite_red);
                     favFlag = true;
                 } else {
                     addFav.setImageResource(R.drawable.favorite_white);
@@ -108,4 +150,6 @@ public class DetailsActivity extends AppCompatActivity {
 
 
     }
+
+
 }

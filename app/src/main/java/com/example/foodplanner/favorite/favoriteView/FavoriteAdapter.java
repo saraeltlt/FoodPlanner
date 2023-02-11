@@ -22,9 +22,9 @@ import java.util.List;
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealViewHolder> {
     private List<Meal> mealsArrayList;
     private Context context;
-    private OnClickMealHome listener;
+    private OnClickFavorite listener;
 
-    public FavoriteAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener) {
+    public FavoriteAdapter(Context context,List<Meal> mealsArrayList,  OnClickFavorite listener) {
         this.mealsArrayList = mealsArrayList;
         this.context = context;
         this.listener = listener;
@@ -32,6 +32,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
 
     public List<Meal> getMealsArrayList() {
         return mealsArrayList;
+    }
+
+    public void setMealsArrayList(List<Meal> mealsArrayList) {
+        this.mealsArrayList = mealsArrayList;
     }
 
     @NonNull
@@ -51,11 +55,27 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         Context contextImage = holder.flag.getContext();
         int id = contextImage .getResources().getIdentifier(meal.getStrArea().toLowerCase(), "drawable", contextImage.getPackageName());
         holder.flag.setImageResource(id);
+        holder.favBtn.setImageResource(R.drawable.favorite_red);
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.image);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              listener.onClick(meal);
+              listener.onClickDetails(meal);
+            }
+        });
+        holder.favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (meal.getMealAddedToFav()) {
+                    holder.favBtn.setImageResource(R.drawable.favorite_white);
+                    listener.onClickRemoveFav(meal);
+                    meal.setMealAddedToFav(false);
+                }
+                else{
+                    holder.favBtn.setImageResource(R.drawable.favorite_red);
+                    meal.setMealAddedToFav(true);
+
+                }
             }
         });
 

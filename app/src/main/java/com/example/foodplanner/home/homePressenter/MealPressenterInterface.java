@@ -5,4 +5,5 @@ import com.example.foodplanner.model.Meal;
 public interface MealPressenterInterface {
     public void getMeal();
     public void addToFav(Meal meal);
+    public void deleteMeal(Meal meal);
 }

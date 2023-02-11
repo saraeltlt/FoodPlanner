@@ -39,6 +39,11 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
     }
 
     @Override
+    public void deleteMeal(Meal meal) {
+        repo.delete(meal);
+    }
+
+    @Override
     public void onSuccessResult(ArrayList<Meal> meals) {
         view.showMeal(getRandomMeals(meals));
 

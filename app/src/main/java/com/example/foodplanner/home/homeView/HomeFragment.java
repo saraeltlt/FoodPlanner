@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
     MealPressenterInterface mealPressenterInterface;
     View view;
     MealAdapter mealAdapter;
+    Boolean favFlag = false;
 
 
     public HomeFragment() {
@@ -63,14 +64,6 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
     }
 
     @Override
-    public void onClick(Meal meal) {
-        Toast.makeText(this.getContext(), meal.getStrMeal(), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getActivity(), DetailsActivity.class);
-        intent.putExtra("meal", (Serializable) meal);
-        startActivity(intent);
-    }
-
-    @Override
     public void showMeal(List<Meal> meal) {
         mealAdapter.setMealsArrayList(meal);
         mealAdapter.notifyDataSetChanged();
@@ -82,4 +75,26 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
 
     }
 
+    @Override
+    public void deleteMeal(Meal meal) {
+        mealPressenterInterface.deleteMeal(meal);
+    }
+
+    @Override
+    public void onClickDetails(Meal meal) {
+        Toast.makeText(this.getContext(), meal.getStrMeal(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), DetailsActivity.class);
+        intent.putExtra("meal", (Serializable) meal);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClickAddFav(Meal meal) {
+            mealPressenterInterface.addToFav(meal);
+    }
+
+    @Override
+    public void onClickRemoveFav(Meal meal) {
+        mealPressenterInterface.deleteMeal(meal);
+    }
 }
