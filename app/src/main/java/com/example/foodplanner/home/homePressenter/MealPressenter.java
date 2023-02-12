@@ -35,12 +35,14 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
     @Override
     public void addToFav(Meal meal) {
         repo.insert(meal);
+        Toast.makeText(context.getApplicationContext(), "Added To Favourite", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void deleteMeal(Meal meal) {
         repo.delete(meal);
+        Toast.makeText(context.getApplicationContext(), "Removed From Favourite", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -18,10 +18,9 @@ public interface Api {
     public Observable<CategoryResponse>getCategories();
     @GET("list.php")
     public Observable<IngredientsResponse>getIngredients(@Query("i") String ingredient);  //?i=list
-    @GET
-    public Observable<AreaResponse>getAreas(@Query("a") String area);  //?a=list);
 
-    /*
+    /* @GET
+    public Observable<AreaResponse>getAreas(@Query("a") String area);  //?a=list);
     @GET
     public Observable<>searchByIngredients();
     @GET

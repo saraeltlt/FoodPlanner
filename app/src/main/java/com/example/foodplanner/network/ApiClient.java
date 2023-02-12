@@ -18,14 +18,26 @@ public class ApiClient implements RemoteSource {
     private ApiClient() {
 
     }
-    @SuppressLint("CheckResult")
-    @Override
-    public void ObserveMeal(NetworkDelegate networkDelegate){
+    public static synchronized ApiClient getInstance() {
+        if (instance == null) {
+            instance = new ApiClient();
+        }
+        return instance;
+    }
+
+    public Api creatRetro(){
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL )
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         Api myApi = retrofit.create(Api.class);
+        return  myApi;
+
+    }
+    @SuppressLint("CheckResult")
+    @Override
+    public void ObserveMeal(NetworkDelegate networkDelegate){
+      Api myApi = creatRetro();
         Observable<RandomMealsResponse> observable= myApi.getRandomMeals()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -37,11 +49,6 @@ public class ApiClient implements RemoteSource {
 
     }
 
-    public static synchronized ApiClient getInstance() {
-        if (instance == null) {
-            instance = new ApiClient();
-        }
-        return instance;
-    }
+
 
 }

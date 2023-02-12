@@ -19,7 +19,7 @@
         android:drawablePadding="5dp"
         android:elevation="30dp"
         android:fontFamily="@font/gabriola"
-        android:hint="@string/hintSearch"
+        android:hint="@string/hintSearchIng"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/design_default_color_background"

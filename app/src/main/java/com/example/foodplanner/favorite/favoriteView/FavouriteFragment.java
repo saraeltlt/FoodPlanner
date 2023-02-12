@@ -13,11 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.foodplanner.database.ConcreteLocalSource;
-import com.example.foodplanner.detailsView.DetailsActivity;
+import com.example.foodplanner.details.detailsView.DetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.favorite.favoritePressenter.FavMealPressenter;
 import com.example.foodplanner.favorite.favoritePressenter.FavMealPressenterInterface;
-import com.example.foodplanner.home.homeView.OnClickMealHome;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.ApiClient;
@@ -89,6 +88,7 @@ public class FavouriteFragment extends Fragment implements OnClickFavorite,FavMe
     @Override
     public void onClickRemoveFav(Meal meal) {
         favMealPressenterInterface.deleteMeal(meal);
+
 
     }
 }

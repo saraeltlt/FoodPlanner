@@ -31,7 +31,7 @@ public class FavMealPressenter implements FavMealPressenterInterface{
     @Override
     public void deleteMeal(Meal meal) {
         repo.delete(meal);
-        getMeals();
+        view.showFavData(repo.getFavoriteMeals());
 
     }
 }

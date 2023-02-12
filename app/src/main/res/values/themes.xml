@@ -16,4 +16,13 @@
         <item name="android:textColorHint">@color/grey_light</item>
         <item name="android:editTextColor">@color/white</item>
     </style>
+
+    <style name="Theme.FoodPlanner.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.FoodPlanner.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.FoodPlanner.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

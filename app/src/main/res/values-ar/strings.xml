@@ -6,6 +6,7 @@
     <string name="fav">المفضلة</string>
     <string name="search">البحث</string>
     <string name="plan">خطتك</string>
+    <string name="Logout">تسجيل الخروج</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="WelcomeBack">مرحبًا بعودتك</string>
@@ -28,7 +29,11 @@
     <string name="Caategory">الفئة</string>
     <string name="Meals">الوجبات</string>
     <string name="search_by">ابحث عن طريق:</string>
-    <string name="hintSearch">البحث بالمكونات</string>
+    <string name="hintSearchIng">البحث بالمكونات</string>
+    <string name="hintSearchCat">البحث بالاصناف</string>
+    <string name="hintSearchArea">البحث بالبلد</string>
+    <string name="hintSearchMeal">البحث بالوجبة</string>
+
     <string-array name="days">
     <item>الآحد</item>
     <item>الاثنين</item>
@@ -38,4 +43,18 @@
     <item>الجمعة</item>
     <item>السبت</item>
     </string-array>
+
+
+
+
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">الضبط</string>
+    <string name="menu_home">الرئيسية</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

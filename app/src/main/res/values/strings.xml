@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">EAT THIS</string>
     <string name="welcome">WELCOME</string>
     <string name="home">Home</string>
@@ -6,6 +7,7 @@
     <string name="search">Search</string>
     <string name="plan">Your Plan</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="Logout">Logout</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="WelcomeBack">Welcome Back</string>
     <string name="orConnectUsing">or connect using</string>
@@ -27,7 +29,10 @@
     <string name="Caategory">Category</string>
     <string name="Meals">Meals</string>
     <string name="search_by">search by:</string>
-    <string name="hintSearch">Search by Ingredients</string>
+    <string name="hintSearchIng">Search by Ingredients</string>
+    <string name="hintSearchCat">Search by Category</string>
+    <string name="hintSearchArea">Search by Area</string>
+    <string name="hintSearchMeal">Search by Meal</string>
     <string-array name="days">
         <item>Sunday</item>
         <item>Monday</item>
@@ -37,4 +42,15 @@
         <item>Friday</item>
         <item>Saturday</item>
     </string-array>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

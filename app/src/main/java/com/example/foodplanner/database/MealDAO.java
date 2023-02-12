@@ -15,10 +15,13 @@ import io.reactivex.Observable;
 
 @Dao
 public interface MealDAO {
-    @Query("SELECT * From meals")
+    @Query("SELECT * From meals WHERE day IS Null")
     Observable<List<Meal>> getMeals();
+    @Query("SELECT * From meals WHERE day LIKE:day")
+    Observable<List<Meal>> getPlanMeals(String day);
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     Completable insertMeal (Meal meal);
     @Delete
     Completable deleteMeal (Meal meal);
+
 }

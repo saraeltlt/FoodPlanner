@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
@@ -21,12 +22,14 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     private List<Meal> mealsArrayList;
     private Context context;
     private OnClickMealHome listener;
+    private ViewPager2 viewPager2;
 
 
-    public MealAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener) {
+    public MealAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener, ViewPager2 viewPager2) {
         this.mealsArrayList = mealsArrayList;
         this.context = context;
         this.listener = listener;
+        this.viewPager2=viewPager2;
     }
 
     public List<Meal> getMealsArrayList() {
@@ -85,6 +88,10 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
                 }
             }
         });
+        if (position== mealsArrayList.size()-2){
+            viewPager2.post(runnable);
+        }
+
     }
     @Override
     public int getItemCount() {
@@ -110,4 +117,12 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
 
         }
     }
+private Runnable runnable = new Runnable() {
+    @Override
+    public void run() {
+        mealsArrayList.addAll(mealsArrayList);
+        notifyDataSetChanged();
+    }
+};
+
 }

@@ -19,6 +19,7 @@ public class Meal implements Serializable {
     String strArea;
     String strYoutube;
     String strInstructions;
+    String day = null;
     Boolean mealAddedToFav=false;
 
     @Ignore
@@ -517,5 +518,13 @@ public class Meal implements Serializable {
 
     public void setMealAddedToFav(Boolean mealAddedToFav) {
         this.mealAddedToFav = mealAddedToFav;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 }

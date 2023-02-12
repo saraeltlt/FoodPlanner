@@ -3,17 +3,22 @@ package com.example.foodplanner.home.homeView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.foodplanner.database.ConcreteLocalSource;
-import com.example.foodplanner.detailsView.DetailsActivity;
+import com.example.foodplanner.details.detailsView.DetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.home.homePressenter.MealPressenter;
 import com.example.foodplanner.home.homePressenter.MealPressenterInterface;
@@ -24,13 +29,14 @@ import com.example.foodplanner.network.ApiClient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 
 public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterface{
-    private RecyclerView recyclerView;
+    ViewPager2 viewPager2;
+    private Handler sliderHandler = new Handler();
     MealPressenterInterface mealPressenterInterface;
     View view;
+
     MealAdapter mealAdapter;
     Boolean favFlag = false;
 
@@ -51,10 +57,37 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_home, container, false);
-        recyclerView = view.findViewById(R.id.recyclerMeal);
-        mealAdapter=new MealAdapter( new ArrayList<>(),this.getContext(),this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager. HORIZONTAL, false));
-        recyclerView.setAdapter(mealAdapter);
+
+        viewPager2= view.findViewById(R.id.slider);
+
+        mealAdapter=new MealAdapter( new ArrayList<>(),this.getContext(),this,viewPager2);
+        viewPager2.setAdapter(mealAdapter);
+        viewPager2.setClipToPadding(false);
+        viewPager2.setClipChildren(false);
+        viewPager2.setOffscreenPageLimit(3);
+        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r=1-Math.abs(position);
+                page.setScaleY(0.85f+r*0.15f);
+            }
+        });
+        viewPager2.setPageTransformer(compositePageTransformer);
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                sliderHandler.removeCallbacks(sliderRunnable);
+                sliderHandler.postDelayed(sliderRunnable,2000);
+
+            }
+        });
+
+
+
         mealPressenterInterface= new MealPressenter(this,
                 Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext()),getContext()),
                 ApiClient.getInstance(),getContext());
@@ -82,7 +115,6 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
 
     @Override
     public void onClickDetails(Meal meal) {
-        Toast.makeText(this.getContext(), meal.getStrMeal(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
         intent.putExtra("meal", (Serializable) meal);
         startActivity(intent);
@@ -97,4 +129,10 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
     public void onClickRemoveFav(Meal meal) {
         mealPressenterInterface.deleteMeal(meal);
     }
+    private Runnable sliderRunnable = new Runnable() {
+        @Override
+        public void run() {
+            viewPager2.setCurrentItem(viewPager2.getCurrentItem()+1);
+        }
+    };
 }

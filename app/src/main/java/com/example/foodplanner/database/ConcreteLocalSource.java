@@ -43,18 +43,15 @@ public class ConcreteLocalSource implements LocalSource {
         dao.deleteMeal(meal).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
             @Override
             public void onSubscribe(Disposable d) {
-                Toast.makeText(context.getApplicationContext(), "removed", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onComplete() {
-
             }
 
             @Override
             public void onError(Throwable e) {
-
             }
         });
 
@@ -65,18 +62,14 @@ public class ConcreteLocalSource implements LocalSource {
         dao.insertMeal(meal).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
             @Override
             public void onSubscribe(Disposable d) {
-                Toast.makeText(context.getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onComplete() {
-
-
             }
 
             @Override
             public void onError(Throwable e) {
-
             }
         });
 
