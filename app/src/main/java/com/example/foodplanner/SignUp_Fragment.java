@@ -1,68 +1,59 @@
 package com.example.foodplanner;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SignUp_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.concurrent.Executor;
+
+
 public class SignUp_Fragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SignUp_Fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SignUp_Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SignUp_Fragment newInstance(String param1, String param2) {
-        SignUp_Fragment fragment = new SignUp_Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private TextView login;
+    private Button signupBtn;
+    private EditText email,pass,confPass;
+    private ProgressDialog progressDialog;
+    private FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        TextView login;
 
         View view = inflater.inflate(R.layout.fragment_sign_up_, container, false);
         login = view.findViewById(R.id.login);
+        signupBtn=view.findViewById(R.id.SIGNUP);
+        email=view.findViewById(R.id.signup_username);
+        pass=view.findViewById(R.id.signup_password);
+        confPass=view.findViewById(R.id.confirm_password);
+        progressDialog = new ProgressDialog(this.getContext());
+        progressDialog.setMessage("Processing ...");
+        mAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +62,52 @@ public class SignUp_Fragment extends Fragment {
                 title.setText("Welcome Back");
             }
         });
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String getEmail=email.getText().toString().trim();
+                String getPass=pass.getText().toString().trim();
+                String getConfPass=confPass.getText().toString().trim();
+                if(!Patterns.EMAIL_ADDRESS.matcher(getEmail).matches()){
+                    email.setError("Invalid Email");
+                    email.setFocusable(true);
+                }else if(getPass.length()<8){
+                    pass.setError("Password length must be at least 8");
+                    pass.setFocusable(true);
+                } else if (!getConfPass.equals(getPass)) {
+                    confPass.setError("Doesn't the same");
+                    confPass.setFocusable(true);
+                } else{
+                    registerUser(getEmail,getPass);
+                }
+            }
+        });
         return view;
     }
+
+    private void registerUser(String getEmail, String getPass) {
+        progressDialog.show();
+       mAuth.createUserWithEmailAndPassword(getEmail,getPass)
+               .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                   @Override
+                   public void onComplete(@NonNull Task<AuthResult> task) {
+                       if(task.isSuccessful()){
+                           progressDialog.dismiss();
+                           FirebaseUser user = mAuth.getCurrentUser();
+                           Toast.makeText(getContext(), "Registered "+user.getEmail(), Toast.LENGTH_SHORT).show();
+                           startActivity( new Intent(getActivity(),HomeActivity.class));
+                       }else {
+                           progressDialog.dismiss();
+                           Toast.makeText(getContext(), "Fail to sign up", Toast.LENGTH_SHORT).show();
+                       }
+                   }
+               }).addOnFailureListener(new OnFailureListener() {
+                   @Override
+                   public void onFailure(@NonNull Exception e) {
+                       progressDialog.dismiss();
+                       Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                   }
+               });
+    }
+
 }
