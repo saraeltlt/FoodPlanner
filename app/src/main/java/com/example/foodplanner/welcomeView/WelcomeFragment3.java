@@ -31,6 +31,7 @@ public class WelcomeFragment3 extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         // Check if user is signed in (non-null) and update UI accordingly.
         currentUser = mAuth.getCurrentUser();
+        Log.i("TAG", "onStart: "+currentUser);
     }
     public WelcomeFragment3() {
         // Required empty public constructor
@@ -51,8 +52,7 @@ public class WelcomeFragment3 extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("TAG", "Email: "+currentUser.getEmail());
-                if(currentUser.getEmail().isEmpty()) {
+                if(currentUser==null) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }else
