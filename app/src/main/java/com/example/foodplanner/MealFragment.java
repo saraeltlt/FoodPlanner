@@ -1,4 +1,4 @@
-package com.example.foodplanner.home.homeView;
+package com.example.foodplanner;
 
 import android.os.Bundle;
 
@@ -10,27 +10,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.foodplanner.R;
-import com.example.foodplanner.favorite.favoriteView.FavoriteAdapter;
+import com.example.foodplanner.home.homeView.OnClickMealHome;
 import com.example.foodplanner.model.Meal;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link meal#newInstance} factory method to
+ * Use the {@link MealFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class meal extends Fragment implements OnClickMealHome {
+public class MealFragment extends Fragment implements OnClickMealHome {
     RecyclerView recyclerView;
     ArrayList<Meal> mealsArrayList;
 
-    public meal() {
+    public MealFragment() {
         // Required empty public constructor
     }
 
-    public static meal newInstance(String param1, String param2) {
-        meal fragment = new meal();
+    public static MealFragment newInstance(String param1, String param2) {
+        MealFragment fragment = new MealFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

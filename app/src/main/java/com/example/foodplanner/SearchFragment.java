@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentManager;
 import com.example.foodplanner.categoryView.category;
 import com.example.foodplanner.ingrediantView.IngredientsFragment;
 import com.example.foodplanner.areaView.Area;
-import com.example.foodplanner.home.homeView.meal;
 
 
 public class SearchFragment extends Fragment {
@@ -66,7 +65,7 @@ public class SearchFragment extends Fragment {
         meal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                meal mealFrag = new meal();
+                MealFragment mealFrag = new MealFragment();
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment,mealFrag,"ingFrag").commit();
 

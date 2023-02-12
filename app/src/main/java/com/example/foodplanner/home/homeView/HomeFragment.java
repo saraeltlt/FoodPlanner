@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
     @Override
     public void onClickDetails(Meal meal) {
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
-        intent.putExtra("meal", (Serializable) meal);
+        intent.putExtra("MealFragment", (Serializable) meal);
         startActivity(intent);
     }
 

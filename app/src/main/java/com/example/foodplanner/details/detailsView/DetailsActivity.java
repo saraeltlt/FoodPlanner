@@ -62,7 +62,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         addFav = findViewById(R.id.addFav);
         autoCompleteTextView=findViewById(R.id.addPlan);
         Intent myIntent = getIntent();
-        Meal myMeal = (Meal) myIntent.getSerializableExtra("meal");
+        Meal myMeal = (Meal) myIntent.getSerializableExtra("MealFragment");
         setView(myMeal);
 
         detailsMealPressenterInterface= new DetailsMealPressenter(this,

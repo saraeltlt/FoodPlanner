@@ -81,7 +81,7 @@ public class FavouriteFragment extends Fragment implements OnClickFavorite,FavMe
     public void onClickDetails(Meal meal) {
          Toast.makeText(this.getContext(), meal.getStrMeal(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
-        intent.putExtra("meal", (Serializable) meal);
+        intent.putExtra("MealFragment", (Serializable) meal);
         startActivity(intent);
     }
 
