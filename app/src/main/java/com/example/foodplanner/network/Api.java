@@ -1,10 +1,13 @@
 package com.example.foodplanner.network;
 
+import android.util.Log;
+
 import io.reactivex.Observable;
 
 import com.example.foodplanner.model.AreaResponse;
 import com.example.foodplanner.model.Category;
 import com.example.foodplanner.model.CategoryResponse;
+import com.example.foodplanner.model.Ingredients;
 import com.example.foodplanner.model.IngredientsResponse;
 import com.example.foodplanner.model.RandomMealsResponse;
 
@@ -18,7 +21,18 @@ public interface Api {
     public Observable<CategoryResponse>getCategories();
     @GET("list.php?i=list")
     public Observable<IngredientsResponse>getIngredients();
-    /*@GET("list.php")
+
+    @GET("list.php?a=list")
+    public Observable<AreaResponse>getArea();
+
+    @GET("categories.php")
+    public Observable<CategoryResponse>getCategory();
+
+
+    @GET("filter.php")
+    public Observable<IngredientsResponse>searchByIngred(@Query("i") String i);
+
+   /* @GET("list.php")
     public Observable<IngredientsResponse>getIngredients(@Query("i") String ingredient);  //?i=list*/
 
     /* @GET

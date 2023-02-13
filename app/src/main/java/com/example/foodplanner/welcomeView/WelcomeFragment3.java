@@ -43,6 +43,7 @@ public class WelcomeFragment3 extends Fragment {
             @Override
             public void onClick(View v) {
                     startActivity(new Intent(getActivity(), HomeActivity.class));
+
             }
         });
        return view;

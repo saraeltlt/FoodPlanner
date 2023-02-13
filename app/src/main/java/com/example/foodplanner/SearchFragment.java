@@ -10,9 +10,9 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.foodplanner.categoryView.category;
+import com.example.foodplanner.category.categoryView.category;
 import com.example.foodplanner.ingrediant.ingredientView.IngredientsFragment;
-import com.example.foodplanner.categoryView.areaView.Area;
+import com.example.foodplanner.area.areaView.AreaViewClass;
 
 
 public class SearchFragment extends Fragment {
@@ -49,7 +49,7 @@ public class SearchFragment extends Fragment {
         area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Area regionFrag = new Area();
+                AreaViewClass regionFrag = new AreaViewClass();
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment,regionFrag,"ingFrag").commit();
             }

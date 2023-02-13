@@ -4,6 +4,8 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.foodplanner.home.homeView.HomeInterface;
+import com.example.foodplanner.model.Area;
+import com.example.foodplanner.model.Category;
 import com.example.foodplanner.model.Ingredients;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
@@ -55,6 +57,16 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
     @Override
     public void onSuccessResultIngrediants(ArrayList<Ingredients> ingredients) {
         //nothing
+    }
+
+    @Override
+    public void onSuccessResultArea(ArrayList<Area> ingredients) {
+
+    }
+
+    @Override
+    public void onSuccessResultCategory(ArrayList<Category> categories) {
+
     }
 
     @Override

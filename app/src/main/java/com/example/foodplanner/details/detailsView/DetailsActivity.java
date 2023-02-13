@@ -22,7 +22,6 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenter;
 import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenterInterface;
-import com.example.foodplanner.home.homePressenter.MealPressenter;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.ApiClient;

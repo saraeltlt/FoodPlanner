@@ -1,4 +1,4 @@
-package com.example.foodplanner.categoryView.areaView;
+package com.example.foodplanner.area.areaView;
 
 import android.content.Context;
 import android.util.Log;
@@ -19,10 +19,12 @@ import java.util.List;
 
 public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyHolder> {
     List<Area> areas;
+    List<Area> copy;
     Context context;
     private static ArrayList<Integer> flags ;
     public AreaAdapter(List<Area> areas){
         this.areas = areas;
+        copy = new ArrayList<>();
     }
 
     @NonNull
@@ -49,6 +51,10 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyHolder> {
     public int getItemCount() {
        return areas.size();
     }
+    public void setList(List<Area>area){
+        areas = area;
+        copy.addAll(area);
+    }
 
 
     class MyHolder extends RecyclerView.ViewHolder{
@@ -60,5 +66,26 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyHolder> {
             img = itemView.findViewById(R.id.Simage);
 
         }
+    }
+    public void updateList(CharSequence s){
+
+        ArrayList<Area> searchArray=new ArrayList<>();
+        if(s.length()>0){
+            for(Area name : copy){
+                if(name.getStrArea().toLowerCase().startsWith(s.toString())) {
+                    areas.clear();
+                    searchArray.add(name);
+                    Log.i("TAG", "show data: " + name.getStrArea());
+                }else
+                    areas.clear();
+
+            }
+            areas.addAll(searchArray);
+        }else {
+            areas.clear();
+            areas.addAll(copy);
+        }
+        notifyDataSetChanged();
+        searchArray.clear();
     }
 }

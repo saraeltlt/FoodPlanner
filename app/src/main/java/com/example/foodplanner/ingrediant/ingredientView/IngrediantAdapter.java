@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +45,7 @@ public class IngrediantAdapter extends RecyclerView.Adapter<IngrediantAdapter.My
         String url = "https://www.themealdb.com/images/ingredients/"+ ingredients.getStrIngredient()+".png";
         Glide.with(context).load(url).into(holder.img);
         holder.txt.setText(ingredients.getStrIngredient());
+        //holder.txt.setOnClickListener(v->IngredientsFragment.searchRes(ingredients.getStrIngredient()));
     }
     public void setList(List<Ingredients>ingrdiant){
         ingredientsArrayList = ingrdiant;

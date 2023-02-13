@@ -1,10 +1,10 @@
-package com.example.foodplanner.ingrediant.ingredientPresenter;
+package com.example.foodplanner.category.presenter;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.foodplanner.ingrediant.ingredientView.IngredientInterface;
+import com.example.foodplanner.category.categoryView.CategoryInterface;
 import com.example.foodplanner.model.Area;
 import com.example.foodplanner.model.Category;
 import com.example.foodplanner.model.Ingredients;
@@ -14,44 +14,40 @@ import com.example.foodplanner.network.NetworkDelegate;
 
 import java.util.ArrayList;
 
-public class IngredientPresenter implements  IngredientPresenterInterface, NetworkDelegate {
-   private IngredientInterface ingredientInterface;
-   private ApiClient client;
-   private Context context;
+public class CategoryPresenter implements CategoryPresenterInterface, NetworkDelegate {
+    private CategoryInterface categoryInterface;
+    private ApiClient client ;
+    private Context context;
 
-    public IngredientPresenter(IngredientInterface ingredientInterface, ApiClient client, Context context) {
-        this.ingredientInterface = ingredientInterface;
+    public CategoryPresenter(CategoryInterface categoryInterface, ApiClient client, Context context) {
+        this.categoryInterface = categoryInterface;
         this.client = client;
         this.context = context;
     }
 
     @Override
-    public void getIngredient() {
-        client.ObserveIngrediant(this);
+    public void getCategory() {
+        client.ObserveCategory(this);
     }
-   /* @Override
-    public void getSearchData(String n){
-        client.searchIngrediant(this,n);
-    }
-*/
+
     @Override
     public void onSuccessResult(ArrayList<Meal> meal) {
-        //Nothing
+
     }
 
     @Override
     public void onSuccessResultIngrediants(ArrayList<Ingredients> ingredients) {
-        ingredientInterface.showIngredient(ingredients);
+
     }
 
     @Override
-    public void onSuccessResultArea(ArrayList<Area> ingredients) {
+    public void onSuccessResultArea(ArrayList<Area> areas) {
 
     }
 
     @Override
     public void onSuccessResultCategory(ArrayList<Category> categories) {
-
+       categoryInterface.showCategory(categories);
     }
 
     @Override

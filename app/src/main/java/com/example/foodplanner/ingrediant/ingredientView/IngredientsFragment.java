@@ -14,20 +14,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.ingrediant.ingredientPresenter.IngredientPresenter;
 import com.example.foodplanner.ingrediant.ingredientPresenter.IngredientPresenterInterface;
-import com.example.foodplanner.model.CategoryResponse;
 import com.example.foodplanner.model.Ingredients;
-import com.example.foodplanner.model.IngredientsResponse;
-import com.example.foodplanner.model.RandomMealsResponse;
-import com.example.foodplanner.network.Api;
 import com.example.foodplanner.network.ApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.Observable;
 
 
 public class IngredientsFragment extends Fragment implements IngredientInterface {
@@ -76,6 +69,8 @@ public class IngredientsFragment extends Fragment implements IngredientInterface
         adapter.notifyDataSetChanged();
     }
 
-
+/*public static void searchRes(String n){
+    ingredientPresenterInterface.getSearchData(name);
+}*/
 
 }

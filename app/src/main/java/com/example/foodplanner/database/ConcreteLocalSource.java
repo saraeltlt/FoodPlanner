@@ -2,7 +2,6 @@ package com.example.foodplanner.database;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.widget.Toast;
 
 import com.example.foodplanner.model.Meal;
 

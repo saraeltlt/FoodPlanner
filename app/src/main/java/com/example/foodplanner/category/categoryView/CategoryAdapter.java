@@ -1,4 +1,4 @@
-package com.example.foodplanner.categoryView;
+package com.example.foodplanner.category.categoryView;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,15 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+import com.example.foodplanner.model.Area;
 import com.example.foodplanner.model.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHolder> {
     List<Category> categories;
+    List<Category>copy;
     Context context;
     public CategoryAdapter(List<Category> categoryList){
         categories = categoryList;
+        copy=new ArrayList<>();
     }
 
     @NonNull
@@ -42,6 +46,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
     }
     public void setList(List<Category>categoryList){
         categories = categoryList;
+        copy.addAll(categoryList);
     }
 
     @Override
@@ -58,5 +63,25 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
             img = itemView.findViewById(R.id.Simage);
 
         }
+    }
+    public void updateList(CharSequence s){
+        ArrayList<Category> searchArray=new ArrayList<>();
+        if(s.length()>0){
+            for(Category name : copy){
+                if(name.getStrCategory().toLowerCase().startsWith(s.toString())) {
+                    categories.clear();
+                    searchArray.add(name);
+                    Log.i("TAG", "show data: " + name.getStrCategory());
+                }else
+                    categories.clear();
+
+            }
+            categories.addAll(searchArray);
+        }else {
+            categories.clear();
+            categories.addAll(copy);
+        }
+        notifyDataSetChanged();
+        searchArray.clear();
     }
 }

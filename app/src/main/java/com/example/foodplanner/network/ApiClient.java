@@ -1,7 +1,10 @@
 package com.example.foodplanner.network;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
+import com.example.foodplanner.model.AreaResponse;
+import com.example.foodplanner.model.CategoryResponse;
 import com.example.foodplanner.model.IngredientsResponse;
 import com.example.foodplanner.model.RandomMealsResponse;
 
@@ -58,6 +61,28 @@ public class ApiClient implements RemoteSource {
                 .observeOn(AndroidSchedulers.mainThread());
         observable.subscribe(o-> {
                     networkDelegate.onSuccessResultIngrediants(o.getMeals());
+                },
+                e-> networkDelegate.onFailureResult(e.getMessage())
+        );
+    }
+    public void ObserveArea(NetworkDelegate networkDelegate) {
+        Api myApi = creatRetro();
+        Observable<AreaResponse> observable= myApi.getArea()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(o-> {
+                    networkDelegate.onSuccessResultArea(o.getMeals());
+                },
+                e-> networkDelegate.onFailureResult(e.getMessage())
+        );
+    }
+    public void ObserveCategory(NetworkDelegate networkDelegate) {
+        Api myApi = creatRetro();
+        Observable<CategoryResponse> observable= myApi.getCategory()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(o-> {
+                    networkDelegate.onSuccessResultCategory(o.getCategories());
                 },
                 e-> networkDelegate.onFailureResult(e.getMessage())
         );
