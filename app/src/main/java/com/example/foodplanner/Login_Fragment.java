@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.foodplanner.welcomeView.WelcomeActivity;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Login_Fragment#newInstance} factory method to
@@ -78,7 +80,7 @@ public class Login_Fragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),HomeActivity.class);
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
                 startActivity(intent);
             }
         });

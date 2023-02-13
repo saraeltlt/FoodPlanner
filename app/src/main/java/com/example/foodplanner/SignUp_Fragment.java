@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodplanner.welcomeView.WelcomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -95,7 +96,7 @@ public class SignUp_Fragment extends Fragment {
                            progressDialog.dismiss();
                            FirebaseUser user = mAuth.getCurrentUser();
                            Toast.makeText(getContext(), "Registered "+user.getEmail(), Toast.LENGTH_SHORT).show();
-                           startActivity( new Intent(getActivity(),HomeActivity.class));
+                           startActivity( new Intent(getActivity(), WelcomeActivity.class));
                        }else {
                            progressDialog.dismiss();
                            Toast.makeText(getContext(), "Fail to sign up", Toast.LENGTH_SHORT).show();

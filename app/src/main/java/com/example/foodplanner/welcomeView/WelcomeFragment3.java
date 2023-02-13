@@ -23,15 +23,6 @@ import java.io.Serializable;
 public class WelcomeFragment3 extends Fragment {
     Button start;
 
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
-    public void onStart() {
-        super.onStart();
-        mAuth = FirebaseAuth.getInstance();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        currentUser = mAuth.getCurrentUser();
-        Log.i("TAG", "onStart: "+currentUser);
-    }
     public WelcomeFragment3() {
         // Required empty public constructor
     }
@@ -51,10 +42,6 @@ public class WelcomeFragment3 extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentUser==null) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                }else
                     startActivity(new Intent(getActivity(), HomeActivity.class));
             }
         });
