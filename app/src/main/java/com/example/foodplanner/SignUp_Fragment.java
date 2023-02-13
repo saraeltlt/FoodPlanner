@@ -36,6 +36,7 @@ public class SignUp_Fragment extends Fragment {
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +84,7 @@ public class SignUp_Fragment extends Fragment {
                 }
             }
         });
+
         return view;
     }
 
@@ -93,6 +95,7 @@ public class SignUp_Fragment extends Fragment {
                    @Override
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if(task.isSuccessful()){
+
                            progressDialog.dismiss();
                            FirebaseUser user = mAuth.getCurrentUser();
                            Toast.makeText(getContext(), "Registered "+user.getEmail(), Toast.LENGTH_SHORT).show();

@@ -1,73 +1,53 @@
 package com.example.foodplanner;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.foodplanner.welcomeView.WelcomeActivity;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Login_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+
 public class Login_Fragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView signup;
+    private Button login;
+    private EditText userName, password;
+    private FirebaseAuth mAuth;
+    ProgressDialog progressDialog;
 
     public Login_Fragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Login_Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Login_Fragment newInstance(String param1, String param2) {
-        Login_Fragment fragment = new Login_Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        TextView signup;
-        Button login ;
-        View view =inflater.inflate(R.layout.fragment_login_, container, false);
-        signup=view.findViewById(R.id.Signup);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_login_, container, false);
+        signup = view.findViewById(R.id.Signup);
         login = view.findViewById(R.id.LOGIN);
+        userName = view.findViewById(R.id.login_username);
+        password = view.findViewById(R.id.login_password);
+        mAuth = FirebaseAuth.getInstance();
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,11 +60,47 @@ public class Login_Fragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                startActivity(intent);
+                String email = userName.getText().toString();
+                String pass = password.getText().toString().trim();
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    userName.setError("Invalid Email");
+                    userName.setFocusable(true);
+                } else if (pass.length()<8) {
+                    password.setError("Invalid Password");
+                    password.setFocusable(true);
+                } else {
+                    loginUser(email, pass);
+                }
+
             }
         });
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Logging in... ");
 
         return view;
+    }
+
+    private void loginUser(String email, String pass) {
+        progressDialog.show();
+        mAuth.signInWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            progressDialog.dismiss();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(new Intent(getActivity(), HomeActivity.class));
+                            getActivity().finish();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(e -> {
+                    progressDialog.dismiss();
+                    Toast.makeText(getContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }
