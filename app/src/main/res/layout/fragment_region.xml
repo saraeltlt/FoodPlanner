@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/background"
-    tools:context=".areaView.Area">
+    tools:context=".categoryView.areaView.Area">
 
     <EditText
         android:id="@+id/searchView2"

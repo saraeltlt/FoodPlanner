@@ -2,6 +2,7 @@ package com.example.foodplanner.network;
 
 import android.annotation.SuppressLint;
 
+import com.example.foodplanner.model.IngredientsResponse;
 import com.example.foodplanner.model.RandomMealsResponse;
 
 import io.reactivex.Observable;
@@ -49,6 +50,18 @@ public class ApiClient implements RemoteSource {
 
     }
 
+    @Override
+    public void ObserveIngrediant(NetworkDelegate networkDelegate) {
+        Api myApi = creatRetro();
+        Observable<IngredientsResponse> observable= myApi.getIngredients()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(o-> {
+                    networkDelegate.onSuccessResultIngrediants(o.getMeals());
+                },
+                e-> networkDelegate.onFailureResult(e.getMessage())
+        );
+    }
 
 
 }

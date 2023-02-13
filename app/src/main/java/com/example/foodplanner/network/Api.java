@@ -16,8 +16,10 @@ public interface Api {
     public Observable<RandomMealsResponse> getRandomMeals();
     @GET("categories.php")
     public Observable<CategoryResponse>getCategories();
-    @GET("list.php")
-    public Observable<IngredientsResponse>getIngredients(@Query("i") String ingredient);  //?i=list
+    @GET("list.php?i=list")
+    public Observable<IngredientsResponse>getIngredients();
+    /*@GET("list.php")
+    public Observable<IngredientsResponse>getIngredients(@Query("i") String ingredient);  //?i=list*/
 
     /* @GET
     public Observable<AreaResponse>getAreas(@Query("a") String area);  //?a=list);

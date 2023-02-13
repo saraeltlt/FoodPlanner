@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/ingredients"
-        android:name="com.example.foodplanner.ingrediantView.IngredientsFragment"
+        android:name="com.example.foodplanner.ingrediant.ingredientView.IngredientsFragment"
         android:label="fragment_ingredients"
         tools:layout="@layout/fragment_ingredients" />
     <fragment
         android:id="@+id/region"
-        android:name="com.example.foodplanner.areaView.Area"
+        android:name="com.example.foodplanner.categoryView.areaView.Area"
         android:label="fragment_region"
         tools:layout="@layout/fragment_region" />
     <fragment

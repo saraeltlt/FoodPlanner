@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.foodplanner.home.homeView.HomeInterface;
+import com.example.foodplanner.model.Ingredients;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.ApiClient;
@@ -49,6 +50,11 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
     public void onSuccessResult(ArrayList<Meal> meals) {
         view.showMeal(getRandomMeals(meals));
 
+    }
+
+    @Override
+    public void onSuccessResultIngrediants(ArrayList<Ingredients> ingredients) {
+        //nothing
     }
 
     @Override

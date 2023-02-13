@@ -1,4 +1,4 @@
-package com.example.foodplanner.areaView;
+package com.example.foodplanner.categoryView.areaView;
 
 import android.content.Context;
 import android.util.Log;

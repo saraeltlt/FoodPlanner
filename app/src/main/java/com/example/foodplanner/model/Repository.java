@@ -49,4 +49,9 @@ public class Repository implements LocalSource, RemoteSource {
         remoteSource.ObserveMeal(networkDelegate);
 
     }
+
+    @Override
+    public void ObserveIngrediant(NetworkDelegate networkDelegate) {
+        remoteSource.ObserveIngrediant(networkDelegate);
+    }
 }
