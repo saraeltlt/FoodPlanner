@@ -7,7 +7,7 @@
     tools:openDrawer="end"
     android:id="@+id/drawer_layout"
 
-    tools:context=".HomeActivity">
+    tools:context=".UI.HomeActivity">
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -101,23 +101,7 @@
         app:headerLayout="@layout/nav_header_drawer"
         app:itemTextColor="@color/grey_dark"
         app:menu="@menu/navigation_menu">
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appName"
-            app:lottie_autoPlay="true"
-
-
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/splash"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_gravity="bottom"

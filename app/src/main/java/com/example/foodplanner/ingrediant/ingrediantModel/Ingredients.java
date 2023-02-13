@@ -1,4 +1,4 @@
-package com.example.foodplanner.model;
+package com.example.foodplanner.ingrediant.ingrediantModel;
 
 public class Ingredients {
     String strIngredient;

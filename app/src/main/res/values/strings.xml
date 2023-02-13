@@ -65,5 +65,6 @@
     <string name="GuestName">Guest</string>
     <string name="no_internet">No Internet Connection</string>
     <string name="usin_google">Continue with Google</string>
+    <string name="meal_added">Meal added to </string>
 
 </resources>

@@ -10,15 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.details.detailsView.DetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.favorite.favoritePressenter.FavMealPressenter;
 import com.example.foodplanner.favorite.favoritePressenter.FavMealPressenterInterface;
-import com.example.foodplanner.model.Meal;
-import com.example.foodplanner.model.Repository;
+import com.example.foodplanner.mealModel.Meal;
+import com.example.foodplanner.mealModel.Repository;
 import com.example.foodplanner.network.ApiClient;
 
 import java.io.Serializable;

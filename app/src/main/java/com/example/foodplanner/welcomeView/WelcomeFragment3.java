@@ -5,20 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.foodplanner.HomeActivity;
-import com.example.foodplanner.MainActivity;
+import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.R;
-import com.example.foodplanner.details.detailsView.DetailsActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.io.Serializable;
 
 public class WelcomeFragment3 extends Fragment {
     Button start;

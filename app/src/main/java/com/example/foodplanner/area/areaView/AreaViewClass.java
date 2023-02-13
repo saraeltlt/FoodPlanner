@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.area.presenter.AreaPresenter;
-import com.example.foodplanner.area.presenter.AreaPresenterInterface;
-import com.example.foodplanner.model.Area;
+import com.example.foodplanner.area.areaPresenter.AreaPresenter;
+import com.example.foodplanner.area.areaPresenter.AreaPresenterInterface;
+import com.example.foodplanner.area.areaModel.Area;
 import com.example.foodplanner.network.ApiClient;
 
 

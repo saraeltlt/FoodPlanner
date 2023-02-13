@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.UI;
 
 import android.os.Bundle;
 
@@ -14,13 +14,11 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.foodplanner.R;
 import com.example.foodplanner.category.categoryView.category;
 import com.example.foodplanner.ingrediant.ingredientView.IngredientsFragment;
 import com.example.foodplanner.area.areaView.AreaViewClass;
-import com.example.foodplanner.categoryView.category;
-import com.example.foodplanner.ingrediantView.IngredientsFragment;
-import com.example.foodplanner.areaView.Area;
-import com.example.foodplanner.mealView.MealFragment;
+import com.example.foodplanner.meal.mealView.MealFragment;
 import com.example.foodplanner.network.CheckInternet;
 
 

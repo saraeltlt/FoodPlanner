@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.plan.planView;
 
 import android.os.Bundle;
 
@@ -8,9 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ItemSearchView extends Fragment {
+import com.example.foodplanner.R;
 
-    public ItemSearchView() {
+public class PlanFragment extends Fragment {
+
+
+    public PlanFragment() {
         // Required empty public constructor
     }
 
@@ -24,8 +27,7 @@ public class ItemSearchView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-       View view =inflater.inflate(R.layout.fragment_item_search_view, container, false);
-       return view;
+       View view= inflater.inflate(R.layout.fragment_plan, container, false);
+        return view;
     }
 }

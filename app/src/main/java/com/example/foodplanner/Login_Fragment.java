@@ -15,8 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import android.widget.Toast;
 
+import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.network.CheckInternet;
 
 import com.google.android.gms.tasks.OnCompleteListener;

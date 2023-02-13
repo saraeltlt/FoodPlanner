@@ -1,8 +1,8 @@
-package com.example.foodplanner.model;
+package com.example.foodplanner.mealModel;
 
 import java.util.ArrayList;
 
-public class RandomMealsResponse {
+public class MealsRandomResponse {
    private ArrayList<Meal> meals ;
 
    public ArrayList<Meal> getMeals() {

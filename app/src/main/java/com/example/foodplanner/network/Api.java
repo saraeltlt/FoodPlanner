@@ -1,22 +1,18 @@
 package com.example.foodplanner.network;
 
-import android.util.Log;
-
 import io.reactivex.Observable;
 
-import com.example.foodplanner.model.AreaResponse;
-import com.example.foodplanner.model.Category;
-import com.example.foodplanner.model.CategoryResponse;
-import com.example.foodplanner.model.Ingredients;
-import com.example.foodplanner.model.IngredientsResponse;
-import com.example.foodplanner.model.RandomMealsResponse;
+import com.example.foodplanner.area.areaModel.AreaResponse;
+import com.example.foodplanner.category.categoryModel.CategoryResponse;
+import com.example.foodplanner.ingrediant.ingrediantModel.IngredientsResponse;
+import com.example.foodplanner.mealModel.MealsRandomResponse;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface Api {
     @GET("search.php?s")
-    public Observable<RandomMealsResponse> getRandomMeals();
+    public Observable<MealsRandomResponse> getRandomMeals();
     @GET("categories.php")
     public Observable<CategoryResponse>getCategories();
     @GET("list.php?i=list")

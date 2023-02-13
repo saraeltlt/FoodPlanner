@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -19,14 +18,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodplanner.MainActivity;
 import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.details.detailsView.DetailsActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.home.homePressenter.MealPressenter;
 import com.example.foodplanner.home.homePressenter.MealPressenterInterface;
-import com.example.foodplanner.model.Meal;
-import com.example.foodplanner.model.Repository;
+import com.example.foodplanner.mealModel.Meal;
+import com.example.foodplanner.mealModel.Repository;
 import com.example.foodplanner.network.ApiClient;
 import com.example.foodplanner.network.CheckInternet;
 

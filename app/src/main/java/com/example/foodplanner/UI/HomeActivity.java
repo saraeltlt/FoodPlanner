@@ -1,9 +1,7 @@
-package com.example.foodplanner;
+package com.example.foodplanner.UI;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -14,12 +12,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodplanner.welcomeView.SplashScreenActivity;
-import com.example.foodplanner.welcomeView.WelcomeActivity;
+import com.example.foodplanner.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +25,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ImageView openDrawer;
+    TextView userName;
     public static NavController navController;
     public static Boolean guestFlag = false;
     static boolean flagLang=false;
@@ -46,9 +44,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         homeActivity=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         drawerLayout = findViewById(R.id.drawer_layout);
         openDrawer = findViewById(R.id.btn_open);
         navigationView=findViewById(R.id.navigationViw);
+        View headerView = navigationView.getHeaderView(0);
+        userName= headerView.findViewById(R.id.userName);
         navigationView.setNavigationItemSelectedListener(this);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         navController = Navigation.findNavController(this, R.id.navHostFragment);
@@ -66,6 +67,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             NavigationUI.setupWithNavController(bottomNavigationView, navController);
         }
         else{
+            userName.setText(R.string.GuestName);
             bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {

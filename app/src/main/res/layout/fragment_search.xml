@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background"
     android:orientation="vertical"
-    tools:context=".SearchFragment">
+    tools:context=".UI.SearchFragment">
     <ImageView
         android:id="@+id/wifiImg"
         android:layout_width="250dp"

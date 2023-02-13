@@ -78,7 +78,7 @@ public class SignUp_Fragment extends Fragment {
                     } else if (getPass.length() < 8) {
                         pass.setError("Password length must be at least 8");
                         pass.setFocusable(true);
-                    } else if (!getConfPass.equals(getPass)) {
+                    } else if (!getConfPass.equals(getPass) || getConfPass.length()<8) {
                         confPass.setError("Doesn't the same");
                         confPass.setFocusable(true);
                     } else {

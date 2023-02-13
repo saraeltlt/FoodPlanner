@@ -3,11 +3,8 @@ package com.example.foodplanner.favorite.favoritePressenter;
 import android.content.Context;
 
 import com.example.foodplanner.favorite.favoriteView.FavMealInterface;
-import com.example.foodplanner.model.Meal;
-import com.example.foodplanner.model.Repository;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.foodplanner.mealModel.Meal;
+import com.example.foodplanner.mealModel.Repository;
 
 public class FavMealPressenter implements FavMealPressenterInterface{
     private FavMealInterface view;

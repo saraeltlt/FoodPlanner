@@ -12,8 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.foodplanner.HomeActivity;
-import com.example.foodplanner.MainActivity;
+import com.example.foodplanner.UI.HomeActivity;
+import com.example.foodplanner.UI.MainActivity;
 import com.example.foodplanner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

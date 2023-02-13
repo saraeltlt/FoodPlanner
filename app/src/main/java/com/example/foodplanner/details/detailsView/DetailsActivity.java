@@ -18,13 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.HomeActivity;
+import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenter;
 import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenterInterface;
-import com.example.foodplanner.model.Meal;
-import com.example.foodplanner.model.Repository;
+import com.example.foodplanner.mealModel.Meal;
+import com.example.foodplanner.mealModel.Repository;
 import com.example.foodplanner.network.ApiClient;
 import com.example.foodplanner.network.CheckInternet;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -90,7 +90,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DetailsActivity.this, "Meal added to "+parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailsActivity.this,  R.string.meal_added+parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
 
             }
 
@@ -155,7 +155,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         List<String> recipe = new ArrayList<>();
         while (st.hasMoreTokens()) {
             String word = st.nextToken();
-            if (word.length()>2) {
+            if (word.length()>3) {
                 recipe.add(word);
             }
         }

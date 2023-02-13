@@ -1,4 +1,4 @@
-package com.example.foodplanner.mealView;
+package com.example.foodplanner.meal.mealView;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.home.homeView.OnClickMealHome;
-import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.mealModel.Meal;
 
 import java.util.ArrayList;
 

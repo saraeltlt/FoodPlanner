@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.UI;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.foodplanner.R;
 import com.example.foodplanner.network.CheckInternet;
 
 

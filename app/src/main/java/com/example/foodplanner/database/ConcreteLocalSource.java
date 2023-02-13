@@ -3,7 +3,7 @@ package com.example.foodplanner.database;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.mealModel.Meal;
 
 import java.util.List;
 

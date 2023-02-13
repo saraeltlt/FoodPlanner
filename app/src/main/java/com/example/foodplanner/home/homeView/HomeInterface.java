@@ -1,5 +1,5 @@
 package com.example.foodplanner.home.homeView;
-import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.mealModel.Meal;
 
 import java.util.List;
 

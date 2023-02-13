@@ -16,7 +16,7 @@ import android.widget.EditText;
 import com.example.foodplanner.R;
 import com.example.foodplanner.ingrediant.ingredientPresenter.IngredientPresenter;
 import com.example.foodplanner.ingrediant.ingredientPresenter.IngredientPresenterInterface;
-import com.example.foodplanner.model.Ingredients;
+import com.example.foodplanner.ingrediant.ingrediantModel.Ingredients;
 import com.example.foodplanner.network.ApiClient;
 
 import java.util.ArrayList;

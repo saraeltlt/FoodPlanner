@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.HomeActivity;
+import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.R;
-import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.mealModel.Meal;
 
 import java.util.List;
 

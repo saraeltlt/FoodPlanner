@@ -1,6 +1,6 @@
 package com.example.foodplanner.area.areaView;
 
-import com.example.foodplanner.model.Area;
+import com.example.foodplanner.area.areaModel.Area;
 
 import java.util.List;
 

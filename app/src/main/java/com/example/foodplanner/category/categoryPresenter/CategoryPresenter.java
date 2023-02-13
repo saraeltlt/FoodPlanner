@@ -1,14 +1,14 @@
-package com.example.foodplanner.category.presenter;
+package com.example.foodplanner.category.categoryPresenter;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.foodplanner.category.categoryView.CategoryInterface;
-import com.example.foodplanner.model.Area;
-import com.example.foodplanner.model.Category;
-import com.example.foodplanner.model.Ingredients;
-import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.area.areaModel.Area;
+import com.example.foodplanner.category.categoryModel.Category;
+import com.example.foodplanner.ingrediant.ingrediantModel.Ingredients;
+import com.example.foodplanner.mealModel.Meal;
 import com.example.foodplanner.network.ApiClient;
 import com.example.foodplanner.network.NetworkDelegate;
 

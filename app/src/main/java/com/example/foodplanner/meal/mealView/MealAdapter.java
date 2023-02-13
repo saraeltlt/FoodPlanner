@@ -1,4 +1,4 @@
-package com.example.foodplanner.mealView;
+package com.example.foodplanner.meal.mealView;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,9 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
 
-import com.example.foodplanner.favorite.favoriteView.FavoriteAdapter;
 import com.example.foodplanner.home.homeView.OnClickMealHome;
-import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.mealModel.Meal;
 
 import java.util.List;
 

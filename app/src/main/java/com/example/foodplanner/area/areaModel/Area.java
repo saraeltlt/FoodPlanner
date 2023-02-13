@@ -1,4 +1,4 @@
-package com.example.foodplanner.model;
+package com.example.foodplanner.area.areaModel;
 
 public class Area {
     String strArea;

@@ -1,7 +1,5 @@
 package com.example.foodplanner.details.detailsView;
-import com.example.foodplanner.model.Meal;
-
-import java.util.List;
+import com.example.foodplanner.mealModel.Meal;
 
 public interface DetailsInterface {
     public void addMealToFav(Meal meal);

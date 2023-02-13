@@ -1,6 +1,6 @@
 package com.example.foodplanner.home.homePressenter;
 
-import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.mealModel.Meal;
 
 public interface MealPressenterInterface {
     public void getMeal();

@@ -1,6 +1,6 @@
 package com.example.foodplanner.database;
 
-import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.mealModel.Meal;
 
 import java.util.List;
 

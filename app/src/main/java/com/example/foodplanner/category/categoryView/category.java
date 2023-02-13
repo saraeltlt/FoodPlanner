@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.category.presenter.CategoryPresenter;
-import com.example.foodplanner.category.presenter.CategoryPresenterInterface;
-import com.example.foodplanner.model.Category;
+import com.example.foodplanner.category.categoryPresenter.CategoryPresenter;
+import com.example.foodplanner.category.categoryPresenter.CategoryPresenterInterface;
+import com.example.foodplanner.category.categoryModel.Category;
 import com.example.foodplanner.network.ApiClient;
 
 import java.util.ArrayList;

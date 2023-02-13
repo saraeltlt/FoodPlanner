@@ -4,9 +4,8 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.foodplanner.details.detailsView.DetailsInterface;
-import com.example.foodplanner.home.homeView.HomeInterface;
-import com.example.foodplanner.model.Meal;
-import com.example.foodplanner.model.Repository;
+import com.example.foodplanner.mealModel.Meal;
+import com.example.foodplanner.mealModel.Repository;
 import com.example.foodplanner.network.ApiClient;
 
 public class DetailsMealPressenter implements DetailsMealPressenterInterface {
