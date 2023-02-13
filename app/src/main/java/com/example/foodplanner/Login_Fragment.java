@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import android.widget.Toast;
+
+import com.example.foodplanner.network.CheckInternet;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -60,19 +63,25 @@ public class Login_Fragment extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = userName.getText().toString();
-                String pass = password.getText().toString().trim();
-                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    userName.setError("Invalid Email");
-                    userName.setFocusable(true);
-                } else if (pass.length()<8) {
-                    password.setError("Invalid Password");
-                    password.setFocusable(true);
-                } else {
-                    loginUser(email, pass);
-                }
+                if (CheckInternet.getConnectivity(getContext())) {
+                    String email = userName.getText().toString();
+                    String pass = password.getText().toString().trim();
+                    if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                        userName.setError("Invalid Email");
+                        userName.setFocusable(true);
+                    } else if (pass.length() < 8) {
+                        password.setError("Invalid Password");
+                        password.setFocusable(true);
+                    } else {
+                        loginUser(email, pass);
+                    }
 
+                }
+                else{
+                    Toast.makeText(getContext(), R.string.checkConnection, Toast.LENGTH_SHORT).show();
+                }
             }
+
         });
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Logging in... ");

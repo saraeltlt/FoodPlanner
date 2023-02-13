@@ -28,72 +28,77 @@
         android:layout_width="0dp"
         android:layout_height="420dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
 
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_title"
         app:navGraph="@navigation/my_navigation" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/gabriola"
-        android:text="@string/orConnectUsing"
-        android:textColor="@color/yellow_dark"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/linear"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView" />
-
     <LinearLayout
         android:id="@+id/linear"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/country_bg"
         android:weightSum="2"
-        app:layout_constraintBottom_toTopOf="@+id/gesut"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/facebook_card"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
-            app:cardCornerRadius="100dp">
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/face2" />
-        </androidx.cardview.widget.CardView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/google_card"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
             android:layout_weight="1"
-            app:cardCornerRadius="100dp">
+            android:background="@drawable/country_bg"
+            app:cardBackgroundColor="@android:color/transparent">
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/google2" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/google_Image"
+                    android:layout_width="15dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="25dp">
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@mipmap/google2" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/gabriola"
+                    android:gravity="center"
+                    android:text="@string/usin_google"
+                    android:textColor="@color/white"
+                    android:textSize="29sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/gesut"
+        android:id="@+id/guest"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/yellow_dark"
@@ -102,7 +107,7 @@
         android:insetBottom="0dp"
         android:text="@string/guest"
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

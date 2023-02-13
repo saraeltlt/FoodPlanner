@@ -7,25 +7,28 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.HomeActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Meal;
 
 import java.util.List;
 
-public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder> {
+public class HomeMealAdapter extends RecyclerView.Adapter<HomeMealAdapter.MealViewHolder> {
     private List<Meal> mealsArrayList;
     private Context context;
     private OnClickMealHome listener;
     private ViewPager2 viewPager2;
 
 
-    public MealAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener, ViewPager2 viewPager2) {
+    public HomeMealAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener, ViewPager2 viewPager2) {
         this.mealsArrayList = mealsArrayList;
         this.context = context;
         this.listener = listener;
@@ -75,16 +78,20 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         holder.favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!meal.getMealAddedToFav()) {
-                    holder.favBtn.setImageResource(R.drawable.favorite_red);
-                    listener.onClickAddFav(meal);
-                    meal.setMealAddedToFav(true);
+                if (HomeActivity.getGuestFlag()){
+                    Toast.makeText(context, R.string.access, Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    holder.favBtn.setImageResource(R.drawable.favorite_white);
-                    listener.onClickRemoveFav(meal);
-                    meal.setMealAddedToFav(false);
+                    if (!meal.getMealAddedToFav()) {
+                        holder.favBtn.setImageResource(R.drawable.favorite_red);
+                        listener.onClickAddFav(meal);
+                        meal.setMealAddedToFav(true);
+                    } else {
+                        holder.favBtn.setImageResource(R.drawable.favorite_white);
+                        listener.onClickRemoveFav(meal);
+                        meal.setMealAddedToFav(false);
 
+                    }
                 }
             }
         });

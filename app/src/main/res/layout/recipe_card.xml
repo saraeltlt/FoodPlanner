@@ -18,7 +18,7 @@
             android:drawableLeft="@drawable/baseline_circle_24"
             android:fontFamily="@font/gabriola"
             android:text="step 1:"
-            android:textColor="@color/black"
+            android:textColor="@color/yellow_dark"
             android:textSize="24sp"
             android:textStyle="bold|italic" />
 
@@ -31,7 +31,7 @@
             android:fontFamily="@font/gabriola"
             android:inputType="textMultiLine"
             android:text="TextView"
-            android:textColor="@color/grey_dark"
+            android:textColor="@color/white"
             android:textSize="20sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

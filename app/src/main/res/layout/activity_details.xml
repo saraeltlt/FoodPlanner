@@ -12,6 +12,7 @@
         android:id="@+id/videoCard"
         android:layout_width="0dp"
         android:layout_height="200dp"
+        app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="0dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +21,36 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <ImageView
+                android:id="@+id/wifiImg"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/no_video"
+                app:layout_constraintBottom_toTopOf="@+id/noWifi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/noWifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/gabriola"
+                android:text="@string/no_internet"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/youtubePlayer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wifiImg" />
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/youtubePlayer"
@@ -32,7 +62,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="0.0">
 
             </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -41,14 +71,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/backCard"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="418dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="-10dp"
-        android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="@color/grey_light"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="30dp"
-        app:cardElevation="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +200,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/favorite_selector" />
+                            app:srcCompat="@drawable/favorite_white" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -182,7 +211,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@color/grey_dark"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +220,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/grey_dark">
+                        android:background="@color/white">
 
                         <TextView
                             android:id="@+id/meal"
@@ -202,7 +231,7 @@
                             android:fontFamily="@font/gabriola"
                             android:text="Meal Name"
                             android:textAlignment="center"
-                            android:textColor="@color/white"
+                            android:textColor="@color/grey_dark"
                             android:textSize="34sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -311,7 +340,6 @@
                 android:textSize="32sp"
                 android:textStyle="bold"
                 android:completionThreshold="0"
-                android:completionHint="select a day"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

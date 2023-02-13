@@ -110,6 +110,6 @@
 
 
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/favorite_selector" />
+        app:srcCompat="@drawable/favorite_white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

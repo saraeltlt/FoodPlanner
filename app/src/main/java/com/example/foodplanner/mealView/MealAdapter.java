@@ -1,4 +1,4 @@
-package com.example.foodplanner.favorite.favoriteView;
+package com.example.foodplanner.mealView;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,17 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+
+import com.example.foodplanner.favorite.favoriteView.FavoriteAdapter;
 import com.example.foodplanner.home.homeView.OnClickMealHome;
 import com.example.foodplanner.model.Meal;
 
 import java.util.List;
 
-public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealViewHolder> {
+public class MealAdapter  extends RecyclerView.Adapter<MealAdapter.MealViewHolder>{
     private List<Meal> mealsArrayList;
     private Context context;
-    private OnClickFavorite listener;
+    private OnClickMealHome listener;
 
-    public FavoriteAdapter(Context context,List<Meal> mealsArrayList,  OnClickFavorite listener) {
+    public MealAdapter(List<Meal> mealsArrayList, Context context, OnClickMealHome listener) {
         this.mealsArrayList = mealsArrayList;
         this.context = context;
         this.listener = listener;
@@ -36,7 +38,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
 
     public void setMealsArrayList(List<Meal> mealsArrayList) {
         this.mealsArrayList = mealsArrayList;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -46,6 +47,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         View view = inflater.inflate(R.layout.meal_card, parent , false);
         MealViewHolder vh = new MealViewHolder(view);
         return vh;
+
     }
 
     @Override
@@ -56,23 +58,31 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         Context contextImage = holder.flag.getContext();
         int id = contextImage .getResources().getIdentifier(meal.getStrArea().toLowerCase(), "drawable", contextImage.getPackageName());
         holder.flag.setImageResource(id);
-        holder.favBtn.setImageResource(R.drawable.favorite_red);
+        if (meal.getMealAddedToFav()) {
+            holder.favBtn.setImageResource(R.drawable.favorite_red);
+        }
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.image);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              meal.setMealAddedToFav(true);
                 listener.onClickDetails(meal);
             }
         });
         holder.favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (meal.getMealAddedToFav()) {
+                    holder.favBtn.setImageResource(R.drawable.favorite_white);
                     listener.onClickRemoveFav(meal);
                     meal.setMealAddedToFav(false);
+                }
+                else{
+                    holder.favBtn.setImageResource(R.drawable.favorite_red);
+                    meal.setMealAddedToFav(true);
+
+                }
             }
         });
-
 
     }
 
@@ -81,22 +91,21 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         return mealsArrayList.size();
     }
 
-
     public class MealViewHolder extends RecyclerView.ViewHolder {
         TextView meal;
         TextView area;
         ImageView image;
         ImageButton favBtn;
         ImageView flag;
-       ConstraintLayout layout;
+        ConstraintLayout layout;
         public MealViewHolder(@NonNull View itemView) {
             super(itemView);
             meal = itemView.findViewById(R.id.meal);
-           area = itemView.findViewById(R.id.area);
-           image = itemView.findViewById(R.id.image);
-           layout=itemView.findViewById(R.id.layout);
-           favBtn=itemView.findViewById(R.id.addFav);
-           flag = itemView.findViewById(R.id.areaFlag);
+            area = itemView.findViewById(R.id.area);
+            image = itemView.findViewById(R.id.image);
+            layout=itemView.findViewById(R.id.layout);
+            favBtn=itemView.findViewById(R.id.addFav);
+            flag = itemView.findViewById(R.id.areaFlag);
 
         }
     }

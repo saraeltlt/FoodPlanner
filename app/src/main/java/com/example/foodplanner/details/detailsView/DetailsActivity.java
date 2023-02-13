@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.foodplanner.HomeActivity;
 import com.example.foodplanner.R;
 import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenter;
@@ -25,6 +26,7 @@ import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenterIn
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.ApiClient;
+import com.example.foodplanner.network.CheckInternet;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -39,7 +41,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
     ImageView mealImage;
     ImageButton addFav;
     Boolean planFlag = false;
-
+    ImageView noWifif;
+    TextView noWifiText;
     ImageView flagImage;
     RecyclerView ingrediantRecycler;
     RecyclerView recipeRecycler;
@@ -59,6 +62,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         flagImage = findViewById(R.id.areaFlag);
         mealImage = findViewById(R.id.image);
         addFav = findViewById(R.id.addFav);
+        noWifif=findViewById(R.id.wifiImg);
+        noWifiText=findViewById(R.id.noWifi);
         autoCompleteTextView=findViewById(R.id.addPlan);
         Intent myIntent = getIntent();
         Meal myMeal = (Meal) myIntent.getSerializableExtra("MealFragment");
@@ -72,9 +77,13 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                autoCompleteTextView.showDropDown();
-                planFlag = true;
+                if (HomeActivity.getGuestFlag()){
+                    Toast.makeText(DetailsActivity.this, R.string.access, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    autoCompleteTextView.showDropDown();
+                    planFlag = true;
+                }
             }
         });
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -91,14 +100,19 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         addFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!myMeal.getMealAddedToFav()) {
-                    addFav.setImageResource(R.drawable.favorite_red);
-                    myMeal.setMealAddedToFav(true);
-                    addMealToFav(myMeal);
-                } else {
-                    addFav.setImageResource(R.drawable.favorite_white);
-                    myMeal.setMealAddedToFav(false);
-                    deleteMealFromFav(myMeal);
+                if (HomeActivity.getGuestFlag()){
+                    Toast.makeText(DetailsActivity.this, R.string.access, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (!myMeal.getMealAddedToFav()) {
+                        addFav.setImageResource(R.drawable.favorite_red);
+                        myMeal.setMealAddedToFav(true);
+                        addMealToFav(myMeal);
+                    } else {
+                        addFav.setImageResource(R.drawable.favorite_white);
+                        myMeal.setMealAddedToFav(false);
+                        deleteMealFromFav(myMeal);
+                    }
                 }
             }
         });
@@ -137,32 +151,45 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         ingrediantRecycler.setLayoutManager(manager);
         ingrediantRecycler.setAdapter(new IngredientsCardAdapter(myMeal, this));
 
-        StringTokenizer st = new StringTokenizer(myMeal.getStrInstructions(), ".");
+        StringTokenizer st = new StringTokenizer(myMeal.getStrInstructions().replace("\n", ""), ".");
         List<String> recipe = new ArrayList<>();
         while (st.hasMoreTokens()) {
-            recipe.add(st.nextToken());
+            String word = st.nextToken();
+            if (word.length()>2) {
+                recipe.add(word);
+            }
         }
         RecyclerView.LayoutManager managerRecipe = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recipeRecycler.setLayoutManager(managerRecipe);
         recipeRecycler.setAdapter(new RecipeCardAdapter(recipe, this));
     }
     public void showVideo (String url){
-        getLifecycle().addObserver(youTubePlayerView);
-        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-            @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = url;
-                if (videoId != null) {
-                    videoId = videoId.substring(videoId.indexOf("=") + 1);
-                    StringTokenizer st = new StringTokenizer(videoId, "&");
-                    videoId = st.nextToken();
-                    youTubePlayer.loadVideo(videoId, 0);
+        if (CheckInternet.getConnectivity(DetailsActivity.this)) {
+            noWifiText.setVisibility(View.INVISIBLE);
+            noWifif.setVisibility(View.INVISIBLE);
+            youTubePlayerView.setVisibility(View.VISIBLE);
+            getLifecycle().addObserver(youTubePlayerView);
+            youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                @Override
+                public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                    String videoId = url;
+                    if (videoId != null) {
+                        videoId = videoId.substring(videoId.indexOf("=") + 1);
+                        StringTokenizer st = new StringTokenizer(videoId, "&");
+                        videoId = st.nextToken();
+                        youTubePlayer.loadVideo(videoId, 0);
+                    } else {
+                        // display errir image//
+                    }
                 }
-                else{
-                    // display errir image//
-                }
-            }
-        });
+            });
+        }
+        else{
+            noWifiText.setVisibility(View.VISIBLE);
+            noWifif.setVisibility(View.VISIBLE);
+            youTubePlayerView.setVisibility(View.INVISIBLE);
+
+        }
 
     }
 }

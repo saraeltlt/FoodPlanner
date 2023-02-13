@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.mealView;
 
 import android.os.Bundle;
 
@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.foodplanner.R;
 import com.example.foodplanner.home.homeView.OnClickMealHome;
 import com.example.foodplanner.model.Meal;
 

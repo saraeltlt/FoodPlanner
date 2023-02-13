@@ -53,4 +53,17 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="add_to_plan">Add To Plan</string>
+    <string name="access">create an account to access this feature</string>
+    <string name="continueGuest">YES,continue</string>
+    <string name="cancelGuest">NO, cancel</string>
+    <string name="loginGuest">Logging in as guest...</string>
+    <string name="sureMsg">Are you sure you want to continue as a guest?</string>
+    <string name="titleGuest">You\'ll miss out personalized content and full app features</string>
+    <string name="checkConnectionGuest">Check your internet connection to continue as a guest</string>
+    <string name="checkConnection">Check your internet connection</string>
+    <string name="GuestName">Guest</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="usin_google">Continue with Google</string>
+
 </resources>

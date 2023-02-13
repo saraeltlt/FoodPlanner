@@ -8,6 +8,8 @@ import com.example.foodplanner.network.RemoteSource;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+
 public class Repository implements LocalSource, RemoteSource {
     private Context context;
     RemoteSource remoteSource;
@@ -28,7 +30,7 @@ public class Repository implements LocalSource, RemoteSource {
         return repo;
     }
     @Override
-    public List<Meal> getFavoriteMeals(){
+    public Observable<List<Meal>> getFavoriteMeals(){
         return localSource.getFavoriteMeals();
 
     }

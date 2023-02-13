@@ -60,7 +60,7 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/favorite_selector" />
+            app:srcCompat="@drawable/favorite_white" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/flagCard"

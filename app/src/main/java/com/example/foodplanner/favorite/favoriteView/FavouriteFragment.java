@@ -25,6 +25,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 public class FavouriteFragment extends Fragment implements OnClickFavorite,FavMealInterface {
     private RecyclerView recyclerView;
 
@@ -65,8 +69,10 @@ public class FavouriteFragment extends Fragment implements OnClickFavorite,FavMe
 
 
     @Override
-    public void showFavData(List<Meal> meal) {
-        favoriteAdapter.setMealsArrayList(meal);
+    public void showFavData(Observable<List<Meal>> meal) {
+        meal.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(o->favoriteAdapter.setMealsArrayList(o));
         favoriteAdapter.notifyDataSetChanged();
 
     }
@@ -79,7 +85,6 @@ public class FavouriteFragment extends Fragment implements OnClickFavorite,FavMe
 
     @Override
     public void onClickDetails(Meal meal) {
-         Toast.makeText(this.getContext(), meal.getStrMeal(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
         intent.putExtra("MealFragment", (Serializable) meal);
         startActivity(intent);
