@@ -9,6 +9,30 @@
     android:transitionGroup="true"
     tools:context=".home.homeView.HomeFragment">
 
+    <ImageView
+        android:id="@+id/wifiImg"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/nowifi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dailyText" />
+
+
+    <TextView
+        android:id="@+id/noWifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gabriola"
+        android:text="@string/no_internet"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wifiImg" />
     <TextView
         android:id="@+id/dailyText"
         android:layout_width="wrap_content"
@@ -42,5 +66,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

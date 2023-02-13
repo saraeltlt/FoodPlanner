@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodplanner.network.CheckInternet;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -65,22 +66,31 @@ public class SignUp_Fragment extends Fragment {
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String getEmail=email.getText().toString().trim();
-                String getPass=pass.getText().toString().trim();
-                String getConfPass=confPass.getText().toString().trim();
-                if(!Patterns.EMAIL_ADDRESS.matcher(getEmail).matches()){
-                    email.setError("Invalid Email");
-                    email.setFocusable(true);
-                }else if(getPass.length()<8){
-                    pass.setError("Password length must be at least 8");
-                    pass.setFocusable(true);
-                } else if (!getConfPass.equals(getPass)) {
-                    confPass.setError("Doesn't the same");
-                    confPass.setFocusable(true);
-                } else{
-                    registerUser(getEmail,getPass);
+                if (CheckInternet.getConnectivity(getContext())) {
+                    String getEmail = email.getText().toString().trim();
+                    String getPass = pass.getText().toString().trim();
+                    String getConfPass = confPass.getText().toString().trim();
+                    if (!Patterns.EMAIL_ADDRESS.matcher(getEmail).matches()) {
+                        email.setError("Invalid Email");
+                        email.setFocusable(true);
+                    } else if (getPass.length() < 8) {
+                        pass.setError("Password length must be at least 8");
+                        pass.setFocusable(true);
+                    } else if (!getConfPass.equals(getPass)) {
+                        confPass.setError("Doesn't the same");
+                        confPass.setFocusable(true);
+                    } else {
+                        registerUser(getEmail, getPass);
+                    }
                 }
+
+            else
+
+            {
+                Toast.makeText(getContext(), R.string.checkConnection, Toast.LENGTH_SHORT).show();
             }
+        }
+
         });
         return view;
     }

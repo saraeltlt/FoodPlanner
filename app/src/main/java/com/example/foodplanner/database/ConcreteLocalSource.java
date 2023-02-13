@@ -2,21 +2,20 @@ package com.example.foodplanner.database;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.widget.Toast;
 
 import com.example.foodplanner.model.Meal;
 
 import java.util.List;
 
 import io.reactivex.CompletableObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class ConcreteLocalSource implements LocalSource {
     private Context context;
     private MealDAO dao;
-    private List<Meal> favoriteMeals;
+    private Observable<List<Meal>> favoriteMeals;
     private static ConcreteLocalSource instance = null;
     public static ConcreteLocalSource getInstance(Context context){
         if(instance ==null){
@@ -27,14 +26,12 @@ public class ConcreteLocalSource implements LocalSource {
     @SuppressLint("CheckResult")
     private ConcreteLocalSource(Context context){
         this.context=context;
-        AppDatabase db = AppDatabase.getInstance(context.getApplicationContext());
-        dao = db.mealDAO();
-        dao.getMeals().subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe( item ->favoriteMeals=item);
+        AppDatabase appDataBase = AppDatabase.getInstance(context.getApplicationContext());
+        dao = appDataBase.mealDAO();
+        favoriteMeals = dao.getMeals();
     }
     @Override
-    public List<Meal> getFavoriteMeals() {
+    public Observable<List<Meal>> getFavoriteMeals() {
         return favoriteMeals;
     }
 

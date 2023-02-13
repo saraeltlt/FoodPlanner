@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.foodplanner.network.CheckInternet;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,13 +76,19 @@ public class Login_Fragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.goingToSignup);
                 TextView title = getActivity().findViewById(R.id.home_title);
                 title.setText("Hello");
+
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),HomeActivity.class);
-                startActivity(intent);
+                if (CheckInternet.getConnectivity(getContext())) {
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getContext(), R.string.checkConnection, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
