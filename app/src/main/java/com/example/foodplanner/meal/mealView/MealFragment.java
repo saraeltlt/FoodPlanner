@@ -12,18 +12,23 @@ import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.home.homeView.OnClickMealHome;
+import com.example.foodplanner.meal.mealPresenter.SearchMealPresenter;
+import com.example.foodplanner.meal.mealPresenter.SearchMealPresenterInterface;
 import com.example.foodplanner.mealModel.Meal;
+import com.example.foodplanner.network.ApiClient;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MealFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MealFragment extends Fragment implements OnClickMealHome {
+public class MealFragment extends Fragment implements MealInterface,OnClickMealHome {
     RecyclerView recyclerView;
-    ArrayList<Meal> mealsArrayList;
+    SearchMealPresenterInterface searchMealPresenterInterface;
+    MealAdapter adapter;
 
     public MealFragment() {
         // Required empty public constructor
@@ -48,21 +53,22 @@ public class MealFragment extends Fragment implements OnClickMealHome {
 
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
         recyclerView = view.findViewById(R.id.mealRV);
-        mealsArrayList = new ArrayList<>();
-        mealsArrayList.add(new Meal("Tart", "dessert", "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg", "British",null,null));
-        mealsArrayList.add(new Meal("Apam balik", "Beef", "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", "Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ",null));
-        mealsArrayList.add(new Meal("Tart", "dessert", "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg", "British", null,null));
-        mealsArrayList.add(new Meal("Apam balik", "Beef", "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", "Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ",null));
-        mealsArrayList.add(new Meal("Tart", "dessert", "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg", "British", null,null));
-        mealsArrayList.add(new Meal("Apam balik", "Beef", "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", "Malaysian", "https://www.nyonyacooking.com/recipes/apam-balik~SJ5WuvsDf9WQ",null));
-
+        adapter=new MealAdapter(new ArrayList<>(),getContext(),this);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
+        searchMealPresenterInterface=new SearchMealPresenter(this, ApiClient.getInstance(),getContext());
+        searchMealPresenterInterface.getMeal();
       //  recyclerView.setAdapter(new FavoriteAdapter(mealsArrayList, this.getContext(), this));
         return view;
     }
 
 
+    @Override
+    public void showMeal(List<Meal> meal) {
+        adapter.setMealsArrayList(meal);
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onClickDetails(Meal meal) {
@@ -76,5 +82,6 @@ public class MealFragment extends Fragment implements OnClickMealHome {
 
     @Override
     public void onClickRemoveFav(Meal meal) {
+
     }
 }

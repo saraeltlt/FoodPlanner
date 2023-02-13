@@ -43,7 +43,7 @@ public class MealAdapter  extends RecyclerView.Adapter<MealAdapter.MealViewHolde
     @Override
     public MealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater  = (LayoutInflater) context .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.meal_card, parent , false);
+        View view = inflater.inflate(R.layout.meal_card_search, parent , false);
         MealViewHolder vh = new MealViewHolder(view);
         return vh;
 
@@ -57,9 +57,7 @@ public class MealAdapter  extends RecyclerView.Adapter<MealAdapter.MealViewHolde
         Context contextImage = holder.flag.getContext();
         int id = contextImage .getResources().getIdentifier(meal.getStrArea().toLowerCase(), "drawable", contextImage.getPackageName());
         holder.flag.setImageResource(id);
-        if (meal.getMealAddedToFav()) {
-            holder.favBtn.setImageResource(R.drawable.favorite_red);
-        }
+
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.image);
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,21 +65,7 @@ public class MealAdapter  extends RecyclerView.Adapter<MealAdapter.MealViewHolde
                 listener.onClickDetails(meal);
             }
         });
-        holder.favBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (meal.getMealAddedToFav()) {
-                    holder.favBtn.setImageResource(R.drawable.favorite_white);
-                    listener.onClickRemoveFav(meal);
-                    meal.setMealAddedToFav(false);
-                }
-                else{
-                    holder.favBtn.setImageResource(R.drawable.favorite_red);
-                    meal.setMealAddedToFav(true);
 
-                }
-            }
-        });
 
     }
 
@@ -94,17 +78,15 @@ public class MealAdapter  extends RecyclerView.Adapter<MealAdapter.MealViewHolde
         TextView meal;
         TextView area;
         ImageView image;
-        ImageButton favBtn;
         ImageView flag;
         ConstraintLayout layout;
         public MealViewHolder(@NonNull View itemView) {
             super(itemView);
-            meal = itemView.findViewById(R.id.meal);
-            area = itemView.findViewById(R.id.area);
-            image = itemView.findViewById(R.id.image);
-            layout=itemView.findViewById(R.id.layout);
-            favBtn=itemView.findViewById(R.id.addFav);
-            flag = itemView.findViewById(R.id.areaFlag);
+            meal = itemView.findViewById(R.id.searchMeal);
+            area = itemView.findViewById(R.id.searchArea);
+            image = itemView.findViewById(R.id.searchImage);
+            layout=itemView.findViewById(R.id.searchLayout);
+            flag = itemView.findViewById(R.id.searchAreaFlag);
 
         }
     }
