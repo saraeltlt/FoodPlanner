@@ -143,6 +143,8 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
     public void onClickRemoveFav(Meal meal) {
         mealPressenterInterface.deleteMeal(meal);
     }
+
+
     private Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {

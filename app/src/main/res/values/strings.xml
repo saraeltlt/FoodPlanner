@@ -66,5 +66,17 @@
     <string name="no_internet">No Internet Connection</string>
     <string name="usin_google">Continue with Google</string>
     <string name="meal_added">Meal added to </string>
+    <string name="sunday">Sun.</string>
+    <string name="monday">Mon.</string>
+    <string name="tueday">Tue.</string>
+    <string name="wednesday">Wed.</string>
+    <string name="Thursday">Thu.</string>
+    <string name="friday">Fri.</string>
+    <string name="saturday">Sat.</string>
+    <string name="daily">Your Daily Plan:</string>
+    <string name="weekly">Your Weekly Plan</string>
+    <string name="remove_plan">Removed From Plan</string>
+    <string name="remove_fav">Removed From Favourite</string>
+    <string name="add_fav">Added To Favourite</string>
 
 </resources>

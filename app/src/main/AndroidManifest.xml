@@ -15,7 +15,7 @@
         android:theme="@style/Theme.FoodPlanner"
         tools:targetApi="31">
         <activity
-            android:name=".welcomeView.WelcomeActivity"
+            android:name=".UI.welcomeView.WelcomeActivity"
             android:exported="false" />
         <activity
             android:name=".details.detailsView.DetailsActivity"
@@ -24,7 +24,7 @@
             android:name=".UI.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".welcomeView.SplashScreenActivity"
+            android:name=".UI.welcomeView.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

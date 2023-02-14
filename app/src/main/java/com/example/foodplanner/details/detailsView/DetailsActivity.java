@@ -90,8 +90,9 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DetailsActivity.this,  R.string.meal_added+parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-
+                String day = parent.getItemAtPosition(position).toString();
+                Toast.makeText(DetailsActivity.this,  R.string.meal_added + " " +day, Toast.LENGTH_SHORT).show();
+                addMealToPlan(myMeal,day);
             }
 
         });
@@ -133,7 +134,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
     }
 
     @Override
-    public void addMealToPlan(Meal meal) {
+    public void addMealToPlan(Meal meal, String day) {
+        detailsMealPressenterInterface.addToPlan(meal,day);
 
     }
     public void setView(Meal myMeal){
@@ -178,8 +180,6 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
                         StringTokenizer st = new StringTokenizer(videoId, "&");
                         videoId = st.nextToken();
                         youTubePlayer.loadVideo(videoId, 0);
-                    } else {
-                        // display errir image//
                     }
                 }
             });

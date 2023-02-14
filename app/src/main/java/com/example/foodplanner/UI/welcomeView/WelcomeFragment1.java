@@ -1,4 +1,4 @@
-package com.example.foodplanner.welcomeView;
+package com.example.foodplanner.UI.welcomeView;
 
 import android.os.Bundle;
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment1"
-        android:name="com.example.foodplanner.welcomeView.WelcomeFragment1"
+        android:name="com.example.foodplanner.UI.welcomeView.WelcomeFragment1"
         android:label="fragment_welcome1"
         tools:layout="@layout/fragment_welcome1" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment2"
-        android:name="com.example.foodplanner.welcomeView.WelcomeFragment2"
+        android:name="com.example.foodplanner.UI.welcomeView.WelcomeFragment2"
         android:label="fragment_welcome2"
         tools:layout="@layout/fragment_welcome2" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment3"
-        android:name="com.example.foodplanner.welcomeView.WelcomeFragment3"
+        android:name="com.example.foodplanner.UI.welcomeView.WelcomeFragment3"
         android:label="fragment_welcome3"
         tools:layout="@layout/fragment_welcome3" />
 </navigation>

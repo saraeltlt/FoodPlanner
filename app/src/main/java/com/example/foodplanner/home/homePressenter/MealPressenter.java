@@ -3,6 +3,7 @@ package com.example.foodplanner.home.homePressenter;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.foodplanner.R;
 import com.example.foodplanner.home.homeView.HomeInterface;
 import com.example.foodplanner.area.areaModel.Area;
 import com.example.foodplanner.category.categoryModel.Category;
@@ -38,14 +39,14 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
     @Override
     public void addToFav(Meal meal) {
         repo.insert(meal);
-        Toast.makeText(context.getApplicationContext(), "Added To Favourite", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context.getApplicationContext(), R.string.add_fav, Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void deleteMeal(Meal meal) {
         repo.delete(meal);
-        Toast.makeText(context.getApplicationContext(), "Removed From Favourite", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context.getApplicationContext(), R.string.remove_fav, Toast.LENGTH_SHORT).show();
     }
 
     @Override

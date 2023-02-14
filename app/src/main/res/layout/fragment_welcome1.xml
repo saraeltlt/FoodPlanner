@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/welcome1"
-    tools:context=".welcomeView.WelcomeFragment1">
+    tools:context=".UI.welcomeView.WelcomeFragment1">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_welcome1"

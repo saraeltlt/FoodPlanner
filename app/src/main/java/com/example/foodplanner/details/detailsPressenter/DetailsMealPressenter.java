@@ -3,6 +3,7 @@ package com.example.foodplanner.details.detailsPressenter;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.foodplanner.R;
 import com.example.foodplanner.details.detailsView.DetailsInterface;
 import com.example.foodplanner.mealModel.Meal;
 import com.example.foodplanner.mealModel.Repository;
@@ -24,19 +25,19 @@ public class DetailsMealPressenter implements DetailsMealPressenterInterface {
     @Override
     public void addToFav(Meal meal) {
         repo.insert(meal);
-        Toast.makeText(context.getApplicationContext(), "Added To Favourite", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context.getApplicationContext(), R.string.add_fav, Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void deleteMealFromFav(Meal meal) {
         repo.delete(meal);
-        Toast.makeText(context.getApplicationContext(), "Removed From Favourite", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context.getApplicationContext(), R.string.remove_fav, Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
-    public void addToPlan(Meal meal) {
+    public void addToPlan(Meal meal, String day) {
 
     }
 
