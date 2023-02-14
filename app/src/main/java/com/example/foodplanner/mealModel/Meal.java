@@ -3,23 +3,27 @@ package com.example.foodplanner.mealModel;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
-@Entity(tableName = "meals")
+@Entity(tableName = "meals",primaryKeys = {"strMeal","day"})
 public class Meal implements Serializable {
-    @PrimaryKey
-    @NonNull
+
+
     String idMeal;
+    @NonNull
+    @ColumnInfo
     String strMeal;
     String  strCategory;
     String strMealThumb;
     String strArea;
     String strYoutube;
     String strInstructions;
-    String day = null;
+    @NonNull
+    String day;
     Boolean mealAddedToFav=false;
 
     @Ignore

@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
 
 
             mealPressenterInterface = new MealPressenter(this,
-                    Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext()), getContext()),
+                    Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext(),"0"), getContext()),
                     ApiClient.getInstance(), getContext());
             mealPressenterInterface.getMeal();
 
@@ -136,6 +136,7 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
 
     @Override
     public void onClickAddFav(Meal meal) {
+            meal.setDay("0");
             mealPressenterInterface.addToFav(meal);
     }
 

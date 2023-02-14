@@ -23,14 +23,13 @@ public class PlanPressenter implements PlanPressenterInterface {
 
     @Override
     public void getMeal(String day) {
-
+        view.showPlan(repo.getMealsPlan());
 
     }
 
 
     @Override
     public void deleteMeal(Meal meal) {
-
-
+        repo.delete(meal);
     }
 }

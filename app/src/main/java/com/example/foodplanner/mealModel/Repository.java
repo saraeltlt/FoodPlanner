@@ -45,6 +45,11 @@ public class Repository implements LocalSource, RemoteSource {
      localSource.insert(meal);
     }
 
+    @Override
+    public Observable<List<Meal>> getMealsPlan() {
+        return localSource.getMealsPlan();
+    }
+
 
     @Override
     public void ObserveMeal(NetworkDelegate networkDelegate) {

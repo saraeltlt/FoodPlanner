@@ -1,5 +1,6 @@
 package com.example.foodplanner.plan.planView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.database.AppDatabase;
 import com.example.foodplanner.database.ConcreteLocalSource;
+import com.example.foodplanner.database.MealDAO;
 import com.example.foodplanner.details.detailsView.DetailsActivity;
 import com.example.foodplanner.favorite.favoriteView.FavoriteAdapter;
 import com.example.foodplanner.home.homePressenter.MealPressenter;
@@ -62,7 +66,7 @@ public class PlanFragment extends Fragment implements OnClickPlan, PlanInterface
        View view= inflater.inflate(R.layout.fragment_plan, container, false);
        recyclerView=view.findViewById(R.id.recycler);
         planAdapter = new PlanAdapter(getContext(), new ArrayList<>(), this);
-        planPressenterInterface= new PlanPressenter(this, Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext()), getContext()), getContext());
+
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(planAdapter);
@@ -75,7 +79,9 @@ public class PlanFragment extends Fragment implements OnClickPlan, PlanInterface
                 setAllBackground();
                 sun.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
                 sun.setTextColor(ContextCompat.getColor(getContext(), R.color.grey_dark));
+                planPressenterInterface= new PlanPressenter(PlanFragment.this, Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext(),"Sunday"), getContext()), getContext());
                 planPressenterInterface.getMeal("Sunday");
+
 
 
             }
@@ -89,6 +95,7 @@ public class PlanFragment extends Fragment implements OnClickPlan, PlanInterface
                 setAllBackground();
                 mon.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
                 mon.setTextColor(ContextCompat.getColor(getContext(), R.color.grey_dark));
+                planPressenterInterface= new PlanPressenter(PlanFragment.this, Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext(),"Monday"), getContext()), getContext());
                 planPressenterInterface.getMeal("Monday");
 
             }
@@ -102,6 +109,7 @@ public class PlanFragment extends Fragment implements OnClickPlan, PlanInterface
                 setAllBackground();
                 tue.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
                 tue.setTextColor(ContextCompat.getColor(getContext(), R.color.grey_dark));
+                planPressenterInterface= new PlanPressenter(PlanFragment.this, Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext(),"Tuesday"), getContext()), getContext());
                 planPressenterInterface.getMeal("Tuesday");
             }
         });
@@ -114,6 +122,7 @@ public class PlanFragment extends Fragment implements OnClickPlan, PlanInterface
                 setAllBackground();
                 wed.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
                 wed.setTextColor(ContextCompat.getColor(getContext(), R.color.grey_dark));
+                planPressenterInterface= new PlanPressenter(PlanFragment.this, Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext(),"Wednesday"), getContext()), getContext());
                 planPressenterInterface.getMeal("Wednesday");
             }
         });
@@ -125,6 +134,7 @@ public class PlanFragment extends Fragment implements OnClickPlan, PlanInterface
                 setAllBackground();
                 thu.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
                 thu.setTextColor(ContextCompat.getColor(getContext(), R.color.grey_dark));
+                planPressenterInterface= new PlanPressenter(PlanFragment.this, Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext(),"Thursday"), getContext()), getContext());
                 planPressenterInterface.getMeal("Thursday");
 
             }
@@ -135,22 +145,33 @@ public class PlanFragment extends Fragment implements OnClickPlan, PlanInterface
         fri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppDatabase appDataBase = AppDatabase.getInstance(getContext().getApplicationContext());
+                MealDAO dao = appDataBase.mealDAO();
+                showPlan(dao.getPlanMeals("Friday"));
                 setAllBackground();
                 fri.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
                 fri.setTextColor(ContextCompat.getColor(getContext(), R.color.grey_dark));
-                planPressenterInterface.getMeal("Friday");
+               // planPressenterInterface= new PlanPressenter(PlanFragment.this, Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext(),"Friday"), getContext()), getContext());
+               // planPressenterInterface.getMeal("Friday");
             }
         });
 
         //sat...............................
         sat = view.findViewById(R.id.saturday);
         sat.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                AppDatabase appDataBase = AppDatabase.getInstance(getContext().getApplicationContext());
+                MealDAO dao = appDataBase.mealDAO();
+                showPlan(dao.getPlanMeals("saturday"));
                 setAllBackground();
                 sat.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
                 sat.setTextColor(ContextCompat.getColor(getContext(), R.color.grey_dark));
-                planPressenterInterface.getMeal("Saturday");
+                //planPressenterInterface= new PlanPressenter(PlanFragment.this, Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext(),"Saturday"), getContext()), getContext());
+                //planPressenterInterface.getMeal("Saturday");
+
+
             }
         });
         return view;
@@ -184,19 +205,24 @@ public class PlanFragment extends Fragment implements OnClickPlan, PlanInterface
 
     @Override
     public void onClickRemove(Meal meal) {
-
-
+        deleteMeal(meal);
     }
 
 
     @Override
     public void showPlan(Observable<List<Meal>> meal) {
 
-
+            meal.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            item -> planAdapter.setMealsArrayList(item),
+                            error -> Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show()
+                    );
+            planAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void deleteMeal(Meal meal) {
-
+        planPressenterInterface.deleteMeal(meal);
     }
 }

@@ -48,11 +48,12 @@ public class FavouriteFragment extends Fragment implements OnClickFavorite,FavMe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //
         View view = inflater.inflate(R.layout.fragment_favourite, container, false);
         recyclerView = view.findViewById(R.id.recycler);
         favoriteAdapter = new FavoriteAdapter(getContext(), new ArrayList<>(), this);
         favMealPressenterInterface = new FavMealPressenter(this,
-                Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext()),getContext()),
+                Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getContext(),"0"),getContext()),
                 getContext());
 
 

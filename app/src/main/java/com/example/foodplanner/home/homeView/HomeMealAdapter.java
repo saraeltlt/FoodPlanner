@@ -56,6 +56,7 @@ public class HomeMealAdapter extends RecyclerView.Adapter<HomeMealAdapter.MealVi
     public void onBindViewHolder(@NonNull MealViewHolder holder, int position) {
 
         Meal meal= mealsArrayList.get(position);
+
         if (meal.getMealAddedToFav()) {
             holder.favBtn.setImageResource(R.drawable.favorite_red);
         }

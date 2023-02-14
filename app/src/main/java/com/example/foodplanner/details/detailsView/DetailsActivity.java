@@ -69,9 +69,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         Meal myMeal = (Meal) myIntent.getSerializableExtra("MealFragment");
         setView(myMeal);
 
-        detailsMealPressenterInterface= new DetailsMealPressenter(this,
-                Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(this),this),
-                ApiClient.getInstance(),this);
+
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.days));
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
@@ -90,9 +88,15 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 String day = parent.getItemAtPosition(position).toString();
-                Toast.makeText(DetailsActivity.this,  R.string.meal_added + " " +day, Toast.LENGTH_SHORT).show();
-                addMealToPlan(myMeal,day);
+                detailsMealPressenterInterface= new DetailsMealPressenter(DetailsActivity.this,
+                        Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getBaseContext(),day),getBaseContext()),
+                        ApiClient.getInstance(),getBaseContext());
+                Toast.makeText(DetailsActivity.this,   " " +day, Toast.LENGTH_SHORT).show();
+                myMeal.setDay(day);
+                addMealToPlan(myMeal);
+
             }
 
         });
@@ -105,6 +109,9 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
                     Toast.makeText(DetailsActivity.this, R.string.access, Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    detailsMealPressenterInterface= new DetailsMealPressenter(DetailsActivity.this,
+                            Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getBaseContext(),"0"),getBaseContext()),
+                            ApiClient.getInstance(),getBaseContext());
                     if (!myMeal.getMealAddedToFav()) {
                         addFav.setImageResource(R.drawable.favorite_red);
                         myMeal.setMealAddedToFav(true);
@@ -123,7 +130,13 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
 
     @Override
     public void addMealToFav(Meal meal) {
+        meal.setDay("0");
         detailsMealPressenterInterface.addToFav(meal);
+
+    }
+    @Override
+    public void addMealToPlan(Meal meal) {
+        detailsMealPressenterInterface.addToPlan(meal);
 
     }
 
@@ -133,11 +146,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
 
     }
 
-    @Override
-    public void addMealToPlan(Meal meal, String day) {
-        detailsMealPressenterInterface.addToPlan(meal,day);
 
-    }
     public void setView(Meal myMeal){
         mealName.setText(myMeal.getStrMeal());
         mealArea.setText(myMeal.getStrArea());

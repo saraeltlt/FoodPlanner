@@ -30,15 +30,17 @@ public class DetailsMealPressenter implements DetailsMealPressenterInterface {
     }
 
     @Override
+    public void addToPlan(Meal meal) {
+        repo.insert(meal);
+    }
+    @Override
     public void deleteMealFromFav(Meal meal) {
         repo.delete(meal);
         Toast.makeText(context.getApplicationContext(), R.string.remove_fav, Toast.LENGTH_SHORT).show();
 
     }
 
-    @Override
-    public void addToPlan(Meal meal, String day) {
 
-    }
+
 
 }

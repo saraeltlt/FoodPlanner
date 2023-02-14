@@ -2,6 +2,7 @@ package com.example.foodplanner.database;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.example.foodplanner.mealModel.Meal;
 
@@ -16,19 +17,27 @@ public class ConcreteLocalSource implements LocalSource {
     private Context context;
     private MealDAO dao;
     private Observable<List<Meal>> favoriteMeals;
+    private Observable<List<Meal>> planMeals;
     private static ConcreteLocalSource instance = null;
-    public static ConcreteLocalSource getInstance(Context context){
+    public static ConcreteLocalSource getInstance(Context context , String day){
         if(instance ==null){
-            instance = new ConcreteLocalSource(context);
+            instance = new ConcreteLocalSource(context,day);
         }
         return instance;
     }
     @SuppressLint("CheckResult")
-    private ConcreteLocalSource(Context context){
+    private ConcreteLocalSource(Context context,String day){
         this.context=context;
         AppDatabase appDataBase = AppDatabase.getInstance(context.getApplicationContext());
         dao = appDataBase.mealDAO();
-        favoriteMeals = dao.getMeals();
+        if(day.equals("0")){
+        favoriteMeals = dao.getMeals(day);
+            Log.i("TAG", "ConcreteLocalSource: "+day);
+        }
+        else {
+            planMeals = dao.getPlanMeals(day.trim());
+            Log.i("TAG", "ConcreteLocalSource: "+day);
+       }
     }
     @Override
     public Observable<List<Meal>> getFavoriteMeals() {
@@ -71,4 +80,11 @@ public class ConcreteLocalSource implements LocalSource {
         });
 
     }
+
+    @Override
+    public Observable<List<Meal>> getMealsPlan() {
+        planMeals = dao.getPlanMeals("saturday");
+        return planMeals;
+    }
+
 }
