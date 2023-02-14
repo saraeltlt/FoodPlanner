@@ -30,16 +30,10 @@ public class ConcreteLocalSource implements LocalSource {
         this.context=context;
         AppDatabase appDataBase = AppDatabase.getInstance(context.getApplicationContext());
         dao = appDataBase.mealDAO();
-        if(day.equals("0")){
+        if(day.equals("0"))
         favoriteMeals = dao.getMeals(day);
-            Log.i("TAG", "ConcreteLocalSource: "+day);
-        }
-        else {
-            planMeals = dao.getPlanMeals(day.trim());
-            Log.i("TAG", "ConcreteLocalSource: "+day);
-       }
     }
-    @Override
+     @Override
     public Observable<List<Meal>> getFavoriteMeals() {
         return favoriteMeals;
     }
@@ -82,8 +76,10 @@ public class ConcreteLocalSource implements LocalSource {
     }
 
     @Override
-    public Observable<List<Meal>> getMealsPlan() {
-        planMeals = dao.getPlanMeals("saturday");
+    public Observable<List<Meal>> getMealsPlan(String day) {
+        AppDatabase appDataBase = AppDatabase.getInstance(context.getApplicationContext());
+        MealDAO dao = appDataBase.mealDAO();
+        planMeals=dao.getPlanMeals(day);
         return planMeals;
     }
 

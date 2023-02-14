@@ -10,6 +10,6 @@ public interface LocalSource {
     public Observable<List<Meal>> getFavoriteMeals();
     public void delete(Meal meal);
     public void insert(Meal meal);
-    public Observable<List<Meal>> getMealsPlan();
+    public Observable<List<Meal>> getMealsPlan(String day);
 
 }

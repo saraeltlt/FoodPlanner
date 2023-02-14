@@ -1,10 +1,5 @@
 package com.example.foodplanner.details.detailsView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
-import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.R;
+import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenter;
 import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenterInterface;
@@ -62,23 +62,22 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         flagImage = findViewById(R.id.areaFlag);
         mealImage = findViewById(R.id.image);
         addFav = findViewById(R.id.addFav);
-        noWifif=findViewById(R.id.wifiImg);
-        noWifiText=findViewById(R.id.noWifi);
-        autoCompleteTextView=findViewById(R.id.addPlan);
+        noWifif = findViewById(R.id.wifiImg);
+        noWifiText = findViewById(R.id.noWifi);
+        autoCompleteTextView = findViewById(R.id.addPlan);
         Intent myIntent = getIntent();
         Meal myMeal = (Meal) myIntent.getSerializableExtra("MealFragment");
         setView(myMeal);
 
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.days));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (HomeActivity.getGuestFlag()){
+                if (HomeActivity.getGuestFlag()) {
                     Toast.makeText(DetailsActivity.this, R.string.access, Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     autoCompleteTextView.showDropDown();
                     planFlag = true;
                 }
@@ -90,10 +89,10 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String day = parent.getItemAtPosition(position).toString();
-                detailsMealPressenterInterface= new DetailsMealPressenter(DetailsActivity.this,
-                        Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getBaseContext(),day),getBaseContext()),
-                        ApiClient.getInstance(),getBaseContext());
-                Toast.makeText(DetailsActivity.this,   " " +day, Toast.LENGTH_SHORT).show();
+                detailsMealPressenterInterface = new DetailsMealPressenter(DetailsActivity.this,
+                        Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getBaseContext(), day), getBaseContext()),
+                        ApiClient.getInstance(), getBaseContext());
+                Toast.makeText(DetailsActivity.this, " " + day, Toast.LENGTH_SHORT).show();
                 myMeal.setDay(day);
                 addMealToPlan(myMeal);
 
@@ -105,13 +104,12 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         addFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (HomeActivity.getGuestFlag()){
+                if (HomeActivity.getGuestFlag()) {
                     Toast.makeText(DetailsActivity.this, R.string.access, Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    detailsMealPressenterInterface= new DetailsMealPressenter(DetailsActivity.this,
-                            Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getBaseContext(),"0"),getBaseContext()),
-                            ApiClient.getInstance(),getBaseContext());
+                } else {
+                    detailsMealPressenterInterface = new DetailsMealPressenter(DetailsActivity.this,
+                            Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getBaseContext(), "0"), getBaseContext()),
+                            ApiClient.getInstance(), getBaseContext());
                     if (!myMeal.getMealAddedToFav()) {
                         addFav.setImageResource(R.drawable.favorite_red);
                         myMeal.setMealAddedToFav(true);
@@ -134,6 +132,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         detailsMealPressenterInterface.addToFav(meal);
 
     }
+
     @Override
     public void addMealToPlan(Meal meal) {
         detailsMealPressenterInterface.addToPlan(meal);
@@ -147,10 +146,10 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
     }
 
 
-    public void setView(Meal myMeal){
+    public void setView(Meal myMeal) {
         mealName.setText(myMeal.getStrMeal());
         mealArea.setText(myMeal.getStrArea());
-        if(myMeal.getMealAddedToFav()){
+        if (myMeal.getMealAddedToFav()) {
             addFav.setImageResource(R.drawable.favorite_red);
         }
         Context context = flagImage.getContext();
@@ -166,7 +165,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         List<String> recipe = new ArrayList<>();
         while (st.hasMoreTokens()) {
             String word = st.nextToken();
-            if (word.length()>3) {
+            if (word.length() > 3) {
                 recipe.add(word);
             }
         }
@@ -174,7 +173,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         recipeRecycler.setLayoutManager(managerRecipe);
         recipeRecycler.setAdapter(new RecipeCardAdapter(recipe, this));
     }
-    public void showVideo (String url){
+
+    public void showVideo(String url) {
         if (CheckInternet.getConnectivity(DetailsActivity.this)) {
             noWifiText.setVisibility(View.INVISIBLE);
             noWifif.setVisibility(View.INVISIBLE);
@@ -192,8 +192,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
                     }
                 }
             });
-        }
-        else{
+        } else {
             noWifiText.setVisibility(View.VISIBLE);
             noWifif.setVisibility(View.VISIBLE);
             youTubePlayerView.setVisibility(View.INVISIBLE);

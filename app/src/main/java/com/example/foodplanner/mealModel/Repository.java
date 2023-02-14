@@ -46,8 +46,8 @@ public class Repository implements LocalSource, RemoteSource {
     }
 
     @Override
-    public Observable<List<Meal>> getMealsPlan() {
-        return localSource.getMealsPlan();
+    public Observable<List<Meal>> getMealsPlan(String day) {
+        return localSource.getMealsPlan(day);
     }
 
 
