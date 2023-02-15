@@ -1,6 +1,7 @@
 package com.example.foodplanner.searchResult.searchResultView;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
+import com.example.foodplanner.ingrediant.ingrediantModel.Ingredients;
 import com.example.foodplanner.mealModel.Meal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.MealViewHolder>{
     private List<Meal> mealsArrayList;
+    private List<Meal> copy;
     private Context context;
     private OnClickSearch listener;
 
     public SearchResultAdapter(List<Meal> mealsArrayList, Context context, OnClickSearch listener) {
         this.mealsArrayList = mealsArrayList;
+        copy = new ArrayList<>();
         this.context = context;
         this.listener = listener;
     }
@@ -34,6 +39,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     public void setMealsArrayList(List<Meal> mealsArrayList) {
         this.mealsArrayList = mealsArrayList;
+        copy.addAll(mealsArrayList);
     }
 
     @NonNull
@@ -78,5 +84,26 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
 
         }
+    }
+    public void updateList(CharSequence s){
+
+        ArrayList<Meal> searchArray=new ArrayList<>();
+        if(s.length()>0){
+            for(Meal name : copy){
+                if(name.getStrMeal().toLowerCase().startsWith(s.toString())) {
+                    mealsArrayList.clear();
+                    searchArray.add(name);
+                    Log.i("TAG", "show data: " + name.getStrMeal());
+                }else
+                    mealsArrayList.clear();
+
+            }
+            mealsArrayList.addAll(searchArray);
+        }else {
+            mealsArrayList.clear();
+            mealsArrayList.addAll(copy);
+        }
+        notifyDataSetChanged();
+        searchArray.clear();
     }
 }

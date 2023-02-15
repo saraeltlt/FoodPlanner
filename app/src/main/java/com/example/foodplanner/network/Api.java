@@ -26,6 +26,9 @@ public interface Api {
 
     @GET("filter.php")
     public Observable<MealsResponse>searchByCategory(@Query("c") String c);
+    @GET("filter.php")
+    public Observable<MealsResponse>searchByIngredient(@Query("i") String i);
+
 
     @GET("search.php")
     public Observable<MealsResponse>getDetailedMeal(@Query("s") String s);
