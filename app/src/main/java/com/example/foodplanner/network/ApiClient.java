@@ -97,6 +97,16 @@ public class ApiClient implements RemoteSource {
                 e-> networkDelegate.onFailureResult(e.getMessage())
         );
     }
-
+    public void getDetailedMeal(NetworkDelegate networkDelegate,String mealName) {
+        Api myApi = creatRetro();
+        Observable<MealsResponse> observable= myApi.getDetailedMeal(mealName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(o-> {
+                    networkDelegate.onSuccessResultDetailedMeal(o.getMeals());
+                },
+                e-> networkDelegate.onFailureResult("ERRORRR")
+        );
+    }
 
 }

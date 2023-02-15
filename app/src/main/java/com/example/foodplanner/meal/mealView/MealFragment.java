@@ -55,21 +55,13 @@ public class MealFragment extends Fragment implements MealInterface,OnClickMealH
 
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
         recyclerView = view.findViewById(R.id.mealRV);
-        Bundle bundle = this.getArguments();
-         if(bundle.getString("mealFrag")!=null){
             adapter=new MealAdapter(new ArrayList<>(),getContext(),this);
             RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext());
             recyclerView.setLayoutManager(manager);
             recyclerView.setAdapter(adapter);
             searchMealPresenterInterface=new SearchMealPresenter(this, ApiClient.getInstance(),getContext());
             searchMealPresenterInterface.getMeal();
-        }
-        else if(bundle.getString("Category")!=null){
-            String category = bundle.getString("Category");
-            Toast.makeText(getContext(), ""+category, Toast.LENGTH_SHORT).show();
-        }
 
-      //  recyclerView.setAdapter(new FavoriteAdapter(mealsArrayList, this.getContext(), this));
         return view;
     }
 

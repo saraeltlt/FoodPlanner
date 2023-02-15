@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public interface NetworkDelegate {
     public void onSuccessResultMeal(ArrayList<Meal> meal);
+    public void onSuccessResultDetailedMeal(ArrayList<Meal> meal);
     public void onSuccessResultIngrediants(ArrayList<Ingredients> ingredients);
     public void onSuccessResultArea(ArrayList<Area> areas);
     public void onSuccessResultCategory(ArrayList<Category> categories);

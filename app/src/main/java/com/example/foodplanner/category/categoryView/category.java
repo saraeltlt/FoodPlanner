@@ -15,10 +15,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.searchResult.searchResultView.SearchResultActivity;
 import com.example.foodplanner.category.categoryPresenter.CategoryPresenter;
 import com.example.foodplanner.category.categoryPresenter.CategoryPresenterInterface;
 import com.example.foodplanner.category.categoryModel.Category;
-import com.example.foodplanner.meal.mealView.MealFragment;
 import com.example.foodplanner.network.ApiClient;
 
 import java.util.ArrayList;
@@ -73,12 +73,9 @@ public class category extends Fragment implements CategoryInterface,Onclick{
 
     @Override
     public void OnclickMeal(Category category) {
-       Bundle bundle = new Bundle();
-       bundle.putString("Category",category.getStrCategory());
-       MealFragment mealFragment = new MealFragment();
-       mealFragment.setArguments(bundle);
-        category c = new category();
-       getFragmentManager().beginTransaction().replace(R.id.navHostFragment,mealFragment,"Category").addToBackStack(null).commit();
+        Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+        intent.putExtra("category", category.getStrCategory());
+        startActivity(intent);
 
     }
 }

@@ -40,6 +40,11 @@ public class IngredientPresenter implements  IngredientPresenterInterface, Netwo
     }
 
     @Override
+    public void onSuccessResultDetailedMeal(ArrayList<Meal> meal) {
+
+    }
+
+    @Override
     public void onSuccessResultIngrediants(ArrayList<Ingredients> ingredients) {
         ingredientInterface.showIngredient(ingredients);
     }

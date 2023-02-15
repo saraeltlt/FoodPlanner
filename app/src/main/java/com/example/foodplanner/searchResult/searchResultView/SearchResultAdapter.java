@@ -1,4 +1,4 @@
-package com.example.foodplanner.SearchResult;
+package com.example.foodplanner.searchResult.searchResultView;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodplanner.R;
-import com.example.foodplanner.home.homeView.OnClickMealHome;
 import com.example.foodplanner.mealModel.Meal;
 
 import java.util.List;
@@ -52,7 +51,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         Meal meal= mealsArrayList.get(position);
         holder.meal.setText(meal.getStrMeal());
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.image);
-        holder.layout.setOnClickListener(new View.OnClickListener() {
+        holder.meal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onClickDetails(meal);

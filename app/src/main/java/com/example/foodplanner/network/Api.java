@@ -24,23 +24,10 @@ public interface Api {
     @GET("categories.php")
     public Observable<CategoryResponse>getCategory();
 
-
     @GET("filter.php")
     public Observable<MealsResponse>searchByCategory(@Query("c") String c);
 
-   /* @GET("list.php")
-    public Observable<IngredientsResponse>getIngredients(@Query("i") String ingredient);  //?i=list*/
-
-    /* @GET
-    public Observable<AreaResponse>getAreas(@Query("a") String area);  //?a=list);
-    @GET
-    public Observable<>searchByIngredients();
-    @GET
-    public Observable<>searchByArea();
-    @GET
-    public Observable<>searchByCategory();
-    @GET
-    public Observable<>searchByMealName();
-    */
+    @GET("search.php")
+    public Observable<MealsResponse>getDetailedMeal(@Query("s") String s);
 
 }

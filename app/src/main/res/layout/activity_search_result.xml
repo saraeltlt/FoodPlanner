@@ -5,7 +5,7 @@
     android:background="@mipmap/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchResult.SearchResultActivity">
+    tools:context=".searchResult.searchResultView.SearchResultActivity">
 
     <EditText
         android:id="@+id/searchText"

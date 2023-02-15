@@ -56,6 +56,11 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
     }
 
     @Override
+    public void onSuccessResultDetailedMeal(ArrayList<Meal> meal) {
+
+    }
+
+    @Override
     public void onSuccessResultIngrediants(ArrayList<Ingredients> ingredients) {
         //nothing
     }
