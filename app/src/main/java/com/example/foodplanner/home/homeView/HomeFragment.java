@@ -137,7 +137,8 @@ public class HomeFragment extends Fragment implements OnClickMealHome,HomeInterf
     @Override
     public void onClickAddFav(Meal meal) {
             meal.setDay("0");
-            mealPressenterInterface.addToFav(meal);
+
+        mealPressenterInterface.addToFav(meal);
     }
 
     @Override
