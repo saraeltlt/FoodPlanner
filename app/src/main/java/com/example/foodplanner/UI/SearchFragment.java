@@ -60,7 +60,7 @@ public class SearchFragment extends Fragment {
                 public void onClick(View v) {
                     IngredientsFragment ingFrag = new IngredientsFragment();
                     FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment, ingFrag, "ingFrag").commit();
+                    manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment, ingFrag, "ingFrag").addToBackStack(null).commit();
                 }
             });
             area.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,7 @@ public class SearchFragment extends Fragment {
                 public void onClick(View v) {
                     AreaViewClass regionFrag = new AreaViewClass();
                     FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment, regionFrag, "ingFrag").commit();
+                    manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment, regionFrag, "areaFrag").addToBackStack(null).commit();
                 }
             });
             cat.setOnClickListener(new View.OnClickListener() {
@@ -76,15 +76,18 @@ public class SearchFragment extends Fragment {
                 public void onClick(View v) {
                     category catFrag = new category();
                     FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment, catFrag, "ingFrag").commit();
+                    manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment, catFrag, "catFrag").addToBackStack(null).commit();
+                //
                 }
             });
             meal.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mealFrag","meal");
                     MealFragment mealFrag = new MealFragment();
                     FragmentManager manager = getFragmentManager();
-                    manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment, mealFrag, "ingFrag").commit();
+                    manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment, mealFrag, "mealFrag").addToBackStack(null).commit();
                 }
             });
         }

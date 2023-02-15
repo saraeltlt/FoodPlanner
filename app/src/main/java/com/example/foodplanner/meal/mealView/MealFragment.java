@@ -1,5 +1,6 @@
 package com.example.foodplanner.meal.mealView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.home.homeView.OnClickMealHome;
@@ -53,12 +55,20 @@ public class MealFragment extends Fragment implements MealInterface,OnClickMealH
 
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
         recyclerView = view.findViewById(R.id.mealRV);
-        adapter=new MealAdapter(new ArrayList<>(),getContext(),this);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext());
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
-        searchMealPresenterInterface=new SearchMealPresenter(this, ApiClient.getInstance(),getContext());
-        searchMealPresenterInterface.getMeal();
+        Bundle bundle = this.getArguments();
+         if(bundle.getString("mealFrag")!=null){
+            adapter=new MealAdapter(new ArrayList<>(),getContext(),this);
+            RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext());
+            recyclerView.setLayoutManager(manager);
+            recyclerView.setAdapter(adapter);
+            searchMealPresenterInterface=new SearchMealPresenter(this, ApiClient.getInstance(),getContext());
+            searchMealPresenterInterface.getMeal();
+        }
+        else if(bundle.getString("Category")!=null){
+            String category = bundle.getString("Category");
+            Toast.makeText(getContext(), ""+category, Toast.LENGTH_SHORT).show();
+        }
+
       //  recyclerView.setAdapter(new FavoriteAdapter(mealsArrayList, this.getContext(), this));
         return view;
     }

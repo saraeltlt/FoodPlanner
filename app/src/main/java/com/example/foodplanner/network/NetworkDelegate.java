@@ -7,7 +7,7 @@ import com.example.foodplanner.mealModel.Meal;
 import java.util.ArrayList;
 
 public interface NetworkDelegate {
-    public void onSuccessResult(ArrayList<Meal> meal);
+    public void onSuccessResultMeal(ArrayList<Meal> meal);
     public void onSuccessResultIngrediants(ArrayList<Ingredients> ingredients);
     public void onSuccessResultArea(ArrayList<Area> areas);
     public void onSuccessResultCategory(ArrayList<Category> categories);

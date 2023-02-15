@@ -31,7 +31,7 @@ public class AreaPresenter implements AreaPresenterInterface, NetworkDelegate {
     }
 
     @Override
-    public void onSuccessResult(ArrayList<Meal> meal) {
+    public void onSuccessResultMeal(ArrayList<Meal> meal) {
 
     }
 

@@ -50,7 +50,7 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
     }
 
     @Override
-    public void onSuccessResult(ArrayList<Meal> meals) {
+    public void onSuccessResultMeal(ArrayList<Meal> meals) {
         view.showMeal(getRandomMeals(meals));
 
     }

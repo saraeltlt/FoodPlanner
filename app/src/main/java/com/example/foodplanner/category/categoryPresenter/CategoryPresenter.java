@@ -31,7 +31,7 @@ public class CategoryPresenter implements CategoryPresenterInterface, NetworkDel
     }
 
     @Override
-    public void onSuccessResult(ArrayList<Meal> meal) {
+    public void onSuccessResultMeal(ArrayList<Meal> meal) {
 
     }
 

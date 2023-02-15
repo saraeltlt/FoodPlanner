@@ -11,7 +11,7 @@
     app:cardPreventCornerOverlap="true">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/ingrediantCards"
+        android:id="@+id/Cards"
         android:layout_width="410dp"
         android:layout_height="125dp"
         android:layout_marginBottom="-10dp"

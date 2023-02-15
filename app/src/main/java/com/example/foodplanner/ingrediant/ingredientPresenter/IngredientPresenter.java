@@ -35,7 +35,7 @@ public class IngredientPresenter implements  IngredientPresenterInterface, Netwo
     }
 */
     @Override
-    public void onSuccessResult(ArrayList<Meal> meal) {
+    public void onSuccessResultMeal(ArrayList<Meal> meal) {
         //Nothing
     }
 

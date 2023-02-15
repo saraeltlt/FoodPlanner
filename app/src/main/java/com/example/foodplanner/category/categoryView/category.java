@@ -1,5 +1,6 @@
 package com.example.foodplanner.category.categoryView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,12 +18,13 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.category.categoryPresenter.CategoryPresenter;
 import com.example.foodplanner.category.categoryPresenter.CategoryPresenterInterface;
 import com.example.foodplanner.category.categoryModel.Category;
+import com.example.foodplanner.meal.mealView.MealFragment;
 import com.example.foodplanner.network.ApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class category extends Fragment implements CategoryInterface{
+public class category extends Fragment implements CategoryInterface,Onclick{
     private RecyclerView recyclerView;
     private CategoryAdapter adapter;
     private CategoryPresenterInterface categoryPresenterInterface;
@@ -39,7 +41,7 @@ public class category extends Fragment implements CategoryInterface{
        View view =inflater.inflate(R.layout.fragment_category, container, false);
         recyclerView= view . findViewById(R.id.catRV);
         search=view.findViewById(R.id.catSearchView);
-        adapter=new CategoryAdapter(new ArrayList<>());
+        adapter=new CategoryAdapter(new ArrayList<>(),this);
         categoryPresenterInterface=new CategoryPresenter(this,ApiClient.getInstance(),getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
@@ -67,5 +69,16 @@ public class category extends Fragment implements CategoryInterface{
     public void showCategory(List<Category> categories) {
         adapter.setList(categories);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnclickMeal(Category category) {
+       Bundle bundle = new Bundle();
+       bundle.putString("Category",category.getStrCategory());
+       MealFragment mealFragment = new MealFragment();
+       mealFragment.setArguments(bundle);
+        category c = new category();
+       getFragmentManager().beginTransaction().replace(R.id.navHostFragment,mealFragment,"Category").addToBackStack(null).commit();
+
     }
 }

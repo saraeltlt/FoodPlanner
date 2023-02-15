@@ -5,14 +5,14 @@ import io.reactivex.Observable;
 import com.example.foodplanner.area.areaModel.AreaResponse;
 import com.example.foodplanner.category.categoryModel.CategoryResponse;
 import com.example.foodplanner.ingrediant.ingrediantModel.IngredientsResponse;
-import com.example.foodplanner.mealModel.MealsRandomResponse;
+import com.example.foodplanner.mealModel.MealsResponse;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface Api {
     @GET("search.php?s")
-    public Observable<MealsRandomResponse> getRandomMeals();
+    public Observable<MealsResponse> getRandomMeals();
     @GET("categories.php")
     public Observable<CategoryResponse>getCategories();
     @GET("list.php?i=list")
@@ -26,7 +26,7 @@ public interface Api {
 
 
     @GET("filter.php")
-    public Observable<IngredientsResponse>searchByIngred(@Query("i") String i);
+    public Observable<MealsResponse>searchByCategory(@Query("c") String c);
 
    /* @GET("list.php")
     public Observable<IngredientsResponse>getIngredients(@Query("i") String ingredient);  //?i=list*/

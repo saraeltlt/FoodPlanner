@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -22,9 +23,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
     List<Category> categories;
     List<Category>copy;
     Context context;
-    public CategoryAdapter(List<Category> categoryList){
+    Onclick onclick;
+    public CategoryAdapter(List<Category> categoryList,Onclick onclick){
         categories = categoryList;
         copy=new ArrayList<>();
+        this.onclick = onclick;
     }
 
     @NonNull
@@ -42,6 +45,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
         Log.i("photo", category.getStrCategory()+"->"+category.getStrCategoryThumb());
         Glide.with(context).load(category.getStrCategoryThumb()).into(holder.img);
         holder.txt.setText(category.getStrCategory());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onclick.OnclickMeal(category);
+            }
+        });
+
     }
     public void setList(List<Category>categoryList){
         categories = categoryList;
@@ -56,10 +66,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyHold
     public class MyHolder extends RecyclerView.ViewHolder{
         TextView txt ;
         ImageView img ;
+        CardView cardView;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             txt =itemView.findViewById(R.id.Stext);
             img = itemView.findViewById(R.id.Simage);
+            cardView = itemView.findViewById(R.id.Cards);
 
         }
     }

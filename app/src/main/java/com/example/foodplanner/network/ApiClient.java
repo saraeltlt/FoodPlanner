@@ -5,7 +5,7 @@ import android.annotation.SuppressLint;
 import com.example.foodplanner.area.areaModel.AreaResponse;
 import com.example.foodplanner.category.categoryModel.CategoryResponse;
 import com.example.foodplanner.ingrediant.ingrediantModel.IngredientsResponse;
-import com.example.foodplanner.mealModel.MealsRandomResponse;
+import com.example.foodplanner.mealModel.MealsResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -41,11 +41,11 @@ public class ApiClient implements RemoteSource {
     @Override
     public void ObserveMeal(NetworkDelegate networkDelegate){
       Api myApi = creatRetro();
-        Observable<MealsRandomResponse> observable= myApi.getRandomMeals()
+        Observable<MealsResponse> observable= myApi.getRandomMeals()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         observable.subscribe(o-> {
-                   networkDelegate.onSuccessResult(o.getMeals());
+                   networkDelegate.onSuccessResultMeal(o.getMeals());
                 },
                 e-> networkDelegate.onFailureResult(e.getMessage())
         );
@@ -82,6 +82,17 @@ public class ApiClient implements RemoteSource {
                 .observeOn(AndroidSchedulers.mainThread());
         observable.subscribe(o-> {
                     networkDelegate.onSuccessResultCategory(o.getCategories());
+                },
+                e-> networkDelegate.onFailureResult(e.getMessage())
+        );
+    }
+    public void searchByCategories(NetworkDelegate networkDelegate,String categoryName) {
+        Api myApi = creatRetro();
+        Observable<MealsResponse> observable= myApi.searchByCategory(categoryName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        observable.subscribe(o-> {
+                    networkDelegate.onSuccessResultMeal(o.getMeals());
                 },
                 e-> networkDelegate.onFailureResult(e.getMessage())
         );

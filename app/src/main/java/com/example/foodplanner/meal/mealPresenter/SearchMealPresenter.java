@@ -35,7 +35,7 @@ public class SearchMealPresenter implements SearchMealPresenterInterface,Network
     }
 
     @Override
-    public void onSuccessResult(ArrayList<Meal> meal) {
+    public void onSuccessResultMeal(ArrayList<Meal> meal) {
         mealInterface.showMeal(meal);
     }
 

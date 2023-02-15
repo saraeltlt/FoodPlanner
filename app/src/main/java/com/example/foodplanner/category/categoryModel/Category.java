@@ -1,5 +1,7 @@
 package com.example.foodplanner.category.categoryModel;
 
+import java.io.Serializable;
+
 public class Category {
     String idCategory;
     String strCategory;
