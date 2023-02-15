@@ -1,0 +1,17 @@
+package com.example.foodplanner.firebasePackage;
+
+import android.content.Context;
+
+public interface FirebaseInterface {
+    public void login(String email,String pass);
+    public void signup();
+    public void googleAuth(Context context);
+    public void addFav();
+    public void addPlan();
+    public void getFav();
+    public void getPlan();
+// authPressenterInterface.checkSignGoogle(MainActivity.this);
+    //public void Done(){
+    //        startActivity(new Intent(MainActivity.this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    //    }
+}
