@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 if (firebaseUser != null) {
                     // When user already sign in redirect to profile activity
                     startActivity(new Intent(MainActivity.this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    finish();
                 }
                 // Start activity for result
                 startActivityForResult(intent, 100);
@@ -113,11 +114,6 @@ public class MainActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> signInAccountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
             // check condition
             if (signInAccountTask.isSuccessful()) {
-                Log.i("TAG", "onActivityResult: success");
-                // When google sign in successful initialize string
-                String s = "Google sign in successful";
-                // Display Toast
-               // displayToast(s);
                 // Initialize sign in account
                 try {
                     // Initialize sign in account
@@ -126,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     if (googleSignInAccount != null) {
                         // When sign in account is not equal to null initialize auth credential
                         AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
+
                         // Check credential
                         firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -134,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // When task is successful redirect to profile activity display Toast
                                     startActivity(new Intent(MainActivity.this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    finish();
                                     displayToast("Firebase authentication successful");
                                 } else {
                                     // When task is unsuccessful display Toast
