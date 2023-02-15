@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/signup"
-    tools:context=".SignUp_Fragment">
+    tools:context=".authentication.authView.SignupFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/SIGNUP"

@@ -7,7 +7,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:background="@mipmap/login"
-    tools:context=".Login_Fragment" >
+    tools:context=".authentication.authView.LoginFragment" >
 
     <TextView
         android:id="@+id/Login"

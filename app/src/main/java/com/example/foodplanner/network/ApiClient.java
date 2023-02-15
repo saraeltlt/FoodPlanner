@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+@SuppressLint("CheckResult")
 public class ApiClient implements RemoteSource {
     private static ApiClient instance = null;
 
@@ -86,7 +86,8 @@ public class ApiClient implements RemoteSource {
                 e-> networkDelegate.onFailureResult(e.getMessage())
         );
     }
-    public void searchByCategories(NetworkDelegate networkDelegate,String categoryName) {
+
+    public void searchByCategories(NetworkDelegate networkDelegate, String categoryName) {
         Api myApi = creatRetro();
         Observable<MealsResponse> observable= myApi.searchByCategory(categoryName)
                 .subscribeOn(Schedulers.io())

@@ -65,10 +65,10 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         noWifif = findViewById(R.id.wifiImg);
         noWifiText = findViewById(R.id.noWifi);
         autoCompleteTextView = findViewById(R.id.addPlan);
+
         Intent myIntent = getIntent();
         Meal myMeal = (Meal) myIntent.getSerializableExtra("MealFragment");
         setView(myMeal);
-
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
         autoCompleteTextView.setAdapter(adapter);
@@ -187,7 +187,9 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
                     if (videoId != null) {
                         videoId = videoId.substring(videoId.indexOf("=") + 1);
                         StringTokenizer st = new StringTokenizer(videoId, "&");
-                        videoId = st.nextToken();
+                        if (st.hasMoreTokens()) {
+                            videoId = st.nextToken();
+                        }
                         youTubePlayer.loadVideo(videoId, 0);
                     }
                 }

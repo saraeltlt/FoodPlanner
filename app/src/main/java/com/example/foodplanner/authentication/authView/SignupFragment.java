@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.authentication.authView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodplanner.R;
 import com.example.foodplanner.UI.welcomeView.WelcomeActivity;
 import com.example.foodplanner.network.CheckInternet;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class SignUp_Fragment extends Fragment {
+public class SignupFragment extends Fragment implements SignupAuthInterface{
     private TextView login;
     private Button signupBtn;
     private EditText email,pass,confPass;

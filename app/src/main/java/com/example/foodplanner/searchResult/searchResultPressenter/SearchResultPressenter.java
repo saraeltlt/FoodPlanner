@@ -50,6 +50,7 @@ public class SearchResultPressenter implements SearchResultPressenterInterface, 
 
     @Override
     public void onSuccessResultDetailedMeal(ArrayList<Meal> meal) {
+
         view.passMealDetails(meal);
     }
 

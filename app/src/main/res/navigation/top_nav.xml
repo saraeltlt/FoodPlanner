@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_region" />
     <fragment
         android:id="@+id/category"
-        android:name="com.example.foodplanner.category.categoryView.category"
+        android:name="com.example.foodplanner.category.categoryView.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" />
 </navigation>

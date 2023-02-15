@@ -20,9 +20,9 @@ import java.util.List;
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.MealViewHolder>{
     private List<Meal> mealsArrayList;
     private Context context;
-    private OnClick listener;
+    private OnClickSearch listener;
 
-    public SearchResultAdapter(List<Meal> mealsArrayList, Context context, OnClick listener) {
+    public SearchResultAdapter(List<Meal> mealsArrayList, Context context, OnClickSearch listener) {
         this.mealsArrayList = mealsArrayList;
         this.context = context;
         this.listener = listener;

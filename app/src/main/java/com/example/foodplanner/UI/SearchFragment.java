@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.category.categoryView.category;
+import com.example.foodplanner.category.categoryView.CategoryFragment;
 import com.example.foodplanner.ingrediant.ingredientView.IngredientsFragment;
 import com.example.foodplanner.area.areaView.AreaViewClass;
 import com.example.foodplanner.meal.mealView.MealFragment;
@@ -74,7 +74,7 @@ public class SearchFragment extends Fragment {
             cat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    category catFrag = new category();
+                    CategoryFragment catFrag = new CategoryFragment();
                     FragmentManager manager = getFragmentManager();
                     manager.beginTransaction().setReorderingAllowed(true).replace(R.id.navHostFragment, catFrag, "catFrag").commit();
                 //

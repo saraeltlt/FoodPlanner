@@ -24,7 +24,7 @@ import com.example.foodplanner.network.ApiClient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class category extends Fragment implements CategoryInterface,Onclick{
+public class CategoryFragment extends Fragment implements CategoryInterface,Onclick{
     private RecyclerView recyclerView;
     private CategoryAdapter adapter;
     private CategoryPresenterInterface categoryPresenterInterface;
@@ -74,7 +74,7 @@ public class category extends Fragment implements CategoryInterface,Onclick{
     @Override
     public void OnclickMeal(Category category) {
         Intent intent = new Intent(getActivity(), SearchResultActivity.class);
-        intent.putExtra("category", category.getStrCategory());
+        intent.putExtra("CategoryFragment",category.getStrCategory());
         startActivity(intent);
 
     }

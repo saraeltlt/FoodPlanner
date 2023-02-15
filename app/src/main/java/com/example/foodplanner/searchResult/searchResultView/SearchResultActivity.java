@@ -11,7 +11,6 @@ import android.widget.EditText;
 import com.example.foodplanner.R;
 import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.details.detailsView.DetailsActivity;
-import com.example.foodplanner.home.homePressenter.MealPressenter;
 import com.example.foodplanner.mealModel.Meal;
 import com.example.foodplanner.mealModel.Repository;
 import com.example.foodplanner.network.ApiClient;
@@ -22,10 +21,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultActivity extends AppCompatActivity implements OnClick, SearchResultInterface{
+public class SearchResultActivity extends AppCompatActivity implements OnClickSearch, SearchResultInterface{
     RecyclerView recyclerView ;
     EditText search;
     SearchResultAdapter adapter;
+    String searchStr;
     SearchResultPressenterInterface pressenterInterface;
 
 
@@ -40,12 +40,15 @@ public class SearchResultActivity extends AppCompatActivity implements OnClick, 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
-        Intent myIntent = getIntent();
-        String category = (String) myIntent.getSerializableExtra("category");
         pressenterInterface= new SearchResultPressenter(this,
                 Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(this, "0"), this),
                 ApiClient.getInstance(), this);
-        pressenterInterface.getMeal(category);
+        Intent myIntent = getIntent();
+        if(myIntent.getSerializableExtra("CategoryFragment")!=null) {
+            searchStr = (String) myIntent.getSerializableExtra("CategoryFragment");
+        }
+        pressenterInterface.getMeal(searchStr);
+
 
     }
 
