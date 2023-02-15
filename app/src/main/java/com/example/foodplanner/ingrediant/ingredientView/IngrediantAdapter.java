@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,11 +22,13 @@ import java.util.List;
 public class IngrediantAdapter extends RecyclerView.Adapter<IngrediantAdapter.MyHolder> {
     List<Ingredients> ingredientsArrayList;
     List<Ingredients> copy;
+    OnClickIng onClickIng;
 
     Context context;
-    public IngrediantAdapter(List<Ingredients> ingredientsList){
+    public IngrediantAdapter(List<Ingredients> ingredientsList, OnClickIng onClickIng){
             ingredientsArrayList = ingredientsList;
             copy = new ArrayList<>();
+            this.onClickIng=onClickIng;
     }
 
     @NonNull
@@ -44,7 +47,7 @@ public class IngrediantAdapter extends RecyclerView.Adapter<IngrediantAdapter.My
         String url = "https://www.themealdb.com/images/ingredients/"+ ingredients.getStrIngredient()+".png";
         Glide.with(context).load(url).into(holder.img);
         holder.txt.setText(ingredients.getStrIngredient());
-        //holder.txt.setOnClickListener(v->IngredientsFragment.searchRes(ingredients.getStrIngredient()));
+        holder.txt.setOnClickListener(view->onClickIng.OnclickIngredients(ingredients));
     }
     public void setList(List<Ingredients>ingrdiant){
         ingredientsArrayList = ingrdiant;

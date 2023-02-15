@@ -1,5 +1,6 @@
 package com.example.foodplanner.ingrediant.ingredientView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,12 +19,13 @@ import com.example.foodplanner.ingrediant.ingredientPresenter.IngredientPresente
 import com.example.foodplanner.ingrediant.ingredientPresenter.IngredientPresenterInterface;
 import com.example.foodplanner.ingrediant.ingrediantModel.Ingredients;
 import com.example.foodplanner.network.ApiClient;
+import com.example.foodplanner.searchResult.searchResultView.SearchResultActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class IngredientsFragment extends Fragment implements IngredientInterface {
+public class IngredientsFragment extends Fragment implements IngredientInterface,OnClickIng{
     RecyclerView recyclerView ;
     IngrediantAdapter adapter;
     EditText search;
@@ -40,7 +42,7 @@ public class IngredientsFragment extends Fragment implements IngredientInterface
         View view=inflater.inflate(R.layout.fragment_ingredients, container, false);
         search = view.findViewById(R.id.ingredsearchView);
         recyclerView = view.findViewById(R.id.ingRV);
-        adapter = new IngrediantAdapter(new ArrayList<>());
+        adapter = new IngrediantAdapter(new ArrayList<>(),this);
         ingredientPresenterInterface=new IngredientPresenter(this,ApiClient.getInstance(),getContext());
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
@@ -67,6 +69,13 @@ public class IngredientsFragment extends Fragment implements IngredientInterface
     public void showIngredient(List<Ingredients> ingredients) {
         adapter.setList(ingredients);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnclickIngredients(Ingredients ingrediant) {
+        Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+        intent.putExtra("IngredientFragment",ingrediant.getStrIngredient());
+        startActivity(intent);
     }
 
 /*public static void searchRes(String n){

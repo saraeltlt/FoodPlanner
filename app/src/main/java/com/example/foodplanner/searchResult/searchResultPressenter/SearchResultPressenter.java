@@ -34,12 +34,16 @@ public class SearchResultPressenter implements SearchResultPressenterInterface, 
     @Override
     public void getMeal(String category) {
         client.searchByCategories(this,category);
+
     }
     @Override
     public void getMealByArea(String area) {
         client.searchByArea(this,area);
     }
-
+    @Override
+    public void getMealByIngredient(String ingredient) {
+        client.searchByIngredients(this,ingredient);
+    }
    @Override
     public void getDeatiledMeal(String meal) {
         client.getDetailedMeal(this,meal);
