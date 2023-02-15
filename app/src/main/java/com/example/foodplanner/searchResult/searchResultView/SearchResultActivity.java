@@ -46,8 +46,13 @@ public class SearchResultActivity extends AppCompatActivity implements OnClickSe
         Intent myIntent = getIntent();
         if(myIntent.getSerializableExtra("CategoryFragment")!=null) {
             searchStr = (String) myIntent.getSerializableExtra("CategoryFragment");
+            pressenterInterface.getMeal(searchStr);
         }
-        pressenterInterface.getMeal(searchStr);
+        else if(myIntent.getSerializableExtra("AreaFragment")!=null) {
+            searchStr = (String) myIntent.getSerializableExtra("AreaFragment");
+            pressenterInterface.getMealByArea(searchStr);
+        }
+
 
 
     }

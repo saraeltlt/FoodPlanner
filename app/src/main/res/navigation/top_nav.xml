@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_ingredients" />
     <fragment
         android:id="@+id/region"
-        android:name="com.example.foodplanner.area.areaView.AreaViewClass"
+        android:name="com.example.foodplanner.area.areaView.AreaFragment"
         android:label="fragment_region"
         tools:layout="@layout/fragment_region" />
     <fragment

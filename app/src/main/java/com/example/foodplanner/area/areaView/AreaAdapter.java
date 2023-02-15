@@ -21,8 +21,11 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyHolder> {
     List<Area> areas;
     List<Area> copy;
     Context context;
+    OnClick listner;
     private static ArrayList<Integer> flags ;
-    public AreaAdapter(List<Area> areas){
+    public AreaAdapter(Context context, List<Area> areas, OnClick listner){
+        this.context=context;
+        this.listner=listner;
         this.areas = areas;
         copy = new ArrayList<>();
     }
@@ -31,7 +34,6 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyHolder> {
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_card, null);
-        //fill_arrayList();
         MyHolder myViewHolder = new MyHolder(view);
         context = parent.getContext();
         return myViewHolder;
@@ -45,6 +47,12 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyHolder> {
         int id = context.getResources().getIdentifier(area.getStrArea().toLowerCase(), "drawable", context.getPackageName());
         holder.img.setImageResource(id);
         holder.txt.setText(area.getStrArea());
+        holder.txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listner.OnclickMeal(area);
+            }
+        });
     }
 
     @Override

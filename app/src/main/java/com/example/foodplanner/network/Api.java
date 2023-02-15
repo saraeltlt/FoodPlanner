@@ -30,4 +30,7 @@ public interface Api {
     @GET("search.php")
     public Observable<MealsResponse>getDetailedMeal(@Query("s") String s);
 
+    @GET("filter.php")
+    public Observable<MealsResponse>searchByArea(@Query("a") String a);
+
 }
