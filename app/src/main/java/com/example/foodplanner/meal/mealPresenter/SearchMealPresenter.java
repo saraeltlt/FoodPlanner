@@ -35,12 +35,18 @@ public class SearchMealPresenter implements SearchMealPresenterInterface,Network
     }
 
     @Override
+    public void getMealSearch(CharSequence search) {
+        client.getDetailedMeal(this,search.toString());
+    }
+
+    @Override
     public void onSuccessResultMeal(ArrayList<Meal> meal) {
         mealInterface.showMeal(meal);
     }
 
     @Override
     public void onSuccessResultDetailedMeal(ArrayList<Meal> meal) {
+        mealInterface.searchMeal(meal);
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.foodplanner.meal.mealView;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,12 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.home.homeView.OnClickMealHome;
 import com.example.foodplanner.mealModel.Meal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MealAdapter  extends RecyclerView.Adapter<MealAdapter.MealViewHolder>{
     private List<Meal> mealsArrayList;
+    ArrayList<Meal> itemsCopy;
     private Context context;
     private OnClickMealHome listener;
 
@@ -71,6 +74,9 @@ public class MealAdapter  extends RecyclerView.Adapter<MealAdapter.MealViewHolde
 
     @Override
     public int getItemCount() {
+        if (mealsArrayList==null)
+            return 0;
+        else
         return mealsArrayList.size();
     }
 
@@ -89,5 +95,26 @@ public class MealAdapter  extends RecyclerView.Adapter<MealAdapter.MealViewHolde
             flag = itemView.findViewById(R.id.searchAreaFlag);
 
         }
+    }
+
+
+    public void search (String mealName){
+        ArrayList<Meal> searchTempList = new ArrayList<>();
+        if (!TextUtils.isEmpty(mealName)){
+            for (Meal meal : itemsCopy){
+                if ((meal.getStrMeal()).contains(mealName)){
+                    mealsArrayList.clear();
+                    searchTempList.add(meal);
+                }
+            }
+            mealsArrayList.addAll(searchTempList);
+        }else{
+            mealsArrayList.clear();
+            mealsArrayList.addAll(itemsCopy);
+        }
+        notifyDataSetChanged();
+        searchTempList.clear();
+
+
     }
 }

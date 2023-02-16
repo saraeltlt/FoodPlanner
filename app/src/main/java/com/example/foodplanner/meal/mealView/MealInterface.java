@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface MealInterface {
     public void showMeal (List<Meal> meal);
+    public void searchMeal(List<Meal> meal);
 }
