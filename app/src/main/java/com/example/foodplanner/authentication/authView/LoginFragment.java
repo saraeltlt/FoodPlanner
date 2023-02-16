@@ -18,6 +18,8 @@ import androidx.navigation.Navigation;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.UI.HomeActivity;
+import com.example.foodplanner.authentication.authPressenter.AuthPressenter;
+import com.example.foodplanner.authentication.authPressenter.AuthPressenterInterface;
 import com.example.foodplanner.network.CheckInternet;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +35,7 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
     private EditText userName, password;
     private FirebaseAuth mAuth;
     ProgressDialog progressDialog;
+    AuthPressenterInterface authPressenterInterface ;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -52,6 +55,7 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
         userName = view.findViewById(R.id.login_username);
         password = view.findViewById(R.id.login_password);
         mAuth = FirebaseAuth.getInstance();
+        authPressenterInterface = new AuthPressenter();
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

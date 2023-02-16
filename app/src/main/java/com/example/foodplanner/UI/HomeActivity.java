@@ -93,8 +93,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         case R.id.planFragment:
                             Toast.makeText(HomeActivity.this, R.string.access, Toast.LENGTH_SHORT).show();
                             return false;
-
-
                     }
 
                   return false;
@@ -111,6 +109,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
+                finish();
                 setGuestFlag(false);
                 Intent intent = new Intent(HomeActivity.this, MainActivity.class);
                 startActivity(intent);
