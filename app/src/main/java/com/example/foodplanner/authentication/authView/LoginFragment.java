@@ -3,6 +3,7 @@ package com.example.foodplanner.authentication.authView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,10 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.authentication.authPressenter.AuthPressenter;
 import com.example.foodplanner.authentication.authPressenter.AuthPressenterInterface;
+import com.example.foodplanner.database.ConcreteLocalSource;
+import com.example.foodplanner.mealModel.Meal;
+import com.example.foodplanner.mealModel.Repository;
+import com.example.foodplanner.network.ApiClient;
 import com.example.foodplanner.network.CheckInternet;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,11 +32,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class LoginFragment extends Fragment implements LoginAuthInterface {
     private TextView signup;
     private Button login;
+    public static ArrayList<Meal> favList;
     private EditText userName, password;
     private FirebaseAuth mAuth;
     ProgressDialog progressDialog;
@@ -39,6 +52,14 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
 
     public LoginFragment() {
         // Required empty public constructor
+    }
+
+    public static ArrayList<Meal> getFavList() {
+        return favList;
+    }
+
+    public static void setFavList(ArrayList<Meal> favList) {
+        LoginFragment.favList = favList;
     }
 
     @Override
@@ -56,6 +77,7 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
         password = view.findViewById(R.id.login_password);
         mAuth = FirebaseAuth.getInstance();
         authPressenterInterface = new AuthPressenter();
+        favList=new ArrayList<>();
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +126,28 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
+                            DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Registered Users").child(user.getUid()).child("Favorites");
+                            root.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren() ){
+                                        Meal meal = dataSnapshot.getValue(Meal.class);
+                                        Repository repo=  Repository.getInstance( ApiClient.getInstance() , ConcreteLocalSource.getInstance(getContext(),"0"), getContext());
+                                        repo.insert(meal);
+                                        Log.i("test",meal.getStrMeal());
+
+                                    }
+
+
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Log.i("test",error.getMessage());
+
+                                }
+                            });
+
+
                             startActivity(new Intent(getActivity(), HomeActivity.class));
                             getActivity().finish();
                         } else {

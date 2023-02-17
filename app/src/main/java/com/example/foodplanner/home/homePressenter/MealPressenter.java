@@ -4,6 +4,8 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.authentication.authView.LoginFragment;
+import com.example.foodplanner.firebasePackage.FirebaseUtil;
 import com.example.foodplanner.home.homeView.HomeInterface;
 import com.example.foodplanner.area.areaModel.Area;
 import com.example.foodplanner.category.categoryModel.Category;
@@ -12,6 +14,7 @@ import com.example.foodplanner.mealModel.Meal;
 import com.example.foodplanner.mealModel.Repository;
 import com.example.foodplanner.network.ApiClient;
 import com.example.foodplanner.network.NetworkDelegate;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MealPressenter implements MealPressenterInterface, NetworkDelegate {
     private HomeInterface view;
     private Repository repo;
+    FirebaseAuth firebaseAuth ;
+    FirebaseUtil firebaseUtil;
     ApiClient client;
     Context context;
 
@@ -28,6 +33,8 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
         this.repo = repo;
         this.client = client;
         this.context = context;
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUtil = new FirebaseUtil();
     }
 
     @Override
@@ -40,6 +47,7 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
     public void addToFav(Meal meal) {
         repo.insert(meal);
         Toast.makeText(context.getApplicationContext(), R.string.add_fav, Toast.LENGTH_SHORT).show();
+        firebaseUtil.addFav(context,meal);
 
     }
 
@@ -47,6 +55,7 @@ public class MealPressenter implements MealPressenterInterface, NetworkDelegate 
     public void deleteMeal(Meal meal) {
         repo.delete(meal);
         Toast.makeText(context.getApplicationContext(), R.string.remove_fav, Toast.LENGTH_SHORT).show();
+        firebaseUtil.removeFav(context,meal);
     }
 
     @Override

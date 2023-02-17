@@ -58,6 +58,24 @@ public class ConcreteLocalSource implements LocalSource {
     }
 
     @Override
+    public void deleteAll() {
+        dao.deleteAll().subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+        });
+
+    }
+
+    @Override
     public void insert(Meal meal) {
         dao.insertMeal(meal).subscribeOn(Schedulers.computation()).subscribe(new CompletableObserver() {
             @Override

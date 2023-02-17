@@ -9,6 +9,7 @@ import io.reactivex.Observable;
 public interface LocalSource {
     public Observable<List<Meal>> getFavoriteMeals();
     public void delete(Meal meal);
+    public void deleteAll();
     public void insert(Meal meal);
     public Observable<List<Meal>> getMealsPlan(String day);
 

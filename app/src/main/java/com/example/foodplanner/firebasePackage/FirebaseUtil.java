@@ -7,6 +7,9 @@ import android.content.Intent;
 import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.UI.MainActivity;
 import com.example.foodplanner.authentication.authPressenter.AuthPressenterInterface;
+import com.example.foodplanner.mealModel.Meal;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import androidx.appcompat.app.AlertDialog;
@@ -35,11 +38,18 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class FirebaseUtil implements FirebaseInterface {//make it singleton
+import java.util.HashMap;
+
+public class FirebaseUtil implements FirebaseInterface {
     GoogleSignInClient googleSignInClient;
     FirebaseAuth firebaseAuth;
     AuthPressenterInterface authPressenterInterface;
+
+    public FirebaseUtil() {
+    }
 
     public FirebaseUtil(AuthPressenterInterface authPressenterInterface) {
         this.authPressenterInterface = authPressenterInterface;
@@ -84,19 +94,112 @@ public class FirebaseUtil implements FirebaseInterface {//make it singleton
 
 
     }
+    @Override
+    public  void addFav(Context context, Meal myMeal) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser()==null){
+            Toast.makeText(context, "you\re not logged in", Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Registered Users");
+            ref.child(firebaseAuth.getUid()).child("Favorites").child(myMeal.getStrMeal()).setValue(myMeal)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(context, "added to your favList", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(context, "failed to add to your favList", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+        }
+    }
+
 
     @Override
-    public void addFav() {
+    public  void removeFav(Context context, Meal myMeal) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser()==null){
+            Toast.makeText(context, "you\re not logged in", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Registered Users");
+            ref.child(firebaseAuth.getUid()).child("Favorites").child(myMeal.getStrMeal()).removeValue()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(context, "removed from your favList", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(context, "failed to remove from your favList", Toast.LENGTH_SHORT).show();
 
+                        }
+                    });
+
+        }
     }
 
     @Override
-    public void addPlan() {
+    public void addPlan(Context context, Meal myMeal) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser()==null){
+            Toast.makeText(context, "you\re not logged in", Toast.LENGTH_SHORT).show();
+        }
+        else {
 
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Registered Users");
+            ref.child(firebaseAuth.getUid()).child("Plan").child(myMeal.getDay()).child(myMeal.getStrMeal()).setValue(myMeal)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(context, "added to your favList", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(context, "failed to add to your favList", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
+        }
+    }
+
+    @Override
+    public void removePlan(Context context, Meal myMeal) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser()==null){
+            Toast.makeText(context, "you\re not logged in", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Registered Users");
+            ref.child(firebaseAuth.getUid()).child("Plan").child(myMeal.getDay()).child(myMeal.getStrMeal()).removeValue()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(context, "removed from your favList", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(context, "failed to remove from your favList", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+        }
     }
 
     @Override
     public void getFav() {
+
 
     }
 

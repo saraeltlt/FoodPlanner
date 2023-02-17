@@ -53,8 +53,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MealVi
         holder.meal.setText(meal.getStrMeal());
         holder.area.setText(meal.getStrArea());
         Context contextImage = holder.flag.getContext();
-        int id = contextImage .getResources().getIdentifier(meal.getStrArea().toLowerCase(), "drawable", contextImage.getPackageName());
-        holder.flag.setImageResource(id);
+        if (meal.getStrMeal()!=null) {
+            int id = contextImage.getResources().getIdentifier(meal.getStrArea().toLowerCase(), "drawable", contextImage.getPackageName());
+            holder.flag.setImageResource(id);
+        }
         holder.favBtn.setImageResource(R.drawable.favorite_red);
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.image);
         holder.layout.setOnClickListener(new View.OnClickListener() {

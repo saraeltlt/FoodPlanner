@@ -23,10 +23,12 @@ import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.database.ConcreteLocalSource;
 import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenter;
 import com.example.foodplanner.details.detailsPressenter.DetailsMealPressenterInterface;
+import com.example.foodplanner.firebasePackage.FirebaseUtil;
 import com.example.foodplanner.mealModel.Meal;
 import com.example.foodplanner.mealModel.Repository;
 import com.example.foodplanner.network.ApiClient;
 import com.example.foodplanner.network.CheckInternet;
+import com.google.firebase.auth.FirebaseAuth;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -50,6 +52,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
     AutoCompleteTextView autoCompleteTextView;
     DetailsMealPressenterInterface detailsMealPressenterInterface;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
         noWifif = findViewById(R.id.wifiImg);
         noWifiText = findViewById(R.id.noWifi);
         autoCompleteTextView = findViewById(R.id.addPlan);
+
 
         Intent myIntent = getIntent();
         Meal myMeal = (Meal) myIntent.getSerializableExtra("MealFragment");
@@ -114,11 +118,15 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
                         addFav.setImageResource(R.drawable.favorite_red);
                         myMeal.setMealAddedToFav(true);
                         addMealToFav(myMeal);
+
+
                     } else {
                         addFav.setImageResource(R.drawable.favorite_white);
                         myMeal.setMealAddedToFav(false);
                         deleteMealFromFav(myMeal);
                     }
+
+
                 }
             }
         });

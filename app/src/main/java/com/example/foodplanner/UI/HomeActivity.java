@@ -17,6 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.database.AppDatabase;
+import com.example.foodplanner.database.ConcreteLocalSource;
+import com.example.foodplanner.database.LocalSource;
+import com.example.foodplanner.database.MealDAO;
+import com.example.foodplanner.mealModel.Repository;
+import com.example.foodplanner.network.ApiClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +32,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     ImageView openDrawer;
     TextView userName;
+
     public static NavController navController;
     public static Boolean guestFlag = false;
     static boolean flagLang=false;
@@ -109,22 +116,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
+              Repository repo=  Repository.getInstance( ApiClient.getInstance() , ConcreteLocalSource.getInstance(getApplicationContext(),"0"), getApplicationContext());
+              repo.deleteAll();
                 finish();
                 setGuestFlag(false);
                 Intent intent = new Intent(HomeActivity.this, MainActivity.class);
                 startActivity(intent);
-                break;
-            case R.id.lang:
-                Toast.makeText(this, "language", Toast.LENGTH_SHORT).show();
-            if (!flagLang) {
-                item.setTitle("English");
-                flagLang=true;
-            }
-            else{
-                item.setTitle("العربية");
-                flagLang=false;
-            }
-
                 break;
 
 
