@@ -37,8 +37,8 @@ public class PlanPressenter implements PlanPressenterInterface {
     @Override
     public void deleteMeal(Meal meal) {
         repo.delete(meal);
-        getMeal(meal.getDay());
         Toast.makeText(context.getApplicationContext(), R.string.remove_plan, Toast.LENGTH_SHORT).show();
         firebaseUtil.removePlan(context,meal);
+        getMeal(meal.getDay());
     }
 }
