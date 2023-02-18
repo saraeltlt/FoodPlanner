@@ -3,6 +3,7 @@ package com.example.foodplanner.authentication.authView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,11 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.authentication.authPressenter.AuthPressenter;
 import com.example.foodplanner.authentication.authPressenter.AuthPressenterInterface;
+import com.example.foodplanner.database.ConcreteLocalSource;
+import com.example.foodplanner.firebasePackage.FirebaseUtil;
+import com.example.foodplanner.mealModel.Meal;
+import com.example.foodplanner.mealModel.Repository;
+import com.example.foodplanner.network.ApiClient;
 import com.example.foodplanner.network.CheckInternet;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +33,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class LoginFragment extends Fragment implements LoginAuthInterface {
@@ -36,10 +49,12 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
     private FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     AuthPressenterInterface authPressenterInterface ;
+    FirebaseUtil firebaseUtil;
 
     public LoginFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +71,8 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
         password = view.findViewById(R.id.login_password);
         mAuth = FirebaseAuth.getInstance();
         authPressenterInterface = new AuthPressenter();
+       firebaseUtil= new FirebaseUtil();
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +121,15 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
+                            firebaseUtil.getFav(getContext(), user);
+                            firebaseUtil.getPlan(getContext(), user,"Sunday");
+                            firebaseUtil.getPlan(getContext(), user,"Monday");
+                            firebaseUtil.getPlan(getContext(), user,"Tuesday");
+                            firebaseUtil.getPlan(getContext(), user,"Wednesday");
+                            firebaseUtil.getPlan(getContext(), user,"Thursday");
+                            firebaseUtil.getPlan(getContext(), user,"Friday");
+                            firebaseUtil.getPlan(getContext(), user,"Saturday");
+
                             startActivity(new Intent(getActivity(), HomeActivity.class));
                             getActivity().finish();
                         } else {
@@ -117,4 +143,6 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
                     Toast.makeText(getContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
+
 }

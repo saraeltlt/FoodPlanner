@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Initialize sign in intent
                 Intent intent = googleSignInClient.getSignInIntent();
-
-
                 // Initialize firebase auth
                 firebaseAuth = FirebaseAuth.getInstance();
                 // Initialize firebase user

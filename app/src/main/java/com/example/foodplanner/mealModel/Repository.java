@@ -40,6 +40,12 @@ public class Repository implements LocalSource, RemoteSource {
     public void delete(Meal meal){
       localSource.delete(meal);
     }
+
+    @Override
+    public void deleteAll() {
+        localSource.deleteAll();
+    }
+
     @Override
     public void insert(Meal meal){
      localSource.insert(meal);

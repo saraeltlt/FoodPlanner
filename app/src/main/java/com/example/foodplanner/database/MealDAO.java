@@ -23,5 +23,7 @@ public interface MealDAO {
     Completable deleteMeal (Meal meal);
     @Query("SELECT * From meals WHERE day LIKE:day")
     Observable<List<Meal>> getPlanMeals(String day);
+    @Query("DELETE FROM meals")
+    Completable deleteAll();
 
 }

@@ -26,6 +26,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SignupFragment extends Fragment implements SignupAuthInterface{
@@ -98,6 +100,7 @@ public class SignupFragment extends Fragment implements SignupAuthInterface{
 
     private void registerUser(String getEmail, String getPass) {
         progressDialog.show();
+        progressDialog.setTitle("Registering..");
        mAuth.createUserWithEmailAndPassword(getEmail,getPass)
                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                    @Override
@@ -106,8 +109,26 @@ public class SignupFragment extends Fragment implements SignupAuthInterface{
 
                            progressDialog.dismiss();
                            FirebaseUser user = mAuth.getCurrentUser();
-                           Toast.makeText(getContext(), "Registered "+user.getEmail(), Toast.LENGTH_SHORT).show();
-                           startActivity( new Intent(getActivity(), WelcomeActivity.class));
+                           //enter user data in REALTIME
+                           DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
+                           referenceProfile.child(user.getUid()).setValue(getEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                               @Override
+                               public void onComplete(@NonNull Task<Void> task) {
+                                   if (task.isSuccessful()){
+                                       //send verfiication email
+                                       //.......................
+
+                                       Toast.makeText(getContext(), "Registered "+user.getEmail(), Toast.LENGTH_SHORT).show();
+                                       startActivity( new Intent(getActivity(), WelcomeActivity.class));
+                                   }
+                                   else{
+                                       Toast.makeText(getContext(), "Fail to sign up 22", Toast.LENGTH_SHORT).show();
+                                   }
+                               }
+                           });
+
+
+
                        }else {
                            progressDialog.dismiss();
                            Toast.makeText(getContext(), "Fail to sign up", Toast.LENGTH_SHORT).show();
