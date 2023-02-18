@@ -22,6 +22,7 @@ import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.authentication.authPressenter.AuthPressenter;
 import com.example.foodplanner.authentication.authPressenter.AuthPressenterInterface;
 import com.example.foodplanner.database.ConcreteLocalSource;
+import com.example.foodplanner.firebasePackage.FirebaseUtil;
 import com.example.foodplanner.mealModel.Meal;
 import com.example.foodplanner.mealModel.Repository;
 import com.example.foodplanner.network.ApiClient;
@@ -44,23 +45,16 @@ import java.util.ArrayList;
 public class LoginFragment extends Fragment implements LoginAuthInterface {
     private TextView signup;
     private Button login;
-    public static ArrayList<Meal> favList;
     private EditText userName, password;
     private FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     AuthPressenterInterface authPressenterInterface ;
+    FirebaseUtil firebaseUtil;
 
     public LoginFragment() {
         // Required empty public constructor
     }
 
-    public static ArrayList<Meal> getFavList() {
-        return favList;
-    }
-
-    public static void setFavList(ArrayList<Meal> favList) {
-        LoginFragment.favList = favList;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,7 +71,8 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
         password = view.findViewById(R.id.login_password);
         mAuth = FirebaseAuth.getInstance();
         authPressenterInterface = new AuthPressenter();
-        favList=new ArrayList<>();
+       firebaseUtil= new FirebaseUtil();
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,27 +121,14 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Registered Users").child(user.getUid()).child("Favorites");
-                            root.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    for (DataSnapshot dataSnapshot : snapshot.getChildren() ){
-                                        Meal meal = dataSnapshot.getValue(Meal.class);
-                                        Repository repo=  Repository.getInstance( ApiClient.getInstance() , ConcreteLocalSource.getInstance(getContext(),"0"), getContext());
-                                        repo.insert(meal);
-                                        Log.i("test",meal.getStrMeal());
-
-                                    }
-
-
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                    Log.i("test",error.getMessage());
-
-                                }
-                            });
-
+                            firebaseUtil.getFav(getContext(), user);
+                            firebaseUtil.getPlan(getContext(), user,"Sunday");
+                            firebaseUtil.getPlan(getContext(), user,"Monday");
+                            firebaseUtil.getPlan(getContext(), user,"Tuesday");
+                            firebaseUtil.getPlan(getContext(), user,"Wednesday");
+                            firebaseUtil.getPlan(getContext(), user,"Thursday");
+                            firebaseUtil.getPlan(getContext(), user,"Friday");
+                            firebaseUtil.getPlan(getContext(), user,"Saturday");
 
                             startActivity(new Intent(getActivity(), HomeActivity.class));
                             getActivity().finish();
@@ -161,4 +143,6 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
                     Toast.makeText(getContext(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
+
 }
