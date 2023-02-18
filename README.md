@@ -23,8 +23,9 @@ Android Mobile Application using JAVA , that helps the user plans his weekly mea
 
 
 ## Demo
+https://user-images.githubusercontent.com/47868870/219875702-65020154-6700-4a1f-88b0-3a827386cf69.mp4
 
-![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWZjNTZlNjM4YzFmN2JmMTY2OGQ3Mzc1MDVkZDliM2NlNjQ1NGMwYyZjdD1n/SCdgvhiNu36pRrvgZ4/giphy-downsized-large.gif)
+
 
 ## Contributers:
 - [@Sara Rady Eltlt](https://github.com/saraeltlt)
