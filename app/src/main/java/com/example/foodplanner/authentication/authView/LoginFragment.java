@@ -135,7 +135,7 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
                         } else {
                             // If sign in fails, display a message to the user.
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(e -> {

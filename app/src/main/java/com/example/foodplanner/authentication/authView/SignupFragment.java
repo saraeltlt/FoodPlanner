@@ -131,7 +131,7 @@ public class SignupFragment extends Fragment implements SignupAuthInterface{
 
                        }else {
                            progressDialog.dismiss();
-                           Toast.makeText(getContext(), "Fail to sign up", Toast.LENGTH_SHORT).show();
+                           //Toast.makeText(getContext(), "Fail to sign up", Toast.LENGTH_SHORT).show();
                        }
                    }
                }).addOnFailureListener(new OnFailureListener() {
