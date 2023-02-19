@@ -96,7 +96,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsInterfa
                 detailsMealPressenterInterface = new DetailsMealPressenter(DetailsActivity.this,
                         Repository.getInstance(ApiClient.getInstance(), ConcreteLocalSource.getInstance(getBaseContext(), day), getBaseContext()),
                         ApiClient.getInstance(), getBaseContext());
-                Toast.makeText(DetailsActivity.this, " " + day, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailsActivity.this, "Meal added to " + day, Toast.LENGTH_SHORT).show();
                 myMeal.setDay(day);
                 addMealToPlan(myMeal);
 

@@ -120,9 +120,10 @@ public class SignupFragment extends Fragment implements SignupAuthInterface{
 
                                        Toast.makeText(getContext(), "Registered "+user.getEmail(), Toast.LENGTH_SHORT).show();
                                        startActivity( new Intent(getActivity(), WelcomeActivity.class));
+                                       getActivity().finish();
                                    }
                                    else{
-                                       Toast.makeText(getContext(), "Fail to sign up 22", Toast.LENGTH_SHORT).show();
+                                       Toast.makeText(getContext(), "Fail to sign up", Toast.LENGTH_SHORT).show();
                                    }
                                }
                            });
@@ -131,7 +132,7 @@ public class SignupFragment extends Fragment implements SignupAuthInterface{
 
                        }else {
                            progressDialog.dismiss();
-                           Toast.makeText(getContext(), "Fail to sign up", Toast.LENGTH_SHORT).show();
+                           //Toast.makeText(getContext(), "Fail to sign up", Toast.LENGTH_SHORT).show();
                        }
                    }
                }).addOnFailureListener(new OnFailureListener() {
