@@ -126,12 +126,12 @@ public class FirebaseUtil implements FirebaseInterface {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Toast.makeText(context, "removed from your favList", Toast.LENGTH_SHORT).show();
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(context, "failed to remove from your favList", Toast.LENGTH_SHORT).show();
+
 
                         }
                     });
