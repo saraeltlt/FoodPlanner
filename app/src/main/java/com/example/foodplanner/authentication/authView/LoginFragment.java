@@ -98,8 +98,7 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
                                         if(task.isSuccessful()){
                                             Toast.makeText(getContext(), "Email sent", Toast.LENGTH_SHORT).show();
                                         }
-                                        else
-                                            Toast.makeText(getContext(), "Failed to send email", Toast.LENGTH_SHORT).show();
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
