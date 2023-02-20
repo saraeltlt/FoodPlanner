@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                HomeActivity.setGuestFlag(false);
                 // Initialize sign in intent
                 Intent intent = googleSignInClient.getSignInIntent();
                 // Initialize firebase auth
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                     builder.setNegativeButton(R.string.cancelGuest, (DialogInterface.OnClickListener) (dialog, which) -> {
                         dialog.cancel();
+                        HomeActivity.setGuestFlag(false);
                     });
 
                     AlertDialog alertDialog = builder.create();

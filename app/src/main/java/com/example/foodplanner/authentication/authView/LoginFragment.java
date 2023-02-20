@@ -134,6 +134,7 @@ public class LoginFragment extends Fragment implements LoginAuthInterface {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                HomeActivity.setGuestFlag(false);
                 if (CheckInternet.getConnectivity(getContext())) {
                     String email = userName.getText().toString();
                     String pass = password.getText().toString().trim();

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.UI.HomeActivity;
 import com.example.foodplanner.UI.welcomeView.WelcomeActivity;
 import com.example.foodplanner.network.CheckInternet;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -68,6 +69,7 @@ public class SignupFragment extends Fragment implements SignupAuthInterface{
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                HomeActivity.setGuestFlag(false);
                 if (CheckInternet.getConnectivity(getContext())) {
                     String getEmail = email.getText().toString().trim();
                     String getPass = pass.getText().toString().trim();
